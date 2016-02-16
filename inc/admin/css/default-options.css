@@ -1,0 +1,16 @@
+#home-slider-options,
+#home-slider-options .more-btn-extra {
+	display: none;
+}
+#logo_image_disp {
+	width: 70%;
+	margin: 0 auto;
+}
+#add-logo,
+#remove-logo {
+	margin-left: 10px;
+}
+#remove-logo {
+	background: #d64e07;
+	border-color: #b84609;
+}

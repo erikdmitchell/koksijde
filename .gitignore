@@ -1,0 +1,11 @@
+_pgbackup
+bootstrap/inc/.DS_Store
+bootstrap/js/.DS_Store
+css/.DS_Store
+.DS_Store
+debug.log
+plugins
+uploads
+themes/index.php
+themes/twentysixteen
+themes/mdw-wp-demo

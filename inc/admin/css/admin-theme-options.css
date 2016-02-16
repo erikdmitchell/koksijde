@@ -1,0 +1,48 @@
+/**
+ * tabbed navigation
+ */
+.nav-tabs {
+	overflow: hidden;
+}
+.nav-tabs > li > a {
+	text-decoration: none;
+}
+/**
+ * default theme options
+ */
+.mdw-theme-options label span {
+	padding-right: 5px;
+}
+#home-slider-options label span {
+	display: inline-block;
+	width: 95px;
+}
+
+/**
+ * theme options
+ */
+#mdw-bg-images-gallery {
+	padding: 10px 0;
+	overflow: hidden;
+}
+#mdw-bg-images-gallery .mdw-bg-image {
+	margin-right: 10px;
+	float: left;
+}
+/**
+ * theme addons
+ */
+td.addon-title {
+	display: block;
+	margin-bottom: 0.2em;
+	font-size: 14px;
+}
+.mdw-theme-addons .row-actions,
+.mdw-theme-addons .second {
+  padding: 0 0 5px;
+  font-size: 13px;
+}
+.mdw-theme-addons .desc p {
+	margin: 0 0 8px;
+	padding: 0;
+}
