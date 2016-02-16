@@ -364,7 +364,7 @@ function erik_theme_navbar_brand() {
 	if (get_header_image()) :
 		echo '<img src="'.get_header_image().'" height="'.get_custom_header()->height.'" width="'.get_custom_header()->width.'" alt="" />';
 	else :
-		echo '<a class="navbar-brand" href="'.$url.'">'.$text.'</a>';
+		echo '<a class="navbar-brand" href="'.home_url().'">'.$text.'</a>';
 	endif;
 }
 
