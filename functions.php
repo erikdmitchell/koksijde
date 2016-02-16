@@ -72,7 +72,7 @@ function erik_theme_setup() {
 	/**
 	 * include bootstrap mobile nav walker
 	 */
-	include_once(get_template_directory().'/inc/wp_bootstrap_mobile_nav_walker.php');
+	include_once(get_template_directory().'/inc/mobile_nav_walker.php');
 
 	/**
 	 * include theme slider class

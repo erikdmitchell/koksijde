@@ -1,5 +1,10 @@
 <?php
-class MDWwpMobileNavWalker extends Walker_Nav_Menu {
+/**
+ * ErikwpMobileNavWalker class.
+ *
+ * @extends Walker_Nav_Menu
+ */
+class ErikwpMobileNavWalker extends Walker_Nav_Menu {
 
 	private $curItem;
 	private $start_lvl_counter=0;
