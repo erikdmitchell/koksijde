@@ -23,7 +23,7 @@
 		<div class="entry-meta">
 			<?php
 			if ( 'post' == get_post_type() )
-				mdw_theme_posted_on();
+				koksijde_theme_posted_on();
 
 				if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) : ?>
 					<span class="comments-link"><span class="glyphicon glyphicon-comment"></span><?php comments_popup_link( __( 'Leave a comment', 'koksijde' ), __( '1 Comment', 'koksijde' ), __( '% Comments', 'koksijde' ) ); ?></span>

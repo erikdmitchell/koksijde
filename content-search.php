@@ -9,7 +9,7 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php mdw_theme_post_thumbnail(); ?>
+	<?php koksijde_theme_post_thumbnail(); ?>
 
 	<header class="entry-header">
 		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
@@ -22,7 +22,7 @@
 	<?php if ( 'post' == get_post_type() ) : ?>
 
 		<footer class="entry-footer">
-			<?php mdw_wp_theme_meta(); ?>
+			<?php koksijde_theme_meta(); ?>
 			<?php edit_post_link( __( 'Edit', 'koksijde' ), '<span class="edit-link">', '</span>' ); ?>
 		</footer><!-- .entry-footer -->
 
