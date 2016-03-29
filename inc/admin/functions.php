@@ -32,7 +32,8 @@ function register_koksijde_theme_option_page($slug=false, $name='', $function=fa
 		'order' => $order,
 	);
 	$_mdw_theme_options_hooks[$hookname]=true;
-
+print_r($_mdw_theme_options_hooks);
+print_r($_mdw_theme_options_tabs);
 	// add options //
 	$mdw_theme_options[$slug]=$options;
 }

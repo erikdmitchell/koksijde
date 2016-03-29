@@ -1,4 +1,5 @@
 <?php
+
 /**
  * koksijdeDefaultThemeOptions class.
  */
@@ -16,7 +17,7 @@ class koksijdeDefaultThemeOptions {
 	public function __construct() {
 		add_action('admin_enqueue_scripts',array($this,'admin_scripts_styles'));
 		add_action('init',array($this,'register_page'));
-		add_action('mdw_theme_options_init',array($this,'update_options'));
+		add_action('koksijde_theme_options_init',array($this,'update_options'));
 	}
 
 	/**
@@ -27,7 +28,7 @@ class koksijdeDefaultThemeOptions {
 	 * @return void
 	 */
 	public function admin_scripts_styles($hook) {
-		if ($hook!='appearance_page_koksijde_theme_options')
+		if ($hook!='appearance_page_koksijde_options')
 			return;
 
 		wp_enqueue_style('koksijde-theme-options-default-style',get_template_directory_uri().'/inc/admin/css/default-options.css');
@@ -334,14 +335,22 @@ function koksijde_get_theme_addons() {
 function koksijde_get_addon_url_contents($url=false) {
 	if (!$url)
 		return false;
+/*
+$response = wp_remote_get( 'http://www.example.com/index.html' );
+if( is_array($response) ) {
+  $header = $response['headers']; // array of http header lines
+  $body = $response['body']; // use the content
+}
+*/
+	$response=wp_remote_get($url);
 
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_URL, $url);
-	$result = curl_exec($ch);
-	curl_close($ch);
-
+	//$ch = curl_init();
+	//curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	// -- curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	// -- curl_setopt($ch, CURLOPT_URL, $url);
+	//$result = curl_exec($ch);
+	//curl_close($ch);
+print_r($response);
 	$obj = json_decode($result);
 
 	return $obj;

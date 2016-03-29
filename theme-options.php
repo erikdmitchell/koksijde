@@ -18,7 +18,7 @@ class koksijdeThemeOptions {
 	}
 
 	public function admin_scripts_styles($hook) {
-		if ($hook!='appearance_page_mdw_theme_options')
+		if ($hook!='appearance_page_koksijde_options')
 			return;
 
 		wp_enqueue_style('koksijde-options-style',THEME_ADMIN_URL.'/css/admin-theme-options.css');
@@ -31,7 +31,7 @@ class koksijdeThemeOptions {
 	 * @return void
 	 */
 	function add_theme_page() {
-    add_theme_page('Theme Options','Theme Options','edit_theme_options','koksijde_options',array($this,'koksijde_theme_options'));
+    	add_theme_page('Theme Options','Theme Options','edit_theme_options','koksijde_options',array($this,'koksijde_theme_options'));
 	}
 
 	/**
@@ -42,13 +42,18 @@ class koksijdeThemeOptions {
 	 */
 	public function koksijde_theme_options() {
 		global $_koksijde_theme_options_tabs, $_koksijde_theme_options_hooks, $koksijde_theme_options;
-
+echo 'a';
+print_r($_koksijde_theme_options_tabs);
+echo '<br>b';
+print_r($_koksijde_theme_options_hooks);
+echo '<br>c';
+print_r($koksijde_theme_options);
 		$html=null;
 		$classes=null;
 		$active_tab=isset($_GET['tab']) ? $_GET['tab'] : 'default';
 
 		do_action('koksijde_theme_options_init');
-
+echo "<br>active tab: $active_tab<br>";
 		echo '<div class="wrap">';
 			echo '<h1>MDW Theme Options</h1>';
 
@@ -67,10 +72,12 @@ class koksijdeThemeOptions {
 	 */
 	public function display_admin_tabs($active_tab='default') {
 		global $_koksijde_theme_options_tabs;
-
+echo 'disp ad tabs<br>';
+print_r($_koksijde_theme_options_tabs);
+echo '<br>';
 		if (empty($_koksijde_theme_options_tabs))
 			return false;
-
+echo 'z';
 		// sort tabs by order //
 		uasort($_koksijde_theme_options_tabs, function ($a, $b) {
 			if (function_exists('bccomp')) :
@@ -103,6 +110,10 @@ class koksijdeThemeOptions {
 	 */
 	public function display_admin_content($active_tab='default') {
 		global $_koksijde_theme_options_hooks, $_koksijde_theme_options_tabs;
+
+		// bail if no hooks found //
+		if (empty($_koksijde_theme_options_hooks))
+			return false;
 
 		// cycle through hooks to display correct one //
 		foreach ($_koksijde_theme_options_hooks as $tag => $active) :
