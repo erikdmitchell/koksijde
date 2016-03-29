@@ -18,7 +18,7 @@
 				?>
 				<!-- // Previous/next post navigation. NEEDS TO BE ADDED -->
 			<?php endwhile; else: ?>
-				<p><?php _e('Sorry, this page does not exist.','mdw-theme'); ?></p>
+				<p><?php _e('Sorry, this page does not exist.','koksijde'); ?></p>
 			<?php endif; ?>
 		</div>
 		<div class="col-md-4">

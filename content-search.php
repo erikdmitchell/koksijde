@@ -3,8 +3,8 @@
  * The template part for displaying results in search pages
  *
  * @package WordPress
- * @subpackage MDW Theme
- * @since MDW Theme 1.4.4
+ * @subpackage koksijde
+ * @since koksijde 1.0.0
  */
 ?>
 
@@ -23,12 +23,12 @@
 
 		<footer class="entry-footer">
 			<?php mdw_wp_theme_meta(); ?>
-			<?php edit_post_link( __( 'Edit', 'mdw-theme' ), '<span class="edit-link">', '</span>' ); ?>
+			<?php edit_post_link( __( 'Edit', 'koksijde' ), '<span class="edit-link">', '</span>' ); ?>
 		</footer><!-- .entry-footer -->
 
 	<?php else : ?>
 
-		<?php edit_post_link( __( 'Edit', 'mdw-theme' ), '<footer class="entry-footer"><span class="edit-link">', '</span></footer><!-- .entry-footer -->' ); ?>
+		<?php edit_post_link( __( 'Edit', 'koksijde' ), '<footer class="entry-footer"><span class="edit-link">', '</span></footer><!-- .entry-footer -->' ); ?>
 
 	<?php endif; ?>
 

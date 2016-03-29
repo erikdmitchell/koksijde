@@ -92,9 +92,9 @@ function koksijde_theme_setup() {
 
 	// register our navigation area
 	register_nav_menus( array(
-		'primary' => __('Primary Menu','mdw-theme'),
-		'mobile' => __('Mobile Menu','mdw-theme'),
-		'secondary' => __('Secondary Menu','mdw-theme'),
+		'primary' => __('Primary Menu','koksijde'),
+		'mobile' => __('Mobile Menu','koksijde'),
+		'secondary' => __('Secondary Menu','koksijde'),
 	) );
 
 	/**
@@ -224,7 +224,7 @@ function koksijde_theme_post_thumbnail($size='full') {
  */
 function koksijde_theme_posted_on() {
 	if ( is_sticky() && is_home() && ! is_paged() ) {
-		echo '<span class="featured-post"><span class="glyphicon glyphicon-pushpin"></span>' . __( 'Sticky', 'mdw-theme' ) . '</span>';
+		echo '<span class="featured-post"><span class="glyphicon glyphicon-pushpin"></span>' . __( 'Sticky', 'koksijde' ) . '</span>';
 	}
 
 	// Set up and print post meta information. -- hide date if sticky
@@ -271,8 +271,8 @@ function koksijde_theme_paging_nav() {
 		'current'  => $paged,
 		'mid_size' => 1,
 		'add_args' => array_map( 'urlencode', $query_args ),
-		'prev_text' => __( '&laquo; Previous', 'mdw-theme' ),
-		'next_text' => __( 'Next &raquo;', 'mdw-theme' ),
+		'prev_text' => __( '&laquo; Previous', 'koksijde' ),
+		'next_text' => __( 'Next &raquo;', 'koksijde' ),
 	) );
 
 	if ( $links ) :
@@ -308,10 +308,10 @@ function koksijde_theme_post_nav() {
 		<div class="nav-links">
 			<?php
 			if ( is_attachment() ) :
-				previous_post_link( '%link', __( '<span class="meta-nav">Published In</span>%title', 'mdw-theme' ) );
+				previous_post_link( '%link', __( '<span class="meta-nav">Published In</span>%title', 'koksijde' ) );
 			else :
-				previous_post_link( '%link', __( '<span class="meta-nav">Previous Post</span>%title', 'mdw-theme' ) );
-				next_post_link( '%link', __( '<span class="meta-nav">Next Post</span>%title', 'mdw-theme' ) );
+				previous_post_link( '%link', __( '<span class="meta-nav">Previous Post</span>%title', 'koksijde' ) );
+				next_post_link( '%link', __( '<span class="meta-nav">Next Post</span>%title', 'koksijde' ) );
 			endif;
 			?>
 		</div><!-- .nav-links -->

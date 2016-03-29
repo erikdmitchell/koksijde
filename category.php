@@ -6,8 +6,8 @@
  * For example, puts together date-based pages if no date.php file exists.
  *
  * @package WordPress
- * @subpackage MDW Theme
- * @since MDW Theme 1.3.0
+ * @subpackage koksijde
+ * @since koksijde 1.0.0
  */
 ?>
 <?php get_header(); ?>

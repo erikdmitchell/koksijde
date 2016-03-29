@@ -5,8 +5,8 @@
  * Used to display archive-type pages for posts in a tag.
  *
  * @package WordPress
- * @subpackage MDW Theme
- * @since MDW Theme 1.4.4
+ * @subpackage koksijde
+ * @since koksijde 1.0.0
  */
 ?>
 <?php get_header(); ?>
@@ -16,7 +16,7 @@
 		<div class="col-md-8">
 			<?php if ( have_posts() ) : ?>
 				<header class="archive-header">
-					<h1 class="archive-title"><?php printf( __( 'Tag Archives: %s', 'mdw-theme' ), '<span>' . single_tag_title( '', false ) . '</span>' ); ?></h1>
+					<h1 class="archive-title"><?php printf( __( 'Tag Archives: %s', 'koksijde' ), '<span>' . single_tag_title( '', false ) . '</span>' ); ?></h1>
 
 					<?php if ( tag_description() ) : // Show an optional tag description ?>
 						<div class="archive-meta"><?php echo tag_description(); ?></div>
