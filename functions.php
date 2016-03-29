@@ -308,10 +308,10 @@ function koksijde_theme_post_nav() {
 		<div class="nav-links">
 			<?php
 			if ( is_attachment() ) :
-				previous_post_link( '%link', __( '<span class="meta-nav">Published In</span>%title', 'koksijde' ) );
+				previous_post_link( __('<div class="published-in"><span class="meta-nav">Published In:</span> %link</div>', 'koksijde'), '%title' );
 			else :
-				previous_post_link( '%link', __( '<span class="meta-nav">Previous Post</span>%title', 'koksijde' ) );
-				next_post_link( '%link', __( '<span class="meta-nav">Next Post</span>%title', 'koksijde' ) );
+				previous_post_link( __('<div class="prev-post"><span class="meta-nav">Previous Post:</span> %link</div>', 'koksijde'), '%title' );
+				next_post_link( __('<div class="next-post"><span class="meta-nav">Next Post:</span> %link</div>', 'koksijde'), '%title' );
 			endif;
 			?>
 		</div><!-- .nav-links -->

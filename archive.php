@@ -34,7 +34,7 @@
 					<?php get_template_part('content'); ?>
 				<?php endwhile; ?>
 
-				<?php mdw_theme_paging_nav(); // Previous/next post navigation. ?>
+				<?php koksijde_theme_paging_nav(); // Previous/next post navigation. ?>
 
 			<?php else : ?>
 				<?php get_template_part( 'content', 'none' ); ?>
