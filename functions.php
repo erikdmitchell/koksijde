@@ -204,7 +204,7 @@ function koksijde_theme_post_thumbnail($size='full') {
 			$html.=get_the_post_thumbnail($post->ID,$size,$attr);
 		$html.='</div>';
 	else :
-		$html.='<a class="post-thumbnail" href="'.the_permalink().'">';
+		$html.='<a class="post-thumbnail" href="'.get_permalink($post->ID).'">';
 			$html.=get_the_post_thumbnail($post->ID,$size,$attr);
 		$html.='</a>';
 	endif;
