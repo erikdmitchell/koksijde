@@ -1,9 +1,9 @@
 <?php
-$_mdw_theme_options_tabs=array();
-$_mdw_theme_options_hooks=array();
+$_koksijde_theme_options_tabs=array();
+$_koksijde_theme_options_hooks=array();
 
 /**
- * register_mdw_theme_option_page function.
+ * register_koksijde_theme_option_page function.
  *
  * @access public
  * @param bool $slug (default: false)
@@ -12,8 +12,8 @@ $_mdw_theme_options_hooks=array();
  * @param int $order (default: 0)
  * @return void
  */
-function register_mdw_theme_option_page($slug=false,$name='',$function=false,$order=0,$options=array()) {
-	global $_mdw_theme_options_tabs,$_mdw_theme_options_hooks,$mdw_theme_options;
+function register_koksijde_theme_option_page($slug=false, $name='', $function=false, $order=0, $options=array()) {
+	global $_koksijde_theme_options_tabs, $_koksijde_theme_options_hooks, $koksijde_theme_options;
 
 	if (!$function)
 		return false;
@@ -22,7 +22,7 @@ function register_mdw_theme_option_page($slug=false,$name='',$function=false,$or
 		$slug=strtolower($function);
 
 	// setup our action hook //
-	$hookname='mdw_theme_options_tab-'.$slug;
+	$hookname='koksijde_theme_options_tab-'.$slug;
 	add_action($hookname,$function);
 
 	// add tab //
@@ -38,13 +38,13 @@ function register_mdw_theme_option_page($slug=false,$name='',$function=false,$or
 }
 
 /**
- * mdw_theme_get_image_id_from_url function.
+ * koksijde_theme_get_image_id_from_url function.
  *
  * @access public
  * @param mixed $image_url
  * @return void
  */
-function mdw_theme_get_image_id_from_url($image_url) {
+function koksijde_theme_get_image_id_from_url($image_url) {
 	global $wpdb;
 
 	$attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url ));
@@ -53,7 +53,7 @@ function mdw_theme_get_image_id_from_url($image_url) {
 }
 
 /**
- * mdw_theme_get_post_types_list function.
+ * koksijde_theme_get_post_types_list function.
  *
  * @access public
  * @param string $name (default: '')
@@ -61,7 +61,7 @@ function mdw_theme_get_image_id_from_url($image_url) {
  * @param string $output (default: 'dropdown')
  * @return void
  */
-function mdw_theme_get_post_types_list($name='',$selected=false,$output='dropdown') {
+function koksijde_theme_get_post_types_list($name='', $selected=false, $output='dropdown') {
 	$html=null;
 	$args=array(
 		'public' => true
