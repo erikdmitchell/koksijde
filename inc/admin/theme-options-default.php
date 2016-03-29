@@ -64,7 +64,7 @@ class koksijdeDefaultThemeOptions {
 			),
 			'non_responsive' => 0,
 		);
-		register_mdw_theme_option_page('default','Theme Options',array($this,'admin_page'),0,$options);
+		register_koksijde_theme_option_page('default','Theme Options',array($this,'admin_page'),0,$options);
 	}
 
 	/**
@@ -302,7 +302,7 @@ class koksijdeDefaultThemeOptions {
 
 }
 
-new MDWDefaultThemeOptions();
+new koksijdeDefaultThemeOptions();
 
 /**
  * koksijde_get_theme_addons function.

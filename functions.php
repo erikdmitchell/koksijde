@@ -421,7 +421,7 @@ function koksijde_mobile_navigation_setup() {
 			'echo' => false,
 			//'items_wrap'=>'%3$s',
 			'fallback_cb' => 'wp_bootstrap_navwalker::fallback',
-			'walker' => new koksijdewpMobileNavWalker()
+			'walker' => new koksijdeMobileNavWalker()
 		));
 
 	$html.='</div><!-- .koksijde-theme-mobile-menu -->';
