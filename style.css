@@ -416,6 +416,15 @@ img {
   background: #f8f8f8; }
 
 /**
+ * entry meta
+ */
+.entry-header .entry-meta > span {
+	margin-right: 15px;
+}
+.entry-header .entry-meta span.glyphicon {
+	margin-right: 3px;
+}
+/**
  * post navigation
  */
 .post-navigation {
@@ -429,6 +438,7 @@ img {
 .post-navigation .nav-links .next-post {
 	text-align: right;
 }
+
 /**
  * footer
  */
