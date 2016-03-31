@@ -1,13 +1,10 @@
 /**
  *
  * Gulpfile setup
- * @since 1.6.1
- * @package mdw-wp-theme
+ * @since 1.0.0
+ * @package koksijde
  *
- * Credit: https://ahmadawais.com/my-advanced-gulp-workflow-for-wordpress-themes/ - https://github.com/ahmadawais/Advanced-Gulp-WordPress
  */
-
-// http://andy-carter.com/blog/a-beginners-guide-to-the-task-runner-gulp
 
 // project configuration
 var project 		= 'mdw-wp-theme', // Project name, used for build zip.
@@ -49,8 +46,6 @@ var gulp       = require('gulp'), // Dink it down
 	uglify       = require('gulp-uglify'), // Minifies JS files - https://github.com/terinjokes/gulp-uglify
 	zip          = require('gulp-zip'); // Using to zip up our packaged theme into a tasty zip file that can be installed in WordPress! - https://github.com/sindresorhus/gulp-zip
 
-// gulp.task('default', ['styles', 'plugins', 'scripts', 'images', 'watch']);
-
 // our "default" function - needs to be tweaked //
 gulp.task('default',function() {
 	console.log('gulp');
@@ -71,47 +66,6 @@ gulp.task('buildfiles', function() {
  		.pipe(gulp.dest(build))
  		.pipe(notify({ message: 'Copy from buildFiles complete', onLast: true }));
 });
-
-/**
- * Images
- *
- * Look at src/images, optimize the images and send them to the appropriate place
-*/
-/*
-gulp.task('images', function() {
-
-// Add the newer pipe to pass through newer images only
-	return 	gulp.src(['./assets/img/raw/**/*.{png,jpg,gif}'])
-				.pipe(newer('./assets/img/'))
-				.pipe(rimraf({ force: true }))
-				.pipe(imagemin({ optimizationLevel: 7, progressive: true, interlaced: true }))
-				.pipe(gulp.dest('./assets/img/'))
-				.pipe( notify( { message: 'Images task complete', onLast: true } ) );
-});
-*/
-
-/**
-  * Clean tasks for zip
-  *
-  * Being a little overzealous, but we're cleaning out the build folder, codekit-cache directory and annoying DS_Store files and Also
-  * clearing out unoptimized image files in zip as those will have been moved and optimized
- */
-
-/*
- gulp.task('cleanup', function() {
- 	return 	gulp.src(['./assets/bower_components', '**/.sass-cache','**/.DS_Store'], { read: false }) // much faster
-		 		.pipe(ignore('node_modules/**')) //Example of a directory to ignore
-		 		.pipe(rimraf({ force: true }))
-		 		// .pipe(notify({ message: 'Clean task complete', onLast: true }));
- });
- gulp.task('cleanupFinal', function() {
- 	return 	gulp.src(['./assets/bower_components','**/.sass-cache','**/.DS_Store'], { read: false }) // much faster
-		 		.pipe(ignore('node_modules/**')) //Example of a directory to ignore
-		 		.pipe(rimraf({ force: true }))
-		 		// .pipe(notify({ message: 'Clean task complete', onLast: true }));
- });
-*/
-
 
  /**
   * Zipping build directory for distribution
@@ -140,12 +94,6 @@ gulp.task('buildzip', function () {
  	runSequence('styles', 'cleanup', 'vendorsJs', 'scriptsJs',  'buildFiles', 'buildImages', 'buildZip','cleanupFinal', cb);
  });
 
-// a sample help function //
-gulp.task('help', function() {
-  console.log('MDW THEME GULP');
-});
-*/
-
 /*
 gulp.task('watch', function() {
 
@@ -168,19 +116,4 @@ var plumberErrorHandler = { errorHandler: notify.onError({
   })
 
 };
-*/
-/*
-gulp.task('sass', function () {
-
-  gulp.src('./css/src/*.scss')
-
-    .pipe(plumber(plumberErrorHandler)) <--
-
-    .pipe(sass())
-
-    .pipe(gulp.dest('./css'))
-
-    .pipe(livereload()); <--
-
-});
 */
