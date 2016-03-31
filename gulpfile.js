@@ -53,7 +53,7 @@ gulp.task('default',function() {
 
 // concatenate and minify JS Files //
 gulp.task('scripts', function() {
-  return gulp.src('assets/js/*.js')
+  return gulp.src('inc/js/*.js')
     .pipe(concat('scripts.js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
@@ -87,33 +87,8 @@ gulp.task('buildzip', function () {
   * Compiles styles, fires-up browser sync, watches js and php files. Note browser sync task watches php files
   *
  */
-
 /*
  // Package Distributable Theme
  gulp.task('build', function(cb) {
  	runSequence('styles', 'cleanup', 'vendorsJs', 'scriptsJs',  'buildFiles', 'buildImages', 'buildZip','cleanupFinal', cb);
  });
-
-/*
-gulp.task('watch', function() {
-
-  gulp.watch('css/src/*.scss', ['sass']);
-
-  gulp.watch('js/src/*.js', ['js']);
-
-  gulp.watch('img/src/*.{png,jpg,gif}', ['img']);
-
-});
-*/
-
-/*
-var plumberErrorHandler = { errorHandler: notify.onError({
-
-    title: 'Gulp',
-
-    message: 'Error: <%= error.message %>'
-
-  })
-
-};
-*/
