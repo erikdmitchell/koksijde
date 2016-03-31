@@ -3,7 +3,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<?php mdw_theme_post_thumbnail(); ?>
+			<?php koksijde_theme_post_thumbnail(); ?>
 		</div>
 	</div>
 	<div class="row content">

@@ -138,7 +138,7 @@ class koksijdeThemeOptions {
 			$stored_options=get_option($koksijde_theme_options['option_name']);
 
 		if ($stored_options)
-	 		$koksijde_theme_options=mdw_wp_parse_args($stored_options,$koksijde_theme_options); // append stored options
+	 		$koksijde_theme_options=koksijde_wp_parse_args($stored_options,$koksijde_theme_options); // append stored options
 	}
 
 }

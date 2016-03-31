@@ -296,7 +296,7 @@ class koksijdeDefaultThemeOptions {
 		if (!isset($_POST['theme_options']['non_responsive']))
 			$_POST['theme_options']['non_responsive']=0;
 
-		$koksijde_theme_options['default']=mdw_wp_parse_args($_POST['theme_options'],$koksijde_theme_options['default']); // merger post (updated) options with previous options
+		$koksijde_theme_options['default']=koksijde_wp_parse_args($_POST['theme_options'],$koksijde_theme_options['default']); // merger post (updated) options with previous options
 
 		update_option($koksijde_theme_options['option_name'],$koksijde_theme_options);
 

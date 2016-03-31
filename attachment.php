@@ -20,7 +20,7 @@
 					<div class="entry-meta">
 						<?php
 						if ( 'post' == get_post_type() )
-							mdw_theme_posted_on();
+							koksijde_theme_posted_on();
 
 						edit_post_link( __( 'Edit', 'koksijde' ), '<span class="edit-link"><span class="glyphicon glyphicon-pencil"></span>', '</span>' );
 						?>

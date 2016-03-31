@@ -8,7 +8,7 @@
 <div class="container">
 	<div class="row content">
 		<div class="col-md-12">
-			<?php mdw_theme_post_thumbnail(); ?>
+			<?php koksijde_theme_post_thumbnail(); ?>
 
 			<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 				<?php get_template_part('content'); ?>

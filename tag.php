@@ -27,7 +27,7 @@
 					<?php get_template_part( 'content', get_post_format() ); ?>
 				<?php endwhile; ?>
 
-				<?php mdw_theme_paging_nav(); // Previous/next post navigation. ?>
+				<?php koksijde_theme_paging_nav(); // Previous/next post navigation. ?>
 
 			<?php else : ?>
 				<?php get_template_part( 'content', 'none' ); ?>
