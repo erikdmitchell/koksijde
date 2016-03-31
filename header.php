@@ -35,9 +35,9 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<?php erik_theme_navbar_brand(); ?>
+						<?php koksijde_theme_navbar_brand(); ?>
 					</div>
-					<?php erik_secondary_navigation_setup(); ?>
+					<?php koksijde_secondary_navigation_setup(); ?>
 					<div class="collapse navbar-collapse primary-menu">
 						<?php
 						wp_nav_menu(array(
@@ -49,7 +49,7 @@
 						));
 						?>
 					</div> <!-- .primary-menu -->
-					<?php erik_mobile_navigation_setup(); ?>
+					<?php koksijde_mobile_navigation_setup(); ?>
 				</nav>
 			</div><!-- .container -->
 		</div><!-- .navigation -->

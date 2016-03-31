@@ -5,8 +5,8 @@
  * Used to display archive-type pages for posts by an author.
  *
  * @package WordPress
- * @subpackage MDW Theme
- * @since MDW Theme 1.4.4
+ * @subpackage koksijde
+ * @since koksijde 1.0.0
  */
 ?>
 <?php get_header(); ?>
@@ -27,7 +27,7 @@
 				?>
 
 				<header class="archive-header">
-					<h1 class="archive-title"><?php printf( __( 'Author Archives: %s', 'mdw-theme' ), '<span class="vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '" title="' . esc_attr( get_the_author() ) . '" rel="me">' . get_the_author() . '</a></span>' ); ?></h1>
+					<h1 class="archive-title"><?php printf( __( 'Author Archives: %s', 'koksijde' ), '<span class="vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '" title="' . esc_attr( get_the_author() ) . '" rel="me">' . get_the_author() . '</a></span>' ); ?></h1>
 				</header><!-- .archive-header -->
 
 				<?php
@@ -38,7 +38,7 @@
 					rewind_posts();
 				?>
 
-				<?php mdw_theme_paging_nav(); // Previous/next post navigation. ?>
+				<?php koksijde_theme_paging_nav(); // Previous/next post navigation. ?>
 
 				<?php
 				// If a user has filled out their description, show a bio on their entries.
@@ -53,12 +53,12 @@
 						 *
 						 * @param int $size The height and width of the avatar in pixels.
 						 */
-						$author_bio_avatar_size = apply_filters( 'mdw_theme_author_bio_avatar_size', 68 );
+						$author_bio_avatar_size = apply_filters( 'koksijde_author_bio_avatar_size', 68 );
 						echo get_avatar( get_the_author_meta( 'user_email' ), $author_bio_avatar_size );
 						?>
 					</div><!-- .author-avatar -->
 					<div class="author-description">
-						<h2><?php printf( __( 'About %s', 'mdw-theme' ), get_the_author() ); ?></h2>
+						<h2><?php printf( __( 'About %s', 'koksijde' ), get_the_author() ); ?></h2>
 						<p><?php the_author_meta( 'description' ); ?></p>
 					</div><!-- .author-description	-->
 				</div><!-- .author-info -->
@@ -69,7 +69,7 @@
 					<?php get_template_part( 'content', get_post_format() ); ?>
 				<?php endwhile; ?>
 
-				<?php mdw_theme_paging_nav(); // Previous/next post navigation. ?>
+				<?php koksijde_theme_paging_nav(); // Previous/next post navigation. ?>
 
 			<?php else : ?>
 				<?php get_template_part( 'content', 'none' ); ?>

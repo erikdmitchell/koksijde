@@ -3,8 +3,8 @@
  * The template for displaying attachments
  *
  * @package WordPress
- * @subpackage MDW Theme
- * @since MDW Theme 1.4.4
+ * @subpackage koksijde
+ * @since koksijde 1.0.0
  */
 ?>
 <?php get_header(); ?>
@@ -22,7 +22,7 @@
 						if ( 'post' == get_post_type() )
 							mdw_theme_posted_on();
 
-						edit_post_link( __( 'Edit', 'mdw-theme' ), '<span class="edit-link"><span class="glyphicon glyphicon-pencil"></span>', '</span>' );
+						edit_post_link( __( 'Edit', 'koksijde' ), '<span class="edit-link"><span class="glyphicon glyphicon-pencil"></span>', '</span>' );
 						?>
 					</div><!-- .entry-meta -->
 				</header><!-- .entry-header -->

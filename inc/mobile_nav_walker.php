@@ -1,10 +1,10 @@
 <?php
 /**
- * ErikwpMobileNavWalker class.
+ * koksijdeMobileNavWalker class.
  *
  * @extends Walker_Nav_Menu
  */
-class ErikwpMobileNavWalker extends Walker_Nav_Menu {
+class koksijdeMobileNavWalker extends Walker_Nav_Menu {
 
 	private $curItem;
 	private $start_lvl_counter=0;

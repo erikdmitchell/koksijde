@@ -7,24 +7,28 @@
  * hooks in WordPress to change core functionality.
  *
  * @package WordPress
- * @subpackage Erik
- * @since Erik 1.0.0
+ * @subpackage koksijde
+ * @since koksijde 1.0.0
  */
 
 /**
- * Set our global variable for theme options.
+ * Set our global variables for theme options.
  *
- * @since Erik 1.0.0
+ * @since koksijde 1.0.0
  */
-if (!isset($erik_theme_options))
-	$erik_theme_options=array(
-		'option_name' => 'erik_theme_options'
-	);
+if (!isset($koksijde_theme_options))
+	$koksijde_theme_options=array('option_name' => 'koksijde_theme_options');
+
+if (!isset($koksijde_theme_options_tabs))
+	$koksijde_theme_options_tabs=array();
+
+if (!isset($koksijde_theme_options_hooks))
+	$koksijde_theme_options_hooks=array();
 
 /**
  * Set the content width based on the theme's design and stylesheet.
  *
- * @since Erik 1.0.0
+ * @since koksijde 1.0.0
  */
 if ( ! isset( $content_width ) ) {
 	$content_width = 1200;
@@ -37,9 +41,9 @@ if ( ! isset( $content_width ) ) {
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  *
- * @since Erik 1.0.0
+ * @since koksijde 1.0.0
  */
-function erik_theme_setup() {
+function koksijde_theme_setup() {
 	/**
 	 * add our theme support options
 	 */
@@ -49,7 +53,7 @@ function erik_theme_setup() {
 	);
 
 	add_theme_support('automatic-feed-links');
-	add_theme_support('custom-header',$custom_header_args);
+	add_theme_support('custom-header', $custom_header_args);
 	add_theme_support('menus');
 	add_theme_support('post-thumbnails');
 	add_theme_support('title-tag');
@@ -92,9 +96,9 @@ function erik_theme_setup() {
 
 	// register our navigation area
 	register_nav_menus( array(
-		'primary' => __('Primary Menu','mdw-theme'),
-		'mobile' => __('Mobile Menu','mdw-theme'),
-		'secondary' => __('Secondary Menu','mdw-theme'),
+		'primary' => __('Primary Menu','koksijde'),
+		'mobile' => __('Mobile Menu','koksijde'),
+		'secondary' => __('Secondary Menu','koksijde'),
 	) );
 
 	/**
@@ -103,14 +107,14 @@ function erik_theme_setup() {
 	add_editor_style('inc/css/editor-style.css');
 
 }
-add_action('after_setup_theme','erik_theme_setup');
+add_action('after_setup_theme','koksijde_theme_setup');
 
 /**
  * Register widget area.
  *
- * @since Erik 1.0.0
+ * @since koksijde 1.0.0
  */
-function erik_theme_widgets_init() {
+function koksijde_theme_widgets_init() {
 
 	register_sidebar(array(
 		'name' => 'Sidebar',
@@ -149,33 +153,33 @@ function erik_theme_widgets_init() {
 	));
 
 }
-add_action('widgets_init','erik_theme_widgets_init');
+add_action('widgets_init','koksijde_theme_widgets_init');
 
 /**
  * Enqueue scripts and styles.
  *
- * @since Erik 1.1.9
+ * @since koksijde 1.1.9
  */
-function erik_theme_scripts() {
+function koksijde_theme_scripts() {
 	// font awesome
 	wp_enqueue_style('font-awesome-style',get_template_directory_uri().'/inc/css/font-awesome.min.css',array(),'4.5.0');
 
 	// Load our main stylesheet.
-	wp_enqueue_style('erik-theme-style',get_stylesheet_uri());
+	wp_enqueue_style('koksijde-theme-style',get_stylesheet_uri());
 
 	// enqueue our scripts for bootstrap, slider and theme
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('bootstrap',get_template_directory_uri().'/inc/js/bootstrap.min.js',array('jquery'),'3.3.2',true);
 	wp_enqueue_script('jquery-actual-script',get_template_directory_uri().'/inc/js/jquery.actual.min.js',array('jquery'),'1.0.16',true);
 
-	wp_enqueue_script('erik-theme-script',get_template_directory_uri().'/inc/js/erik-theme.js',array('jquery'),'1.2.0',true);
+	wp_enqueue_script('koksijde-theme-script',get_template_directory_uri().'/inc/js/koksijde-theme.js',array('jquery'),'1.2.0',true);
 
 	if ( is_singular() ) :
 		wp_enqueue_script( 'comment-reply' );
 	endif;
 
 }
-add_action('wp_enqueue_scripts','erik_theme_scripts');
+add_action('wp_enqueue_scripts','koksijde_theme_scripts');
 
 /**
  * Display an optional post thumbnail.
@@ -183,12 +187,12 @@ add_action('wp_enqueue_scripts','erik_theme_scripts');
  * Wraps the post thumbnail in an anchor element on index
  * views, or a div element when on single views.
  *
- * @since Erik 1.0
+ * @since koksijde 1.0
  * @based on twentyfourteen
  *
  * @return void
 */
-function erik_theme_post_thumbnail($size='full') {
+function koksijde_theme_post_thumbnail($size='full') {
 	global $post;
 
 	$html=null;
@@ -204,12 +208,12 @@ function erik_theme_post_thumbnail($size='full') {
 			$html.=get_the_post_thumbnail($post->ID,$size,$attr);
 		$html.='</div>';
 	else :
-		$html.='<a class="post-thumbnail" href="'.the_permalink().'">';
+		$html.='<a class="post-thumbnail" href="'.get_permalink($post->ID).'">';
 			$html.=get_the_post_thumbnail($post->ID,$size,$attr);
 		$html.='</a>';
 	endif;
 
-	$image=apply_filters('erik_theme_post_thumbnail',$html,$size,$attr);
+	$image=apply_filters('koksijde_theme_post_thumbnail',$html,$size,$attr);
 
 	echo $image;
 }
@@ -217,14 +221,14 @@ function erik_theme_post_thumbnail($size='full') {
 /**
  * Print HTML with meta information for the current post-date/time and author.
  *
- * @since Erik 1.0
+ * @since koksijde 1.0
  * @based on twentyfourteen
  *
  * @return void
  */
-function erik_theme_posted_on() {
+function koksijde_theme_posted_on() {
 	if ( is_sticky() && is_home() && ! is_paged() ) {
-		echo '<span class="featured-post"><span class="glyphicon glyphicon-pushpin"></span>' . __( 'Sticky', 'mdw-theme' ) . '</span>';
+		echo '<span class="featured-post"><span class="glyphicon glyphicon-pushpin"></span>' . __( 'Sticky', 'koksijde' ) . '</span>';
 	}
 
 	// Set up and print post meta information. -- hide date if sticky
@@ -237,12 +241,12 @@ function erik_theme_posted_on() {
 /**
  * Display navigation to next/previous set of posts when applicable.
  *
- * @since Erik 1.0
+ * @since koksijde 1.0
  * @based on twentyfourteen
  *
  * @return void
  */
-function erik_theme_paging_nav() {
+function koksijde_theme_paging_nav() {
 	// Don't print empty markup if there's only one page.
 	if ( $GLOBALS['wp_query']->max_num_pages < 2 ) {
 		return;
@@ -271,8 +275,8 @@ function erik_theme_paging_nav() {
 		'current'  => $paged,
 		'mid_size' => 1,
 		'add_args' => array_map( 'urlencode', $query_args ),
-		'prev_text' => __( '&laquo; Previous', 'mdw-theme' ),
-		'next_text' => __( 'Next &raquo;', 'mdw-theme' ),
+		'prev_text' => __( '&laquo; Previous', 'koksijde' ),
+		'next_text' => __( 'Next &raquo;', 'koksijde' ),
 	) );
 
 	if ( $links ) :
@@ -289,12 +293,12 @@ function erik_theme_paging_nav() {
 /**
  * Display navigation to next/previous post when applicable.
  *
- * @since Erik 1.0.1
+ * @since koksijde 1.0.1
  * @based on twentyfourteen
  *
  * @return void
  */
-function erik_theme_post_nav() {
+function koksijde_theme_post_nav() {
 	// Don't print empty markup if there's nowhere to navigate.
 	$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
 	$next     = get_adjacent_post( false, '', false );
@@ -308,10 +312,10 @@ function erik_theme_post_nav() {
 		<div class="nav-links">
 			<?php
 			if ( is_attachment() ) :
-				previous_post_link( '%link', __( '<span class="meta-nav">Published In</span>%title', 'mdw-theme' ) );
+				previous_post_link( __('<div class="published-in"><span class="meta-nav">Published In:</span> %link</div>', 'koksijde'), '%title' );
 			else :
-				previous_post_link( '%link', __( '<span class="meta-nav">Previous Post</span>%title', 'mdw-theme' ) );
-				next_post_link( '%link', __( '<span class="meta-nav">Next Post</span>%title', 'mdw-theme' ) );
+				previous_post_link( __('<div class="prev-post"><span class="meta-nav">Previous Post:</span> %link</div>', 'koksijde'), '%title' );
+				next_post_link( __('<div class="next-post"><span class="meta-nav">Next Post:</span> %link</div>', 'koksijde'), '%title' );
 			endif;
 			?>
 		</div><!-- .nav-links -->
@@ -352,13 +356,13 @@ function display_meta_description() {
  * @access public
  * @return void
  */
-function erik_theme_navbar_brand() {
-	global $erik_theme_options;
+function koksijde_theme_navbar_brand() {
+	global $koksijde_theme_options;
 
 	$text=get_bloginfo('name');
 
-	if (isset($erik_theme_options['default']['logo']['text']) && $erik_theme_options['default']['logo']['text']!='')
-		$text=$erik_theme_options['default']['logo']['text'];
+	if (isset($koksijde_theme_options['default']['logo']['text']) && $koksijde_theme_options['default']['logo']['text']!='')
+		$text=$koksijde_theme_options['default']['logo']['text'];
 
 	// display header image or text //
 	if (get_header_image()) :
@@ -369,7 +373,7 @@ function erik_theme_navbar_brand() {
 }
 
 /**
- * erik_theme_special_nav_classes function.
+ * koksijde_theme_special_nav_classes function.
  *
  * allows us to add more specific classes to the wp nav menu
  * more specifically, we can add a logo class depending on theme options
@@ -378,18 +382,18 @@ function erik_theme_navbar_brand() {
  * @param mixed $args
  * @return void
  */
-function erik_theme_special_nav_classes($args) {
-	global $erik_theme_options;
+function koksijde_theme_special_nav_classes($args) {
+	global $koksijde_theme_options;
 
-	if (isset($erik_theme_options['default']['logo']['image']) && $erik_theme_options['default']['logo']['image']!='')
+	if (isset($koksijde_theme_options['default']['logo']['image']) && $koksijde_theme_options['default']['logo']['image']!='')
 		$args['menu_class'].=' logo';
 
 	return $args;
 }
-add_filter('wp_nav_menu_args','erik_theme_special_nav_classes',10,1);
+add_filter('wp_nav_menu_args','koksijde_theme_special_nav_classes',10,1);
 
 /**
- * erik_mobile_navigation_setup function.
+ * koksijde_mobile_navigation_setup function.
  *
  * checks if we have an active mobile menu
  * if active mobile, sets it, if not, default to primary
@@ -397,7 +401,7 @@ add_filter('wp_nav_menu_args','erik_theme_special_nav_classes',10,1);
  * @access public
  * @return void
  */
-function erik_mobile_navigation_setup() {
+function koksijde_mobile_navigation_setup() {
 	$html=null;
 
 	if (has_nav_menu('mobile')) :
@@ -406,12 +410,12 @@ function erik_mobile_navigation_setup() {
 		$location='primary';
 	endif;
 
-	$location=apply_filters('erik_mobile_navigation_setup_location',$location);
+	$location=apply_filters('koksijde_mobile_navigation_setup_location',$location);
 
 	if ($location=='primary' && !has_nav_menu($location))
 		return false;
 
-	$html.='<div id="erik-mobile-nav" class="collapse navbar-collapse erik-theme-mobile-menu hidden-sm hidden-md hidden-lg">';
+	$html.='<div id="koksijde-mobile-nav" class="collapse navbar-collapse koksijde-theme-mobile-menu hidden-sm hidden-md hidden-lg">';
 
 		$html.=wp_nav_menu(array(
 			'theme_location' => $location,
@@ -421,23 +425,23 @@ function erik_mobile_navigation_setup() {
 			'echo' => false,
 			//'items_wrap'=>'%3$s',
 			'fallback_cb' => 'wp_bootstrap_navwalker::fallback',
-			'walker' => new ErikwpMobileNavWalker()
+			'walker' => new koksijdeMobileNavWalker()
 		));
 
-	$html.='</div><!-- .erik-theme-mobile-menu -->';
+	$html.='</div><!-- .koksijde-theme-mobile-menu -->';
 
 	echo $html;
 }
 
 /**
- * erik_secondary_navigation_setup function.
+ * koksijde_secondary_navigation_setup function.
  *
  * if our secondary menu is set, this shows it
  *
  * @access public
  * @return void
  */
-function erik_secondary_navigation_setup() {
+function koksijde_secondary_navigation_setup() {
 	$html=null;
 
 	if (!has_nav_menu('secondary'))
@@ -458,22 +462,22 @@ function erik_secondary_navigation_setup() {
 }
 
 /**
- * erik_back_to_top function.
+ * koksijde_back_to_top function.
  *
  * @access public
  * @return void
  */
-function erik_back_to_top() {
+function koksijde_back_to_top() {
 	$html=null;
 
-	$html.='<a href="#0" class="erik-back-to-top"></a>';
+	$html.='<a href="#0" class="koksijde-back-to-top"></a>';
 
 	echo $html;
 }
-add_action('wp_footer','erik_back_to_top');
+add_action('wp_footer','koksijde_back_to_top');
 
 /**
- * erik_wp_parse_args function.
+ * koksijde_wp_parse_args function.
  *
  * Similar to wp_parse_args() just a bit extended to work with multidimensional arrays
  *
@@ -482,13 +486,13 @@ add_action('wp_footer','erik_back_to_top');
  * @param mixed $b
  * @return void
  */
-function erik_wp_parse_args(&$a,$b) {
+function koksijde_wp_parse_args(&$a,$b) {
 	$a = (array) $a;
 	$b = (array) $b;
 	$result = $b;
 	foreach ( $a as $k => &$v ) {
 		if ( is_array( $v ) && isset( $result[ $k ] ) ) {
-			$result[ $k ] = erik_wp_parse_args( $v, $result[ $k ] );
+			$result[ $k ] = koksijde_wp_parse_args( $v, $result[ $k ] );
 		} else {
 			$result[ $k ] = $v;
 		}

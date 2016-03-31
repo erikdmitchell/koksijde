@@ -1,10 +1,10 @@
 <?php
 /**
- * MDWBootstrapSlider class.
+ * koksijdeSlider class.
  */
-class MDWBootstrapSlider {
+class koksijdeSlider {
 
-	public $version='1.1.1';
+	public $version='0.1.0';
 	public $image_width=1400;
 	public $image_height=500;
 	public $image_size_name='mdw_wp_theme_slider';
@@ -19,9 +19,9 @@ class MDWBootstrapSlider {
 	 * @param array $config (default: array())
 	 * @return void
 	 */
-	function __construct($config=array()) {
-		// v1.0.6 - legacy support for non/pre shortcode version // NEED TO CHECK THIS ????
+	public function __construct($config=array()) {
 		$old_config=array_filter($config);
+
 		if (!empty($old_config))
 			$this->setup_slider($old_config);
 
@@ -211,29 +211,6 @@ class MDWBootstrapSlider {
 	}
 
 	/**
-	 * add_slider_image_sizes function.
-	 *
-	 * @access public
-	 * @return void
-	 */
-	public function add_slider_image_sizes() {
-/*
-		//$theme_options=new MDWWPThemeOptions(); // can't call this here //
-		$width=$this->image_width;
-		$height=$this->image_height;
-
-		// theme options width/hieght not setup yet //
-		if (isset($theme_options->options['home_slider']['image_width']) && $theme_options->options['home_slider']['active'])
-			$width=$theme_options->options['home_slider']['image_width'];
-
-		if (isset($theme_options->options['home_slider']['image_height']) && $theme_options->options['home_slider']['active'])
-			$height=$theme_options->options['home_slider']['image_height'];
-
-		add_image_size($this->image_size_name, $width, $height, true);
-*/
-	}
-
-	/**
 	 * custom_slider_post_thumbnail function.
 	 *
 	 * this is a knock off of the get_post_thumbnail WP function
@@ -287,24 +264,24 @@ class MDWBootstrapSlider {
 }
 
 /**
- * mdw_slider function.
+ * koksijde_slider function.
  *
  * @access public
  * @return void
  */
-function mdw_slider() {
-	echo get_mdw_slider();
+function koksijde_slider() {
+	echo get_koksijde_slider();
 }
 
 /**
- * get_mdw_slider function.
+ * get_koksijde_slider function.
  *
  * @access public
  * @return void
  */
-function get_mdw_slider() {
-	$MDWBootstrapSlider=new MDWBootstrapSlider();
+function get_koksijde_slider() {
+	$koksijdeSlider=new koksijdeSlider();
 
-	return $MDWBootstrapSlider->setup_slider();
+	return $koksijdeSlider->setup_slider();
 }
 ?>

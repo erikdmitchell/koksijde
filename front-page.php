@@ -5,7 +5,7 @@
 ?>
 <?php get_header(); ?>
 
-	<?php mdw_slider(); ?>
+	<?php koksijde_slider(); ?>
 
 	<div class="container">
 		<div class="row">

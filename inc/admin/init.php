@@ -4,5 +4,4 @@ define('THEME_ADMIN_URL',get_template_directory_uri().'/inc/admin');
 
 get_template_part('inc/admin/functions');
 get_template_part('inc/admin/theme-options','default');
-get_template_part('inc/admin/theme-options','legacy');
 ?>
