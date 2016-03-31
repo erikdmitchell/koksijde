@@ -125,7 +125,7 @@ class koksijdeDefaultThemeOptions {
 						$html.='<p>';
 							$html.='<label title="home_slider_post_type">';
 								$html.='<span>Post Type</span>';
-								$html.=mdw_theme_get_post_types_list('theme_options[home_slider][post_type]',$koksijde_theme_options['default']['home_slider']['post_type']);
+								$html.=koksijde_theme_get_post_types_list('theme_options[home_slider][post_type]',$koksijde_theme_options['default']['home_slider']['post_type']);
 							$html.='</label>';
 						$html.='</p>';
 

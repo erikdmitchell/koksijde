@@ -12,14 +12,18 @@
  */
 
 /**
- * Set our global variable for theme options.
+ * Set our global variables for theme options.
  *
  * @since koksijde 1.0.0
  */
 if (!isset($koksijde_theme_options))
-	$koksijde_theme_options=array(
-		'option_name' => 'koksijde_theme_options'
-	);
+	$koksijde_theme_options=array('option_name' => 'koksijde_theme_options');
+
+if (!isset($koksijde_theme_options_tabs))
+	$koksijde_theme_options_tabs=array();
+
+if (!isset($koksijde_theme_options_hooks))
+	$koksijde_theme_options_hooks=array();
 
 /**
  * Set the content width based on the theme's design and stylesheet.

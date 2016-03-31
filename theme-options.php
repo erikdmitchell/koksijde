@@ -41,19 +41,14 @@ class koksijdeThemeOptions {
 	 * @return void
 	 */
 	public function koksijde_theme_options() {
-		global $_koksijde_theme_options_tabs, $_koksijde_theme_options_hooks, $koksijde_theme_options;
-echo 'a';
-print_r($_koksijde_theme_options_tabs);
-echo '<br>b';
-print_r($_koksijde_theme_options_hooks);
-echo '<br>c';
-print_r($koksijde_theme_options);
+		global $koksijde_theme_options_tabs, $koksijde_theme_options_hooks, $koksijde_theme_options;
+
 		$html=null;
 		$classes=null;
 		$active_tab=isset($_GET['tab']) ? $_GET['tab'] : 'default';
 
 		do_action('koksijde_theme_options_init');
-echo "<br>active tab: $active_tab<br>";
+
 		echo '<div class="wrap">';
 			echo '<h1>MDW Theme Options</h1>';
 
@@ -71,15 +66,13 @@ echo "<br>active tab: $active_tab<br>";
 	 * @return void
 	 */
 	public function display_admin_tabs($active_tab='default') {
-		global $_koksijde_theme_options_tabs;
-echo 'disp ad tabs<br>';
-print_r($_koksijde_theme_options_tabs);
-echo '<br>';
-		if (empty($_koksijde_theme_options_tabs))
+		global $koksijde_theme_options_tabs;
+
+		if (empty($koksijde_theme_options_tabs))
 			return false;
-echo 'z';
+
 		// sort tabs by order //
-		uasort($_koksijde_theme_options_tabs, function ($a, $b) {
+		uasort($koksijde_theme_options_tabs, function ($a, $b) {
 			if (function_exists('bccomp')) :
 				return bccomp($a['order'], $b['order']);
 			else :
@@ -89,14 +82,14 @@ echo 'z';
 
 		// output tabs //
 		echo '<h2 class="nav-tabs">';
-			foreach ($_koksijde_theme_options_tabs as $slug => $tab) :
+			foreach ($koksijde_theme_options_tabs as $slug => $tab) :
 				if ($active_tab==$slug) :
 					$classes='nav-tab-active';
 				else :
 					$classes=null;
 				endif;
 
-				echo '<a href="?page=koksijde_theme_options&tab='.$slug.'" class="nav-tab '.$classes.'">'.$tab['name'].'</a>';
+				echo '<a href="?page=koksijde_options&tab='.$slug.'" class="nav-tab '.$classes.'">'.$tab['name'].'</a>';
 			endforeach;
 		echo '</h2>';
 	}
@@ -109,21 +102,21 @@ echo 'z';
 	 * @return void
 	 */
 	public function display_admin_content($active_tab='default') {
-		global $_koksijde_theme_options_hooks, $_koksijde_theme_options_tabs;
+		global $koksijde_theme_options_hooks, $koksijde_theme_options_tabs;
 
 		// bail if no hooks found //
-		if (empty($_koksijde_theme_options_hooks))
+		if (empty($koksijde_theme_options_hooks))
 			return false;
 
 		// cycle through hooks to display correct one //
-		foreach ($_koksijde_theme_options_hooks as $tag => $active) :
+		foreach ($koksijde_theme_options_hooks as $tag => $active) :
 			$tag_arr=explode('-',$tag);
 			$id=array_pop($tag_arr);
 
 			// apply our hook //
 			if ($active_tab==$id) :
 				echo '<div class="koksijde-theme-options-content">';
-					do_action($tag, $_koksijde_theme_options_tabs[$id]['function']);
+					do_action($tag, $koksijde_theme_options_tabs[$id]['function']);
 				echo '</div>';
 			endif;
 		endforeach;

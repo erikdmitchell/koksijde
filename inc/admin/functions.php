@@ -1,7 +1,4 @@
 <?php
-$_koksijde_theme_options_tabs=array();
-$_koksijde_theme_options_hooks=array();
-
 /**
  * register_koksijde_theme_option_page function.
  *
@@ -13,7 +10,7 @@ $_koksijde_theme_options_hooks=array();
  * @return void
  */
 function register_koksijde_theme_option_page($slug=false, $name='', $function=false, $order=0, $options=array()) {
-	global $_koksijde_theme_options_tabs, $_koksijde_theme_options_hooks, $koksijde_theme_options;
+	global $koksijde_theme_options_tabs, $koksijde_theme_options_hooks, $koksijde_theme_options;
 
 	if (!$function)
 		return false;
@@ -26,16 +23,15 @@ function register_koksijde_theme_option_page($slug=false, $name='', $function=fa
 	add_action($hookname,$function);
 
 	// add tab //
-	$_mdw_theme_options_tabs[$slug]=array(
+	$koksijde_theme_options_tabs[$slug]=array(
 		'name' => $name,
 		'function' => $function,
 		'order' => $order,
 	);
-	$_mdw_theme_options_hooks[$hookname]=true;
-print_r($_mdw_theme_options_hooks);
-print_r($_mdw_theme_options_tabs);
+	$koksijde_theme_options_hooks[$hookname]=true;
+
 	// add options //
-	$mdw_theme_options[$slug]=$options;
+	$koksijde_theme_options[$slug]=$options;
 }
 
 /**
@@ -86,23 +82,25 @@ function koksijde_theme_get_post_types_list($name='', $selected=false, $output='
  * @param mixed $aArray2
  * @return void
  */
-function array_recursive_diff($aArray1, $aArray2) {
-  $aReturn = array();
+if (!function_exists('array_recursive_diff')) :
+	function array_recursive_diff($aArray1, $aArray2) {
+	  $aReturn = array();
 
-  foreach ($aArray1 as $mKey => $mValue) {
-    if (array_key_exists($mKey, $aArray2)) {
-      if (is_array($mValue)) {
-        $aRecursiveDiff = array_recursive_diff($mValue, $aArray2[$mKey]);
-        if (count($aRecursiveDiff)) { $aReturn[$mKey] = $aRecursiveDiff; }
-      } else {
-        if ($mValue != $aArray2[$mKey]) {
-          $aReturn[$mKey] = $mValue;
-        }
-      }
-    } else {
-      $aReturn[$mKey] = $mValue;
-    }
-  }
-  return $aReturn;
-}
+	  foreach ($aArray1 as $mKey => $mValue) {
+	    if (array_key_exists($mKey, $aArray2)) {
+	      if (is_array($mValue)) {
+	        $aRecursiveDiff = array_recursive_diff($mValue, $aArray2[$mKey]);
+	        if (count($aRecursiveDiff)) { $aReturn[$mKey] = $aRecursiveDiff; }
+	      } else {
+	        if ($mValue != $aArray2[$mKey]) {
+	          $aReturn[$mKey] = $mValue;
+	        }
+	      }
+	    } else {
+	      $aReturn[$mKey] = $mValue;
+	    }
+	  }
+	  return $aReturn;
+	}
+endif;
 ?>
