@@ -253,19 +253,21 @@ class koksijdeDefaultThemeOptions {
 
 			<tbody id="the-list">
 				<?php foreach ($addons as $data) : ?>
-					<tr id="<?php echo $data->slug; ?>" class="">
+					<?php $data_obj=json_decode($data['body']); ?>
+
+					<tr id="<?php echo $data_obj->slug; ?>" class="">
 						<td class="addon-title column-primary">
-							<strong><?php echo $data->name; ?></strong>
+							<strong><?php echo $data_obj->name; ?></strong>
 							<div class="row-actions visible">
 								<span class="download">
-									<a href="<?php echo $data->download_url; ?>" class="download">Download</a>
+									<a href="<?php echo $data_obj->download_url; ?>" class="download">Download</a>
 								</span>
 							</div>
 						</td>
 						<td class="column-description desc">
-							<div class="addon-description"><p><?php echo $data->sections->description; ?></p></div>
+							<div class="addon-description"><p><?php echo $data_obj->sections->description; ?></p></div>
 							<div class="second addon-version-author-uri">
-								Version <?php echo $data->version; ?> | By <a href="<?php echo $data->author_homepage; ?>"><?php echo $data->author; ?></a>
+								Version <?php echo $data_obj->version; ?> | By <a href="<?php echo $data_obj->author_homepage; ?>"><?php echo $data_obj->author; ?></a>
 							</div>
 						</td>
 					</tr>
@@ -335,24 +337,12 @@ function koksijde_get_theme_addons() {
 function koksijde_get_addon_url_contents($url=false) {
 	if (!$url)
 		return false;
-/*
-$response = wp_remote_get( 'http://www.example.com/index.html' );
-if( is_array($response) ) {
-  $header = $response['headers']; // array of http header lines
-  $body = $response['body']; // use the content
-}
-*/
+
 	$response=wp_remote_get($url);
 
-	//$ch = curl_init();
-	//curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	// -- curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	// -- curl_setopt($ch, CURLOPT_URL, $url);
-	//$result = curl_exec($ch);
-	//curl_close($ch);
-print_r($response);
-	$obj = json_decode($result);
+	if (is_array($response))
+		return $response;
 
-	return $obj;
+	return false;
 }
 ?>
