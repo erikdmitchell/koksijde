@@ -7,7 +7,7 @@ class koksijdeSlider {
 	public $version='0.1.0';
 	public $image_width=1400;
 	public $image_height=500;
-	public $image_size_name='mdw_wp_theme_slider';
+	public $image_size_name='koksijde_theme_slider';
 	public $config=array();
 
 	private $posts=null;
@@ -37,12 +37,12 @@ class koksijdeSlider {
 	 * @return void
 	 */
 	public function setup_slider($config=array(),$use_theme_options=true) {
-		global $mdw_theme_options;
+		global $koksijde_theme_options;
 
 		$theme_options_config=array();
 
-		if (isset($mdw_theme_options['default']['home_slider']) && $mdw_theme_options['default']['home_slider']['active'] && $use_theme_options)
-			$theme_options_config=$mdw_theme_options['default']['home_slider'];
+		if (isset($koksijde_theme_options['default']['home_slider']) && $koksijde_theme_options['default']['home_slider']['active'] && $use_theme_options)
+			$theme_options_config=$koksijde_theme_options['default']['home_slider'];
 
 		$default_config=array(
 			'slider_id' => 'slider-id',
@@ -225,7 +225,7 @@ class koksijdeSlider {
 		$image=null;
 		$attr=null;
 		$class=array();
-		$image_size=apply_filters('mdw-wp-theme-slider-image-size',$this->image_size_name);
+		$image_size=apply_filters('koksijde-slider-image-size',$this->image_size_name);
 		$post_thumbnail_id=get_post_thumbnail_id($post_id);
 		$post_thumbnail_image_src=wp_get_attachment_image_src($post_thumbnail_id,$image_size,false);
 		$attachment=get_post($post_thumbnail_id);
@@ -242,7 +242,7 @@ class koksijdeSlider {
 		// setup out attributes //
 		$default_attr = array(
 			'src'   => $post_thumbnail_image_src,
-			'class' => implode(' ',apply_filters('mdw-wp-theme-slider-classes',$classes)),
+			'class' => implode(' ',apply_filters('koksijde-slider-classes',$classes)),
 			'alt'   => trim(strip_tags( get_post_meta($post_thumbnail_id, '_wp_attachment_image_alt', true) )), // Use Alt field first
 		);
 
@@ -253,8 +253,8 @@ class koksijdeSlider {
 			$default_attr['alt'] = trim(strip_tags( $attachment->post_title )); // Finally, use the title
 
 		$attr = wp_parse_args($attr, $default_attr);
-		$width=apply_filters('mdw-wp-theme-slider-image-width',$attr['src'][1]);
-		$height=apply_filters('mdw-wp-theme-slider-image-height',$attr['src'][2]);
+		$width=apply_filters('koksijde-slider-image-width',$attr['src'][1]);
+		$height=apply_filters('koksijde-slider-image-height',$attr['src'][2]);
 
 		$image='<img width="'.$width.'" height="'.$height.'" src="'.$attr['src'][0].'" class="'.$attr['class'].'" alt="'.$attr['alt'].'">';
 
