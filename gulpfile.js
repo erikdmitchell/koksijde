@@ -83,14 +83,14 @@ gulp.task('movejs', ['minjs'], function() {
 gulp.task('js', ['minjs', 'minadminjs', 'movejs']);
 
 // Build task that moves essential theme files for production-ready sites //
-gulp.task('build', ['js'], function() {
+gulp.task('build', function() {
 	return 	gulp.src(buildInclude)
  		.pipe(gulp.dest(build))
  		.pipe(notify({ message: 'Copy from build complete', onLast: true }));
 });
 
 // Zipping build directory for distribution //
-gulp.task('zip', ['build'], function () {
+gulp.task('zip', ['js', 'build'], function () {
 	return gulp.src(build+'/**/')
 		.pipe(zip(project+'.zip'))
 		.pipe(gulp.dest('./'))
