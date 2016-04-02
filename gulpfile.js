@@ -34,8 +34,7 @@ var project 		= 'koksijde', // Project name, used for build zip.
 		'!inc/admin/js/*', // admin js - handled by 'js'
 		'!**/.DS_Store',
 		'!.git',
-		'!.gitignore',
-		build
+		'!.gitignore'
 	];
 
 // Load plugins
@@ -87,7 +86,7 @@ gulp.task('js', ['minjs', 'minadminjs', 'movejs']);
 gulp.task('build', ['js'], function() {
 	return 	gulp.src(buildInclude)
  		.pipe(gulp.dest(build))
- 		.pipe(notify({ message: 'Copy from buildFiles complete', onLast: true }));
+ 		.pipe(notify({ message: 'Copy from build complete', onLast: true }));
 });
 
 // Zipping build directory for distribution //
