@@ -35,6 +35,8 @@ var project 		= 'koksijde', // Project name, used for build zip.
 		'!**/.DS_Store',
 		'!.git',
 		'!.gitignore'
+		'!gulp.js',
+		'!package.json'
 	];
 
 // Load plugins
