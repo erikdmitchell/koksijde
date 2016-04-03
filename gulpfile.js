@@ -34,7 +34,7 @@ var project 		= 'koksijde', // Project name, used for build zip.
 		'!inc/admin/js/*', // admin js - handled by 'js'
 		'!**/.DS_Store',
 		'!.git',
-		'!.gitignore'
+		'!.gitignore',
 		'!gulp.js',
 		'!package.json'
 	];
