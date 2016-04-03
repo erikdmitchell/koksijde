@@ -230,7 +230,7 @@ class koksijdeDefaultThemeOptions {
 		$html.='</form>';
 		echo $html;
 		?>
-		<h2 class="title">MDW Theme Add Ons</h2>
+		<h2 class="title">koksijde Theme Add Ons</h2>
 		<p>
 			We have decided to reduce the size and load of the koksijde theme on both the front and backend. As a result, we offer plugins that will
 			hook into our theme. Developers can also their own features (plugins) and theme options and hook them into the theme.
@@ -296,7 +296,7 @@ class koksijdeDefaultThemeOptions {
 		if (!isset($_POST['theme_options']['non_responsive']))
 			$_POST['theme_options']['non_responsive']=0;
 
-		$koksijde_theme_options['default']=mdw_wp_parse_args($_POST['theme_options'],$koksijde_theme_options['default']); // merger post (updated) options with previous options
+		$koksijde_theme_options['default']=koksijde_wp_parse_args($_POST['theme_options'],$koksijde_theme_options['default']); // merger post (updated) options with previous options
 
 		update_option($koksijde_theme_options['option_name'],$koksijde_theme_options);
 
@@ -316,7 +316,7 @@ new koksijdeDefaultThemeOptions();
 function koksijde_get_theme_addons() {
 	// list of urls in array
 	$addons=array(
-		'http://www.millerdesignworks.com/mdw-wp-plugins/mdw-full-bg-slider.json'
+		//'http://www.millerdesignworks.com/mdw-wp-plugins/mdw-full-bg-slider.json'
 	);
 	$addons_data=array();
 
