@@ -27,6 +27,7 @@ var project 		= 'koksijde', // Project name, used for build zip.
 		'screenshot.png',
 		'inc/js/*.min.js',
 		'inc/admin/js/*.min.js',
+		'readme.txt',
 
 		// exclude files and folders //
 		'!node_modules/**/*', // node_modules
