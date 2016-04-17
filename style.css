@@ -542,3 +542,9 @@ footer .copyright {
 	max-height: 500px;
 	overflow: hidden;
 }
+
+/* shortcodes */
+.koksijde-recent-posts .recent-post img {
+	max-height: 200px;
+	overflow: hidden;
+}

@@ -520,6 +520,16 @@ function koksijde_wp_parse_args(&$a,$b) {
 	return $result;
 }
 
+/**
+ * koksijde_get_excerpt_by_id function.
+ *
+ * @access public
+ * @param string $post (default: '')
+ * @param int $length (default: 10)
+ * @param string $tags (default: '<a><em><strong>')
+ * @param string $extra (default: '...')
+ * @return void
+ */
 function koksijde_get_excerpt_by_id($post='', $length=10, $tags='<a><em><strong>', $extra='...') {
  	// if post is id, get the post, if it's the object we are ok, else bail //
 	if (is_int($post)) :
