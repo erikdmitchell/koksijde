@@ -526,15 +526,19 @@ footer .copyright {
 /**
  * general slider formatting
  */
-.mdw-wp-slider .carousel-indicators {
+.koksijde-slider .carousel-indicators {
   bottom: 5px; }
 
-.mdw-wp-slider .carousel-inner > .item {
+.koksijde-slider .carousel-inner > .item {
   height: 100%; }
 
-.mdw-wp-slider .carousel-caption {
+.koksijde-slider .carousel-caption {
   font-size: 18px; }
 
 .carousel-inner > .item > a > img,
 .carousel-inner > .item > img {
   margin: 0 auto; }
+.koksijde-slider {
+	max-height: 500px;
+	overflow: hidden;
+}
