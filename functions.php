@@ -84,6 +84,11 @@ function koksijde_theme_setup() {
 	include_once(get_template_directory().'/inc/mobile_nav_walker.php');
 
 	/**
+	 * include theme shortcodes
+	 */
+	include_once(get_template_directory().'/inc/shortcodes.php');
+
+	/**
 	 * include theme slider class
 	 */
 	include_once(get_template_directory().'/inc/slider.php');
@@ -515,15 +520,28 @@ function koksijde_wp_parse_args(&$a,$b) {
 	return $result;
 }
 
-/**
- * Initialize theme updater function. Utalizes the theme-update-checker.php file in theme-updates
- * Develpoed by W-Shadow (http://w-shadow.com/blog/2011/06/02/automatic-updates-for-commercial-themes/)
- */
-/*
-require_once(get_template_directory().'/inc/theme-updates/theme-update-checker.php');
-$update_checker = new ThemeUpdateChecker(
-	'mdw-wp-theme',
-	'http://www.millerdesignworks.com/mdw-wp-themes/mdw-wp-theme.json'
-);
-*/
+function koksijde_get_excerpt_by_id($post='', $length=10, $tags='<a><em><strong>', $extra='...') {
+ 	// if post is id, get the post, if it's the object we are ok, else bail //
+	if (is_int($post)) :
+		$post = get_post($post);
+	elseif (!is_object($post)) :
+		return false;
+	endif;
+
+	// check for excerpt and return that, else grab the post content //
+	if (has_excerpt($post->ID)) :
+		$the_excerpt = $post->post_excerpt;
+		return apply_filters('the_content', $the_excerpt);
+	else :
+		$the_excerpt = $post->post_content;
+	endif;
+
+	$the_excerpt = strip_shortcodes(strip_tags($the_excerpt), $tags); // remove shortcodes and tags
+	$the_excerpt = preg_split('/\b/', $the_excerpt, $length * 2+1); // do our length (words)
+	$excerpt_waste = array_pop($the_excerpt); // grab the "excerpt"
+	$the_excerpt = implode($the_excerpt); // convert our array of words to an actual exceprt
+	$the_excerpt .= $extra; // append the extra
+
+	return apply_filters('the_content', $the_excerpt);
+}
 ?>
