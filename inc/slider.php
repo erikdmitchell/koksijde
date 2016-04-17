@@ -79,7 +79,7 @@ class koksijdeSlider {
 	public function build_slider() {
 		$html=null;
 
-		$html.='<div id="'.$this->config['slider_id'].'" class="carousel slide mdw-wp-slider" data-ride="carousel">';
+		$html.='<div id="'.$this->config['slider_id'].'" class="carousel slide koksijde-slider" data-ride="carousel">';
 			$html.=$this->generate_indicators();
 			$html.=$this->generate_slides($this->config['captions']);
 			$html.=$this->generate_controls();
