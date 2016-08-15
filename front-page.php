@@ -1,11 +1,15 @@
 <?php
 /**
  * Template Name: Front Page
-**/
+ *
+ * @package WordPress
+ * @subpackage koksijde
+ * @since koksijde 1.0.0
+ */
 ?>
 <?php get_header(); ?>
 
-	<?php koksijde_slider(); ?>
+	<?php get_template_part('home', 'slider'); ?>
 
 	<div class="container">
 		<div class="row">
