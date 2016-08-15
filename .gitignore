@@ -10,3 +10,4 @@ themes/index.php
 themes/twentysixteen
 themes/mdw-wp-demo
 node_modules
+/npm-debug.log
