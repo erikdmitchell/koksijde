@@ -63,7 +63,10 @@ add_action('init', 'koksijde_add_slider_image_sizes');
  * @return void
  */
 function koksijde_slider_get_caption($post=false) {
+	global $koksijde_slider_config;
+
 	$html=null;
+
 	if (!$post)
 		return false;
 
@@ -149,7 +152,7 @@ function koksijde_slider_slides() {
 						$html.='<div class="caption-text">'.apply_filters('the_content', koksijde_slider_get_caption($post)).'</div>';
 
 						if ($koksijde_slider_config['more_button'])
-							$html.='<p><a class="btn btn-primary btn-lg" role="button">'.$koksijde_slider_config['more_text'].'</a></p>';
+							$html.='<p><a class="btn btn-primary btn-lg" role="button">'.sanitize_text_field($koksijde_slider_config['more_text']).'</a></p>';
 					$html.='</div>';
 				endif;
 

@@ -388,7 +388,7 @@ function koksijde_theme_navbar_brand() {
 	if (get_header_image()) :
 		$html= '<img src="'.get_header_image().'" height="'.get_custom_header()->height.'" width="'.get_custom_header()->width.'" alt="" />';
 	else :
-		$html= '<a class="navbar-brand" href="'.home_url().'">'.$text.'</a>';
+		$html= '<a class="navbar-brand" href="'.home_url().'">'.sanitize_text_field($text).'</a>';
 	endif;
 
 	echo apply_filters('koksijde_navbar_brand', $html, $text);
