@@ -170,9 +170,9 @@ function koksijde_theme_scripts() {
 
 	// enqueue our scripts for bootstrap, slider and theme
 	wp_enqueue_script('jquery');
-	wp_enqueue_script('bootstrap',get_template_directory_uri().'/inc/js/bootstrap.min.js',array('jquery'),'3.3.2',true);
-	wp_enqueue_script('jquery-actual-script',get_template_directory_uri().'/inc/js/jquery.actual.min.js',array('jquery'),'1.0.16',true);
-	wp_enqueue_script('koksijde-theme-script',get_template_directory_uri().'/inc/js/koksijde-theme.js',array('jquery'),'1.2.0',true);
+	wp_enqueue_script('bootstrap', get_template_directory_uri().'/inc/js/bootstrap.min.js', array('jquery'), '3.3.7', true);
+	wp_enqueue_script('jquery-actual-script', get_template_directory_uri().'/inc/js/jquery.actual.min.js', array('jquery'), '1.0.16', true);
+	wp_enqueue_script('koksijde-theme-script', get_template_directory_uri().'/inc/js/koksijde-theme.js', array('jquery'), '1.2.0', true);
 
 	if ( is_singular() ) :
 		wp_enqueue_script( 'comment-reply' );
@@ -191,8 +191,8 @@ function koksijde_theme_scripts() {
 	$wp_scripts->add_data('respond-script', 'conditional', 'lt IE 9');
 
 	// enqueue font awesome and our main stylesheet
-	wp_enqueue_style('font-awesome-style',get_template_directory_uri().'/inc/css/font-awesome.min.css',array(),'4.5.0');
-	wp_enqueue_style('koksijde-theme-style',get_stylesheet_uri());
+	wp_enqueue_style('font-awesome-style', get_template_directory_uri().'/inc/css/font-awesome.min.css', array(), '4.6.3');
+	wp_enqueue_style('koksijde-theme-style', get_stylesheet_uri());
 }
 add_action('wp_enqueue_scripts','koksijde_theme_scripts');
 
