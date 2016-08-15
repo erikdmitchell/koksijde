@@ -344,14 +344,14 @@ function koksijde_theme_post_nav() {
 }
 
 /**
- * display_meta_description function.
+ * koksijde_display_meta_description function.
  *
  * a custom function to display a meta description for our site pages
  *
  * @access public
  * @return void
  */
-function display_meta_description() {
+function koksijde_display_meta_description() {
 	global $post;
 
 	$title=null;

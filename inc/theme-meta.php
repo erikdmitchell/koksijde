@@ -13,7 +13,7 @@ function koksijde_theme_meta() {
 	echo apply_filters('koksijde_meta_charset', '<meta charset="'.get_bloginfo( 'charset' ).'" />'."\n");
 	echo apply_filters('koksijde_meta_http-equiv', '<meta http-equiv="X-UA-Compatible" content="IE=edge">'."\n");
 	echo apply_filters('koksijde_meta_viewport', '<meta name="viewport" content="width=device-width, initial-scale=1.0">'."\n");
-	echo apply_filters('koksijde_meta_description', '<meta name="description" content="'.display_meta_description().'">'."\n");
+	echo apply_filters('koksijde_meta_description', '<meta name="description" content="'.koksijde_display_meta_description().'">'."\n");
 	echo apply_filters('koksijde_meta_author', '<meta name="author" content="">'."\n");
 
 }
