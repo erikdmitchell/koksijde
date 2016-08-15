@@ -63,6 +63,7 @@ gulp.task('default',function() {
 // minify js //
 gulp.task('minjs', function() {
   return gulp.src(['inc/js/*.js', '!inc/js/*.min.js'])
+    //.pipe(concat('scripts.js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
     .pipe(gulp.dest(build+'inc/js/'));
@@ -98,7 +99,14 @@ gulp.task('zip', ['js', 'build'], function () {
 		.pipe(zip(project+'.zip'))
 		.pipe(gulp.dest('./'))
 		.pipe(notify({ message: 'Zip task complete', onLast: true }));
- });
+});
 
- // runs all our gulp tasks (in order) //
- gulp.task('runall', ['js', 'build', 'zip']);
+/**
+ * Gulp Default Task
+ *
+ * Compiles our stuff
+ *
+*/
+gulp.task('build', function(cb) {
+	runSequence('scripts', 'buildfiles', 'buildzip', cb);
+});

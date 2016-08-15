@@ -5,7 +5,7 @@
     "type": "git",
     "url": "https://github.com/erikdmitchell/koksijde"
   },
-  "license": "GPLv2",
+  "license": "GPL-2.0",
   "dependencies": {},
   "devDependencies": {
     "gulp": "^3.9.1",

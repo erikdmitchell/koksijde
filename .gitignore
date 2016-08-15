@@ -5,3 +5,4 @@ css/.DS_Store
 node_modules
 koksijde.zip
 buildtheme
+/npm-debug.log
