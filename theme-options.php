@@ -102,7 +102,7 @@ class koksijdeThemeOptions {
 					$classes=null;
 				endif;
 
-				echo '<a href="?page=koksijde_options&tab='.$slug.'" class="nav-tab '.$classes.'">'.__($tab['name'], 'koksijde').'</a>';
+				echo '<a href="?page=koksijde_options&tab='.$slug.'" class="nav-tab '.$classes.'">'.$tab['name'].'</a>';
 			endforeach;
 		echo '</h2>';
 	}

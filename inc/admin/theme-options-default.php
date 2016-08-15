@@ -97,7 +97,7 @@ class koksijdeDefaultThemeOptions {
 								$html.='<input type="text" name="theme_options[logo][text]" id="logo_text" class="regular-text" value="'.$koksijde_theme_options['default']['logo']['text'].'" />';
 							$html.='</label>';
 						$html.='</p>';
-						$html.='<p class="description">'.__('This theme supports the WordPress Custom Header functionality. To make your logo an image, <a href="'.admin_url('customize.php?return=%2Fwp-admin%2Fthemes.php%3Fpage%3Dmdw_theme_options&autofocus%5Bcontrol%5D=header_image').'">click here</a> or goto Appearance > Header..', 'koksidje').'</p>';
+						$html.='<p class="description">'.__('This theme supports the WordPress Custom Header functionality. To make your logo an image goto Appearance > Header..', 'koksijde').'</p>';
 					$html.='</td>';
 				$html.='</tr>';
 
