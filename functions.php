@@ -233,7 +233,7 @@ function koksijde_theme_post_thumbnail($size='full') {
 		$html.='</a>';
 	endif;
 
-	$image=apply_filters('koksijde_theme_post_thumbnail',$html,$size,$attr);
+	$image=apply_filters('koksijde_theme_post_thumbnail', $html, $size, $attr);
 
 	echo $image;
 }
@@ -247,15 +247,17 @@ function koksijde_theme_post_thumbnail($size='full') {
  * @return void
  */
 function koksijde_theme_posted_on() {
-	if ( is_sticky() && is_home() && ! is_paged() ) {
-		echo '<span class="featured-post"><span class="glyphicon glyphicon-pushpin"></span>' . __( 'Sticky', 'koksijde' ) . '</span>';
-	}
+	$html=null;
 
-	// Set up and print post meta information. -- hide date if sticky
-	if (!is_sticky()) :
-		echo '<span class="entry-date"><span class="glyphicon glyphicon-time"></span><a href="'.get_permalink().'" rel="bookmark"><time class="entry-date" datetime="'.get_the_date('c').'">'.get_the_date().'</time></a></span>';
+	if ( is_sticky() && is_home() && ! is_paged() ) :
+		$html='<span class="featured-post"><span class="glyphicon glyphicon-pushpin"></span>' . __( 'Sticky', 'koksijde' ) . '</span>';
+	elseif (!is_sticky()) : 	// Set up and print post meta information. -- hide date if sticky
+		$html='<span class="entry-date"><span class="glyphicon glyphicon-time"></span><a href="'.get_permalink().'" rel="bookmark"><time class="entry-date" datetime="'.get_the_date('c').'">'.get_the_date().'</time></a></span>';
+	else :
+		$html='<span class="byline"><span class="glyphicon glyphicon-user"></span><span class="author vcard"><a class="url fn n" href="'.get_author_posts_url( get_the_author_meta( 'ID' ) ).'" rel="author">'.get_the_author().'</a></span></span>';
 	endif;
-	echo '<span class="byline"><span class="glyphicon glyphicon-user"></span><span class="author vcard"><a class="url fn n" href="'.get_author_posts_url( get_the_author_meta( 'ID' ) ).'" rel="author">'.get_the_author().'</a></span></span>';
+
+	echo apply_filters('koksijde_posted_on', $html);
 }
 
 /**
@@ -272,6 +274,7 @@ function koksijde_theme_paging_nav() {
 		return;
 	}
 
+	$html=null;
 	$paged        = get_query_var( 'paged' ) ? intval( get_query_var( 'paged' ) ) : 1;
 	$pagenum_link = html_entity_decode( get_pagenum_link() );
 	$query_args   = array();
@@ -300,14 +303,14 @@ function koksijde_theme_paging_nav() {
 	) );
 
 	if ( $links ) :
-		?>
-		<nav class="navigation paging-navigation" role="navigation">
-			<div class="pagination loop-pagination">
-				<?php echo $links; ?>
-			</div><!-- .pagination -->
-		</nav><!-- .navigation -->
-		<?php
+		$html.='<nav class="navigation paging-navigation" role="navigation">';
+			$html.='<div class="pagination loop-pagination">';
+				$html.=$links;
+			$html.='</div><!-- .pagination -->';
+		$html.='</nav><!-- .navigation -->';
 	endif;
+
+	echo apply_filters('koksijde_paging_nav', $html, $links);
 }
 
 /**
@@ -319,28 +322,29 @@ function koksijde_theme_paging_nav() {
  * @return void
  */
 function koksijde_theme_post_nav() {
+	$html=null;
+
 	// Don't print empty markup if there's nowhere to navigate.
 	$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
 	$next     = get_adjacent_post( false, '', false );
 
-	if ( ! $next && ! $previous ) {
+	if ( ! $next && ! $previous )
 		return;
-	}
 
-	?>
-	<nav class="navigation post-navigation" role="navigation">
-		<div class="nav-links">
-			<?php
+	$html.='<nav class="navigation post-navigation" role="navigation">';
+		$html.='<div class="nav-links">';
+
 			if ( is_attachment() ) :
-				previous_post_link( __('<div class="published-in"><span class="meta-nav">Published In:</span> %link</div>', 'koksijde'), '%title' );
+				$html.=previous_post_link( __('<div class="published-in"><span class="meta-nav">Published In:</span> %link</div>', 'koksijde'), '%title' );
 			else :
-				previous_post_link( __('<div class="prev-post"><span class="meta-nav">Previous Post:</span> %link</div>', 'koksijde'), '%title' );
-				next_post_link( __('<div class="next-post"><span class="meta-nav">Next Post:</span> %link</div>', 'koksijde'), '%title' );
+				$html.=previous_post_link( __('<div class="prev-post"><span class="meta-nav">Previous Post:</span> %link</div>', 'koksijde'), '%title' );
+				$html.=next_post_link( __('<div class="next-post"><span class="meta-nav">Next Post:</span> %link</div>', 'koksijde'), '%title' );
 			endif;
-			?>
-		</div><!-- .nav-links -->
-	</nav><!-- .navigation -->
-	<?php
+
+		$html.='</div><!-- .nav-links -->';
+	$html.='</nav><!-- .navigation -->';
+
+	echo apply_filters('koksijde_post_nav', $html, $next, $previous);
 }
 
 /**
@@ -359,11 +363,11 @@ function koksijde_display_meta_description() {
 	if (isset($post->post_title))
 		$title=$post->post_title;
 
-	if ( is_single() ) {
-		return single_post_title('', false);
-	} else {
-		return $title.' - '.get_bloginfo('name').' - '.get_bloginfo('description');
-	}
+	if ( is_single() ) :
+		return apply_filters('koksijde_display_meta_description', single_post_title('', false));
+	else :
+		return apply_filters('koksijde_display_meta_description', $title.' - '.get_bloginfo('name').' - '.get_bloginfo('description'));
+	endif;
 
 	return false;
 }
@@ -379,6 +383,7 @@ function koksijde_display_meta_description() {
 function koksijde_theme_navbar_brand() {
 	global $koksijde_theme_options;
 
+	$html=null;
 	$text=get_bloginfo('name');
 
 	if (isset($koksijde_theme_options['default']['logo']['text']) && $koksijde_theme_options['default']['logo']['text']!='')
@@ -386,10 +391,12 @@ function koksijde_theme_navbar_brand() {
 
 	// display header image or text //
 	if (get_header_image()) :
-		echo '<img src="'.get_header_image().'" height="'.get_custom_header()->height.'" width="'.get_custom_header()->width.'" alt="" />';
+		$html= '<img src="'.get_header_image().'" height="'.get_custom_header()->height.'" width="'.get_custom_header()->width.'" alt="" />';
 	else :
-		echo '<a class="navbar-brand" href="'.home_url().'">'.$text.'</a>';
+		$html= '<a class="navbar-brand" href="'.home_url().'">'.$text.'</a>';
 	endif;
+
+	echo apply_filters('koksijde_navbar_brand', $html, $text);
 }
 
 /**
@@ -443,14 +450,13 @@ function koksijde_mobile_navigation_setup() {
 			'container_class' => 'panel-group navbar-nav',
 			'container_id' => 'accordion',
 			'echo' => false,
-			//'items_wrap'=>'%3$s',
 			'fallback_cb' => 'wp_bootstrap_navwalker::fallback',
 			'walker' => new koksijdeMobileNavWalker()
 		));
 
 	$html.='</div><!-- .koksijde-theme-mobile-menu -->';
 
-	echo $html;
+	echo apply_filters('koksijde_mobile_navigation', $html);
 }
 
 /**
@@ -478,7 +484,7 @@ function koksijde_secondary_navigation_setup() {
 		));
 	$html.='</div> <!-- .secondary-menu -->';
 
-	echo $html;
+	echo apply_filters('koksijde_secondary_navigation', $html);
 }
 
 /**
@@ -492,9 +498,9 @@ function koksijde_back_to_top() {
 
 	$html.='<a href="#0" class="koksijde-back-to-top"></a>';
 
-	echo $html;
+	echo apply_filters('koksijde_back_to_top', $html);
 }
-add_action('wp_footer','koksijde_back_to_top');
+add_action('wp_footer', 'koksijde_back_to_top');
 
 /**
  * koksijde_wp_parse_args function.
@@ -510,6 +516,7 @@ function koksijde_wp_parse_args(&$a,$b) {
 	$a = (array) $a;
 	$b = (array) $b;
 	$result = $b;
+
 	foreach ( $a as $k => &$v ) {
 		if ( is_array( $v ) && isset( $result[ $k ] ) ) {
 			$result[ $k ] = koksijde_wp_parse_args( $v, $result[ $k ] );
@@ -517,6 +524,7 @@ function koksijde_wp_parse_args(&$a,$b) {
 			$result[ $k ] = $v;
 		}
 	}
+
 	return $result;
 }
 
