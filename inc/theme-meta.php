@@ -17,7 +17,7 @@ function koksijde_theme_meta() {
 	echo apply_filters('koksijde_meta_author', '<meta name="author" content="">'."\n");
 
 }
-add_action('wp_head','koksijde_theme_meta',1);
+add_action('wp_head', 'koksijde_theme_meta', 1);
 
 /**
  * koksijde_disable_seo_meta function.
