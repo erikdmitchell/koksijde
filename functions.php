@@ -84,11 +84,6 @@ function koksijde_theme_setup() {
 	include_once(get_template_directory().'/inc/mobile_nav_walker.php');
 
 	/**
-	 * include theme shortcodes
-	 */
-	include_once(get_template_directory().'/inc/shortcodes.php');
-
-	/**
 	 * include theme slider class
 	 */
 	include_once(get_template_directory().'/inc/slider.php');
