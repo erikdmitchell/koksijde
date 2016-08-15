@@ -6,22 +6,35 @@
  */
 class koksijdeThemeOptions {
 
-	public $version='0.0.1';
+	public $version='1.0.0';
 
+	/**
+	 * __construct function.
+	 *
+	 * @access public
+	 * @return void
+	 */
 	public function __construct() {
 		if (!defined('THEME_ADMIN_URL'))
-			define('THEME_ADMIN_URL',get_template_directory_uri().'/inc/admin');
+			define('THEME_ADMIN_URL', get_template_directory_uri().'/inc/admin');
 
-		add_action('admin_menu',array($this,'add_theme_page'));
-		add_action('admin_enqueue_scripts',array($this,'admin_scripts_styles'));
-		add_action('init',array($this,'setup_options'));
+		add_action('admin_menu', array($this,'add_theme_page'));
+		add_action('admin_enqueue_scripts', array($this,'admin_scripts_styles'));
+		add_action('init', array($this,'setup_options'));
 	}
 
+	/**
+	 * admin_scripts_styles function.
+	 *
+	 * @access public
+	 * @param mixed $hook
+	 * @return void
+	 */
 	public function admin_scripts_styles($hook) {
 		if ($hook!='appearance_page_koksijde_options')
 			return;
 
-		wp_enqueue_style('koksijde-options-style',THEME_ADMIN_URL.'/css/admin-theme-options.css');
+		wp_enqueue_style('koksijde-options-style', THEME_ADMIN_URL.'/css/admin-theme-options.css');
 	}
 
 	/**
@@ -30,8 +43,8 @@ class koksijdeThemeOptions {
 	 * @access public
 	 * @return void
 	 */
-	function add_theme_page() {
-    	add_theme_page('Theme Options','Theme Options','edit_theme_options','koksijde_options',array($this,'koksijde_theme_options'));
+	public function add_theme_page() {
+    add_theme_page('Theme Options', 'Theme Options', 'edit_theme_options', 'koksijde_options', array($this,'koksijde_theme_options'));
 	}
 
 	/**
@@ -50,7 +63,7 @@ class koksijdeThemeOptions {
 		do_action('koksijde_theme_options_init');
 
 		echo '<div class="wrap">';
-			echo '<h1>MDW Theme Options</h1>';
+			echo '<h1>'.__('Koksijde Theme Options', 'koksijde').'</h1>';
 
 			$this->display_admin_tabs($active_tab); // display tabs
 
@@ -89,7 +102,7 @@ class koksijdeThemeOptions {
 					$classes=null;
 				endif;
 
-				echo '<a href="?page=koksijde_options&tab='.$slug.'" class="nav-tab '.$classes.'">'.$tab['name'].'</a>';
+				echo '<a href="?page=koksijde_options&tab='.$slug.'" class="nav-tab '.$classes.'">'.__($tab['name'], 'koksijde').'</a>';
 			endforeach;
 		echo '</h2>';
 	}
@@ -138,7 +151,7 @@ class koksijdeThemeOptions {
 			$stored_options=get_option($koksijde_theme_options['option_name']);
 
 		if ($stored_options)
-	 		$koksijde_theme_options=koksijde_wp_parse_args($stored_options,$koksijde_theme_options); // append stored options
+	 		$koksijde_theme_options=koksijde_wp_parse_args($stored_options, $koksijde_theme_options); // append stored options
 	}
 
 }
