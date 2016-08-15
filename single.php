@@ -1,3 +1,13 @@
+<?php
+/**
+ * The template for displaying a single post
+ *
+ * @package WordPress
+ * @subpackage koksijde
+ * @since koksijde 1.0.0
+ */
+?>
+
 <?php get_header(); ?>
 
 <div class="container">
