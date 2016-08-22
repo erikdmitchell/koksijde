@@ -437,7 +437,7 @@ function koksijde_mobile_navigation_setup() {
 	if ($location=='primary' && !has_nav_menu($location))
 		return false;
 
-	$html.='<div id="koksijde-mobile-nav" class="collapse navbar-collapse koksijde-theme-mobile-menu hidden-sm hidden-md hidden-lg">';
+	$html.='<div id="koksijde-mobile-nav" class="collapse navbar-collapse koksijde-mobile-menu hidden-sm hidden-md hidden-lg">';
 
 		$html.=wp_nav_menu(array(
 			'theme_location' => $location,
