@@ -156,5 +156,5 @@ class koksijdeThemeOptions {
 
 }
 
-new koksijdeThemeOptions();
+//new koksijdeThemeOptions();
 ?>
