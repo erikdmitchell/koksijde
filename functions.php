@@ -26,15 +26,6 @@ if (!isset($koksijde_theme_options_hooks))
 	$koksijde_theme_options_hooks=array();
 
 /**
- * Set the content width based on the theme's design and stylesheet.
- *
- * @since koksijde 1.0.0
- */
-if ( ! isset( $content_width ) ) {
-	$content_width = 1200;
-}
-
-/**
  * Sets up theme defaults and registers support for various WordPress features.
  *
  * Note that this function is hooked into the after_setup_theme hook, which
@@ -44,6 +35,9 @@ if ( ! isset( $content_width ) ) {
  * @since koksijde 1.0.0
  */
 function koksijde_theme_setup() {
+	// Set the content width based on the theme's design and stylesheet //
+	$GLOBALS['content_width']=apply_filters('koksijde-content-width', 1200);
+
 	/**
 	 * add our theme support options
 	 */
