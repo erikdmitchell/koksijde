@@ -4,7 +4,7 @@
 
 jQuery(window).load(function() {
 
-	jQuery('.mdw-wp-slider').mdwSlider();
+	jQuery('.koksijde-wp-slider').koksijdeSlider();
 
 });
 /**
@@ -58,10 +58,10 @@ jQuery(document).ready(function($){
  * works on window load and resize
  */
 (function($) {
-	$.fn.mdwSlider=function(options) {
+	$.fn.koksijdeSlider=function(options) {
 		var opts=$.extend({
-			$item : $('.mdw-wp-slider .carousel-inner > .item'),
-			$img : $('.mdw-wp-slider .carousel-inner > .item > img')
+			$item : $('.koksijde-wp-slider .carousel-inner > .item'),
+			$img : $('.koksijde-wp-slider .carousel-inner > .item > img')
 		}, options);
 
 		var init = function() {
