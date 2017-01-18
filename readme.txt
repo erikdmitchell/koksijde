@@ -36,6 +36,10 @@ Coming soon...
 
 = 1.0.2 =
 
+= 1.0.1 =
+
+* Fixed mobile nav issue.
+
 = 1.0.0 =
 
  * Initial setup and theme build out.
