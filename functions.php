@@ -406,7 +406,7 @@ function koksijde_theme_special_nav_classes($args) {
 
 	return $args;
 }
-add_filter('wp_nav_menu_args','koksijde_theme_special_nav_classes',10,1);
+add_filter('wp_nav_menu_args', 'koksijde_theme_special_nav_classes', 10, 1);
 
 /**
  * koksijde_mobile_navigation_setup function.
