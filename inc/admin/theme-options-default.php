@@ -81,7 +81,7 @@ class koksijdeDefaultThemeOptions {
 		$logo_img=null;
 
 		if (isset($koksijde_theme_options['default']['logo']['image']) && $koksijde_theme_options['default']['logo']['image']!='')
-			$logo_img=wp_get_attachment_image(koksijde_theme_get_image_id_from_url($koksijde_theme_options['default']['logo']['image']), 'navbar-logo', false, array('class' => 'img-responsive'));
+			$logo_img=wp_get_attachment_image(koksijde_theme_get_image_id_from_url($koksijde_theme_options['default']['logo']['image']), 'koksijde-navbar-logo', false, array('class' => 'img-responsive'));
 
 		$html.='<form method="post">';
 
