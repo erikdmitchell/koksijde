@@ -4,8 +4,8 @@ Theme URI:
 Description: A robust theme built using the bootstrap framework with a touch of awesomeness.
 Author: Erik Mitchell
 Author URI: http://erikmitchell.net
-Version: 1.0.2
-Tags: white, light, responsive-layout, featured-images, custom-menu, theme-options, translation-ready
+Version: 1.0.1
+Tags: featured-images, custom-menu, theme-options, translation-ready
 Text Domain: koksijde
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -13,7 +13,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
-1.0 Bootstrap
+1.0 Bootstrap (3.3.7)
 2.0 Navigation
 3.0 WordPress
 4.0 Site
@@ -443,7 +443,9 @@ img {
  * footer
  */
 footer {
-  border-top: none; }
+  border-top: none;
+	background: #e7e7e7;
+}
 
 footer .footer-widgets {
   padding: 10px 0 20px 0; }

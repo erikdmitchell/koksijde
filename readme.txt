@@ -1,6 +1,6 @@
 === koksijde ===
 Contributors: Erik Mitchell
-Tags: white, light, responsive-layout, featured-images, custom-menu, theme-options, translation-ready
+Tags: featured-images, custom-menu, theme-options, translation-ready
 Requires at least: 3.5
 Tested up to: 4.7.1
 Stable tag: 1.0.2

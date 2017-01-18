@@ -15,9 +15,9 @@ class koksijdeDefaultThemeOptions {
 	 * @return void
 	 */
 	public function __construct() {
-		add_action('admin_enqueue_scripts',array($this,'admin_scripts_styles'));
-		add_action('init',array($this,'register_page'));
-		add_action('koksijde_theme_options_init',array($this,'update_options'));
+		add_action('admin_enqueue_scripts', array($this, 'admin_scripts_styles'));
+		add_action('init', array($this,'register_page'));
+		add_action('koksijde_theme_options_init', array($this, 'update_options'));
 	}
 
 	/**
@@ -52,7 +52,6 @@ class koksijdeDefaultThemeOptions {
 			),
 			'home_slider' => array(
 				'active' => 0,
-				//'id' => '',
 				'post_type' => 'post',
 				'limit' => -1,
 				'indicators' => 1,
@@ -65,7 +64,8 @@ class koksijdeDefaultThemeOptions {
 			),
 			'non_responsive' => 0,
 		);
-		register_koksijde_theme_option_page('default','Theme Options',array($this,'admin_page'),0,$options);
+
+		register_koksijde_theme_option_page('default', 'Theme Options', array($this, 'admin_page'), 0, $options);
 	}
 
 	/**
@@ -86,10 +86,10 @@ class koksijdeDefaultThemeOptions {
 		$html.='<form method="post">';
 
 			$html.='<table class="form-table mdw-theme-options general">';
-				$html.=wp_nonce_field('update_default_options','koksijde_theme_options',true,false);
+				$html.=wp_nonce_field('update_default_options', 'koksijde_theme_options', true, false);
 
 				$html.='<tr>';
-					$html.='<th scope="row">Logo</th>';
+					$html.='<th scope="row">'.__('Logo', 'koksijde').'</th>';
 					$html.='<td>';
 						$html.='<p>';
 							$html.='<label title="logo_text">';
@@ -97,48 +97,42 @@ class koksijdeDefaultThemeOptions {
 								$html.='<input type="text" name="theme_options[logo][text]" id="logo_text" class="regular-text" value="'.$koksijde_theme_options['default']['logo']['text'].'" />';
 							$html.='</label>';
 						$html.='</p>';
-						$html.='<p class="description">This theme supports the WordPress Custom Header functionality. To make your logo an image, <a href="'.admin_url('customize.php?return=%2Fwp-admin%2Fthemes.php%3Fpage%3Dmdw_theme_options&autofocus%5Bcontrol%5D=header_image').'">click here</a> or goto Appearance > Header.</p>';
+						$html.='<p class="description">'.__('This theme supports the WordPress Custom Header functionality. To make your logo an image goto Appearance > Header..', 'koksijde').'</p>';
 					$html.='</td>';
 				$html.='</tr>';
 
 				$html.='<tr>';
-					$html.='<th scope="row">Home Slider</th>';
+					$html.='<th scope="row">'.__('Home Slider', 'koksijde').'</th>';
 
 					$html.='<td>';
 						$html.='<label title="activate_home_slider">';
 							$html.='<input type="checkbox" name="theme_options[home_slider][active]" id="activate_home_slider" class="" value="1" '.checked($koksijde_theme_options['default']['home_slider']['active'],1,false).' />';
-							$html.='Activate Home Slider';
+							$html.=__('Activate Home Slider', 'koksijde');
 						$html.='</label>';
 					$html.='</td>';
 				$html.='</tr>';
 
 				$html.='<tr id="home-slider-options">';
-					$html.='<th scope="row">Home Slider Options</th>';
+					$html.='<th scope="row">'.__('Home Slider Options', 'koksijde').'</th>';
 
 					$html.='<td>';
-						/*
-						$html.='<p>';
-							$html.='<label for="home_slider_id">ID</label>';
-							$html.='<input type="text" name="theme_options[home_slider][id]" id="home_slider_id" class="regular-text" value="'.$this']['options['home_slider']['id'].'" />';
-						$html.='</p>';
-						*/
 						$html.='<p>';
 							$html.='<label title="home_slider_post_type">';
-								$html.='<span>Post Type</span>';
+								$html.='<span>'.__('Post Type', 'koksijde').'</span>';
 								$html.=koksijde_theme_get_post_types_list('theme_options[home_slider][post_type]',$koksijde_theme_options['default']['home_slider']['post_type']);
 							$html.='</label>';
 						$html.='</p>';
 
 						$html.='<p>';
 							$html.='<label title="home_slider_limit">';
-								$html.='<span>Limit</span>';
-								$html.='<input type="text" name="theme_options[home_slider][limit]" id="home_slider_limit" class="regular-text" value="'.$koksijde_theme_options['default']['home_slider']['limit'].'" />';
+								$html.='<span>'.__('Limit', 'koksijde').'</span>';
+								$html.='<input type="text" name="theme_options[home_slider][limit]" id="home_slider_limit" class="small-text" value="'.$koksijde_theme_options['default']['home_slider']['limit'].'" />';
 							$html.='</label>';
 						$html.='</p>';
 
 						$html.='<p>';
 							$html.='<label title="home_slider_indicators">';
-								$html.='<span>Indicators</span>';
+								$html.='<span>'.__('Indicators', 'koksijde').'</span>';
 								$html.='<select name="theme_options[home_slider][indicators]" id="home_slider_indicators">';
 									$html.='<option value="1" '.selected($koksijde_theme_options['default']['home_slider']['indicators'],'1',false).'>True</option>';
 									$html.='<option value="0" '.selected($koksijde_theme_options['default']['home_slider']['indicators'],'0',false).'>False</option>';
@@ -148,7 +142,7 @@ class koksijdeDefaultThemeOptions {
 
 						$html.='<p>';
 							$html.='<label title="home_slider_slides">';
-								$html.='<span>Slides</span>';
+								$html.='<span>'.__('Slides', 'koksijde').'</span>';
 								$html.='<select name="theme_options[home_slider][slides]" id="home_slider_slides">';
 									$html.='<option value="1" '.selected($koksijde_theme_options['default']['home_slider']['slides'],'1',false).'>True</option>';
 									$html.='<option value="0" '.selected($koksijde_theme_options['default']['home_slider']['slides'],'0',false).'>False</option>';
@@ -158,7 +152,7 @@ class koksijdeDefaultThemeOptions {
 
 						$html.='<p>';
 							$html.='<label title="home_slider_captions">';
-								$html.='<span>Captions</span>';
+								$html.='<span>'.__('Captions', 'koksijde').'</span>';
 								$html.='<select name="theme_options[home_slider][captions]" id="home_slider_captions">';
 									$html.='<option value="1" '.selected($koksijde_theme_options['default']['home_slider']['captions'],'1',false).'>True</option>';
 									$html.='<option value="0" '.selected($koksijde_theme_options['default']['home_slider']['captions'],'0',false).'>False</option>';
@@ -168,7 +162,7 @@ class koksijdeDefaultThemeOptions {
 
 						$html.='<p class="caption-field">';
 							$html.='<label title="home_slider_caption_field">';
-								$html.='<span>Caption Field</span>';
+								$html.='<span>'.__('Caption Field', 'koksijde').'</span>';
 								$html.='<select name="theme_options[home_slider][caption_field]" id="home_slider_caption_field">';
 									$html.='<option value="excerpt" '.selected($koksijde_theme_options['default']['home_slider']['caption_field'],'excerpt',false).'>Excerpt</option>';
 									$html.='<option value="content" '.selected($koksijde_theme_options['default']['home_slider']['caption_field'],'content',false).'>Content</option>';
@@ -179,7 +173,7 @@ class koksijdeDefaultThemeOptions {
 
 						$html.='<p>';
 							$html.='<label title="home_slider_more_btn">';
-								$html.='<span>More Button</span>';
+								$html.='<span>'.__('More Button', 'koksijde').'</span>';
 								$html.='<select name="theme_options[home_slider][more_button]" id="home_slider_more_btn">';
 									$html.='<option value="1" '.selected($koksijde_theme_options['default']['home_slider']['more_button'],'1',false).'>True</option>';
 									$html.='<option value="0" '.selected($koksijde_theme_options['default']['home_slider']['more_button'],'0',false).'>False</option>';
@@ -189,14 +183,14 @@ class koksijdeDefaultThemeOptions {
 
 						$html.='<p class="more-btn-extra">';
 							$html.='<label title="home_slider_read_more">';
-								$html.='<span>Read More</span>';
+								$html.='<span>'.__('Read More', 'koksijde').'</span>';
 								$html.='<input type="text" name="theme_options[home_slider][more_text]" id="home_slider_read_more" class="regular-text" value="'.$koksijde_theme_options['default']['home_slider']['more_text'].'" />';
 							$html.='</label>';
 						$html.='</p>';
 
 						$html.='<p>';
 							$html.='<label title="home_slider_controls">';
-								$html.='<span>Controls</span>';
+								$html.='<span>'.__('Controls', 'koksijde').'</span>';
 								$html.='<select name="theme_options[home_slider][controls]" id="home_slider_controls">';
 									$html.='<option value="1" '.selected($koksijde_theme_options['default']['home_slider']['controls'],'1',false).'>True</option>';
 									$html.='<option value="0" '.selected($koksijde_theme_options['default']['home_slider']['controls'],'0',false).'>False</option>';
@@ -209,12 +203,12 @@ class koksijdeDefaultThemeOptions {
 				$html.='</tr>';
 
 				$html.='<tr>';
-					$html.='<th scope="row">Non-Responsive</th>';
+					$html.='<th scope="row">'.__('Non-Responsive', 'koksijde').'</th>';
 					$html.='<td>';
 						$html.='<p>';
 							$html.='<label title="activate_home_slider">';
 								$html.='<input type="checkbox" name="theme_options[non_responsive]" id="non_responsive" class="" value="1" '.checked($koksijde_theme_options['default']['non_responsive'],1,false).' />';
-							$html.='Make site non-responsive';
+							$html.=__('Make site non-responsive', 'koksijde');
 							$html.='</label>';
 						$html.='</p>';
 					$html.='</td>';
@@ -230,15 +224,15 @@ class koksijdeDefaultThemeOptions {
 		$html.='</form>';
 		echo $html;
 		?>
-		<h2 class="title">koksijde Theme Add Ons</h2>
+		<?php _e('<h2 class="title">koksijde Theme Add Ons</h2>', 'koksijde'); ?>
 		<p>
-			We have decided to reduce the size and load of the koksijde theme on both the front and backend. As a result, we offer plugins that will
-			hook into our theme. Developers can also their own features (plugins) and theme options and hook them into the theme.
+			<?php _e('We have decided to reduce the size and load of the koksijde theme on both the front and backend. As a result, we offer plugins that will
+			hook into our theme. Developers can also their own features (plugins) and theme options and hook them into the theme.', 'koksijde'); ?>
 		</p>
 		<p>
-			Below are a list of koksijde created "theme addons" that you can use with the koksijde theme. They install like normal plugins and can be
+			<?php _e('Below are a list of koksijde created "theme addons" that you can use with the koksijde theme. They install like normal plugins and can be
 			activated and deactivated in the Plugins section. However, once activated, they will hook directly into this theme options page via a
-			new tab.
+			new tab.', 'koksijde'); ?>
 		</p>
 
 		<?php $addons=koksijde_get_theme_addons(); ?>
@@ -246,8 +240,8 @@ class koksijdeDefaultThemeOptions {
 		<table class="wp-list-table widefat mdw-theme-addons">
 			<thead>
 				<tr>
-					<th scope="col" id="name" class="manage-column column-name column-primary">Add On</th>
-					<th scope="col" id="description" class="manage-column column-description">Description</th>
+					<th scope="col" id="name" class="manage-column column-name column-primary"><?php _e('Add On', 'koksijde'); ?></th>
+					<th scope="col" id="description" class="manage-column column-description"><?php _e('Description', 'koksijde'); ?></th>
 				</tr>
 			</thead>
 
@@ -296,11 +290,16 @@ class koksijdeDefaultThemeOptions {
 		if (!isset($_POST['theme_options']['non_responsive']))
 			$_POST['theme_options']['non_responsive']=0;
 
-		$koksijde_theme_options['default']=koksijde_wp_parse_args($_POST['theme_options'],$koksijde_theme_options['default']); // merger post (updated) options with previous options
+		// sanitize //
+		$_POST['theme_options']['logo']['text']=sanitize_text_field($_POST['theme_options']['logo']['text']);
+		$_POST['theme_options']['home_slider']['limit']=intval($_POST['theme_options']['home_slider']['limit']);
+		$_POST['theme_options']['home_slider']['more_text']=sanitize_text_field($_POST['theme_options']['home_slider']['more_text']);
 
-		update_option($koksijde_theme_options['option_name'],$koksijde_theme_options);
+		$koksijde_theme_options['default']=koksijde_wp_parse_args($_POST['theme_options'], $koksijde_theme_options['default']); // merger post (updated) options with previous options
 
-		echo '<div class="updated mdw-theme-options-updated">Theme Options have been updated.</div>	';
+		update_option($koksijde_theme_options['option_name'], $koksijde_theme_options);
+
+		echo '<div class="updated mdw-theme-options-updated">'.__('Theme Options have been updated.', 'koksijde').'</div>';
 	}
 
 }

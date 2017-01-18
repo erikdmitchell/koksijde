@@ -7,7 +7,7 @@
  *
  * @package WordPress
  * @subpackage koksijde
- * @since koksijde 1.3.0
+ * @since koksijde 1.0.0
  */
 ?>
 <?php get_header(); ?>

@@ -1,7 +1,11 @@
 <?php
 /**
  * Template Name: Full Width (no sidebars)
-**/
+ *
+ * @package WordPress
+ * @subpackage koksijde
+ * @since koksijde 1.0.0
+ */
 ?>
 <?php get_header(); ?>
 
@@ -18,9 +22,8 @@
 					comments_template();
 				}
 				?>
-				<!-- // Previous/next post navigation. NEEDS TO BE ADDED -->
 			<?php endwhile; else: ?>
-				<p><?php _e('Sorry, this page does not exist.','koksijde'); ?></p>
+				<p><?php _e('Sorry, this page does not exist.', 'koksijde'); ?></p>
 			<?php endif; ?>
 		</div>
 	</div>

@@ -75,32 +75,30 @@ function koksijde_theme_get_post_types_list($name='', $selected=false, $output='
 }
 
 /**
- * array_recursive_diff function.
+ * koksijde_array_recursive_diff function.
  *
  * @access public
  * @param mixed $aArray1
  * @param mixed $aArray2
  * @return void
  */
-if (!function_exists('array_recursive_diff')) :
-	function array_recursive_diff($aArray1, $aArray2) {
-	  $aReturn = array();
+function koksijde_array_recursive_diff($aArray1, $aArray2) {
+  $aReturn = array();
 
-	  foreach ($aArray1 as $mKey => $mValue) {
-	    if (array_key_exists($mKey, $aArray2)) {
-	      if (is_array($mValue)) {
-	        $aRecursiveDiff = array_recursive_diff($mValue, $aArray2[$mKey]);
-	        if (count($aRecursiveDiff)) { $aReturn[$mKey] = $aRecursiveDiff; }
-	      } else {
-	        if ($mValue != $aArray2[$mKey]) {
-	          $aReturn[$mKey] = $mValue;
-	        }
-	      }
-	    } else {
-	      $aReturn[$mKey] = $mValue;
-	    }
-	  }
-	  return $aReturn;
-	}
-endif;
+  foreach ($aArray1 as $mKey => $mValue) {
+    if (array_key_exists($mKey, $aArray2)) {
+      if (is_array($mValue)) {
+        $aRecursiveDiff = koksijde_array_recursive_diff($mValue, $aArray2[$mKey]);
+        if (count($aRecursiveDiff)) { $aReturn[$mKey] = $aRecursiveDiff; }
+      } else {
+        if ($mValue != $aArray2[$mKey]) {
+          $aReturn[$mKey] = $mValue;
+        }
+      }
+    } else {
+      $aReturn[$mKey] = $mValue;
+    }
+  }
+  return $aReturn;
+}
 ?>
