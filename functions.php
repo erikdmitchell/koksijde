@@ -164,28 +164,29 @@ function koksijde_theme_scripts() {
 
 	// enqueue our scripts for bootstrap, slider and theme
 	wp_enqueue_script('jquery');
-	wp_enqueue_script('bootstrap', get_template_directory_uri().'/inc/js/bootstrap.min.js', array('jquery'), '3.3.7', true);
-	wp_enqueue_script('jquery-actual-script', get_template_directory_uri().'/inc/js/jquery.actual.min.js', array('jquery'), '1.0.16', true);
+	wp_enqueue_script('bootstrap-script', get_template_directory_uri().'/inc/js/bootstrap.js', array('jquery'), '3.3.7', true);
+	wp_enqueue_script('jquery-actual-script', get_template_directory_uri().'/inc/js/jquery.actual.js', array('jquery'), '1.0.16', true);
 	wp_enqueue_script('koksijde-theme-script', get_template_directory_uri().'/inc/js/koksijde-theme.js', array('jquery'), '1.2.0', true);
 
 	if ( is_singular() ) :
 		wp_enqueue_script( 'comment-reply' );
 	endif;
 
-  /**
-   * Load our IE specific scripts for a range of older versions:
-   * <!--[if lt IE 9]> ... <![endif]-->
-   * <!--[if lte IE 8]> ... <![endif]-->
-   */
-  // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries //
-	wp_register_script('html5shiv-script', get_template_directory_uri().'/inc/js/html5shiv.min.js', array(), '3.7.3-pre');
-	wp_register_script('respond-script', get_template_directory_uri().'/inc/js/respond.min.js', array(), '1.4.2');
+	/**
+	 * Load our IE specific scripts for a range of older versions:
+	 * <!--[if lt IE 9]> ... <![endif]-->
+	 * <!--[if lte IE 8]> ... <![endif]-->
+	*/
+	// HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries //
+	wp_register_script('html5shiv-script', get_template_directory_uri().'/inc/js/html5shiv.js', array(), '3.7.3-pre');
+	wp_register_script('respond-script', get_template_directory_uri().'/inc/js/respond.js', array(), '1.4.2');
 
 	$wp_scripts->add_data('html5shiv-script', 'conditional', 'lt IE 9');
 	$wp_scripts->add_data('respond-script', 'conditional', 'lt IE 9');
 
 	// enqueue font awesome and our main stylesheet
-	wp_enqueue_style('font-awesome-style', get_template_directory_uri().'/inc/css/font-awesome.min.css', array(), '4.6.3');
+	wp_enqueue_style('font-awesome-style', get_template_directory_uri().'/inc/css/font-awesome.css', array(), '4.6.3');
+	wp_enqueue_style('bootstrap-style', get_template_directory_uri().'/inc/css/bootstrap.css', array(), '4.6.3');
 	wp_enqueue_style('koksijde-theme-style', get_stylesheet_uri());
 }
 add_action('wp_enqueue_scripts','koksijde_theme_scripts');
