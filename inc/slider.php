@@ -1,49 +1,4 @@
 <?php
-global $koksijde_slider_config;
-
-/**
- * koksijde_slider_config function.
- *
- * @access public
- * @return void
- */
-function koksijde_slider_config() {
-	global $koksijde_slider_config, $koksijde_theme_options;
-
-	$theme_options_config=array();
-	$default_config=array(
-		'slider_id' => 'slider-id',
-		'post_type' => 'posts',
-		'limit' => -1,
-		'indicators' => true,
-		'slides' => true,
-		'captions' => false,
-		'caption_field' => 'excerpt',
-		'more_button' => true,
-		'more_text' => 'Read More',
-		'controls' => true,
-		'posts' => array(),
-		'image_size_name' => 'koksijde-theme-slider'
-	);
-
-	// check that we have theme options and slider is active //
-	if (isset($koksijde_theme_options['default']['home_slider']) && $koksijde_theme_options['default']['home_slider']['active'])
-		$theme_options_config=$koksijde_theme_options['default']['home_slider'];
-
-	// set global variable //
-	$koksijde_slider_config=wp_parse_args($theme_options_config, $default_config);
-
-	// post args //
-	$args=array(
-		'posts_per_page' => $koksijde_slider_config['limit'],
-		'post_type' => $koksijde_slider_config['post_type'],
-	);
-
-	// get posts (slides) //
-	$koksijde_slider_config['posts']=get_posts($args);
-}
-add_action('wp', 'koksijde_slider_config');
-
 /**
  * koksijde_add_slider_image_sizes function.
  *
