@@ -45,22 +45,6 @@ function koksijde_slider_config() {
 add_action('wp', 'koksijde_slider_config');
 
 /**
- * koksijde_slider_is_active function.
- * 
- * @access public
- * @return void
- */
-function koksijde_slider_is_active() {
-	global $koksijde_theme_options;
-	
-	// check that we have theme options and slider is active //
-	if (isset($koksijde_theme_options['default']['home_slider']) && $koksijde_theme_options['default']['home_slider']['active'])
-		return true;
-		
-	return false;
-}
-
-/**
  * koksijde_add_slider_image_sizes function.
  *
  * @access public

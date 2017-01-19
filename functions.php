@@ -593,4 +593,20 @@ function koksijde_array_recursive_diff($aArray1, $aArray2) {
   }
   return $aReturn;
 }
+
+/**
+ * koksijde_slider_is_active function.
+ * 
+ * @access public
+ * @return void
+ */
+function koksijde_home_slider_is_active() {
+	global $koksijde_theme_options;
+	
+	// check that we have theme options and slider is active //
+	if (isset($koksijde_theme_options['default']['home_slider']) && $koksijde_theme_options['default']['home_slider']['active'])
+		return true;
+		
+	return false;
+}
 ?>
