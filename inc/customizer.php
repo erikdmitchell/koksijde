@@ -26,7 +26,7 @@ function koksijde_customize_register($wp_customize) {
 
 	$wp_customize->add_setting('home_slider_post_type', array(
 		'type' => 'theme_mod',
-		'default' => '',
+		'default' => 'post',
 		'transport' => 'refresh', // or postMessage
 		'sanitize_callback' => '',
 		'sanitize_js_callback' => '', // Basically to_json.
@@ -60,7 +60,66 @@ function koksijde_customize_register($wp_customize) {
 		'active_callback' => 'is_front_page',
 	));	
 	
+	$wp_customize->add_setting('home_slider_indicators', array(
+		'type' => 'theme_mod',
+		'default' => 0,
+		'transport' => 'refresh', // or postMessage
+		'sanitize_callback' => '',
+		'sanitize_js_callback' => '', // Basically to_json.
+	));
+
+	$wp_customize->add_control(
+	    new Koksijde_TrueFalse_Control(
+	        $wp_customize,
+	        'home_slider_indicators',
+	        array(
+	            'label'    => __('Show Indicators'),
+	            'section'  => 'home_slider'
+	        )
+	    )
+	);
+
+/*
+	$wp_customize->add_setting('home_slider_slides', array(
+		'type' => 'theme_mod',
+		'default' => '',
+		'transport' => 'refresh', // or postMessage
+		'sanitize_callback' => '',
+		'sanitize_js_callback' => '', // Basically to_json.
+	));
+
+	$wp_customize->add_control(
+	    new Koksijde_TrueFalse_Control(
+	        $wp_customize,
+	        'home_slider_post_type',
+	        array(
+	            'label'    => __('Post Type'),
+	            'section'  => 'home_slider'
+	        )
+	    )
+	);
+*/
 	
+/*
+	$wp_customize->add_setting('home_slider_captions', array(
+		'type' => 'theme_mod',
+		'default' => '',
+		'transport' => 'refresh', // or postMessage
+		'sanitize_callback' => '',
+		'sanitize_js_callback' => '', // Basically to_json.
+	));
+
+	$wp_customize->add_control(
+	    new Koksijde_TrueFalse_Control(
+	        $wp_customize,
+	        'home_slider_post_type',
+	        array(
+	            'label'    => __('Post Type'),
+	            'section'  => 'home_slider'
+	        )
+	    )
+	);	
+*/		
 /*
 $wp_customize->add_control(
     new Koksijde_TrueFalse_Control(
@@ -111,12 +170,19 @@ if (class_exists('WP_Customize_Control')) :
          * @since 3.4.0
          */
         public function render_content() {
-            $html=null;
-            
-            $html.='<span class="customize-control-title">'.esc_html($this->label).'</span>';
-            $html.=koksijde_theme_get_post_types_list();
-            
-            echo $html;
+			$args=array(
+				'public' => true
+			);
+			$post_types_arr=get_post_types($args);
+			?>
+            <span class="customize-control-title"><?php echo esc_html($this->label); ?></span>
+
+			<select <?php $this->link(); ?>>
+				<?php foreach ($post_types_arr as $type) : ?>
+					<option value="<?php echo $type; ?>" <?php selected($this->value(), $type); ?>><?php echo $type; ?></option>
+				<?php endforeach; ?>
+			</select>
+			<?php
         }
     }
 endif;
@@ -129,16 +195,39 @@ if (class_exists('WP_Customize_Control')) :
          * @since 3.4.0
          */
         public function render_content() {
-            $html=null;
-            
-            $html.='<span class="customize-control-title">'.esc_html($this->label).'</span>';
-            $html.='<select name="" id="" class="">';
-            	$html.='<option value="1">True</option>';
-            	$html.='<option value="0">False</option>';            	
-            $html.='</select>';
-            
-            echo $html;	        
+            ?>
+            <span class="customize-control-title"><?php echo esc_html($this->label); ?></span>
+            <select <?php $this->link(); ?>>
+            	<option value="1" <?php selected($this->value(), 1); ?>>True</option>
+            	<option value="0" <?php selected($this->value(), 0); ?>>False</option>           	
+            </select>
+            <?php        
         }
     }
 endif;
+
+
+/*
+                if ( empty( $this->choices ) )
+                    return;
+ 
+                ?>
+                <label>
+                    <?php if ( ! empty( $this->label ) ) : ?>
+                        <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+                    <?php endif;
+                    if ( ! empty( $this->description ) ) : ?>
+                        <span class="description customize-control-description"><?php echo $this->description; ?></span>
+                    <?php endif; ?>
+ 
+                    <select <?php $this->link(); ?>>
+                        <?php
+                        foreach ( $this->choices as $value => $label )
+                            echo '<option value="' . esc_attr( $value ) . '"' . selected( $this->value(), $value, false ) . '>' . $label . '</option>';
+                        ?>
+                    </select>
+                </label>
+                <?php
+                break;
+                */
 ?>
