@@ -28,7 +28,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<?php koksijde_theme_navbar_brand(); ?>
+						<?php get_template_part('navbar', 'brand'); ?>
 					</div>
 					<?php koksijde_secondary_navigation_setup(); ?>
 					<div class="collapse navbar-collapse primary-menu">
