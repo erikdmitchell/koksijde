@@ -54,8 +54,6 @@ function koksijde_home_slider_slide_classes() {
 	echo implode(' ', $classes);
 }
 
-
-
 /**
  * koksijde_slider_get_caption function.
  *
@@ -88,12 +86,6 @@ function koksijde_slider_get_caption($post=false) {
 
 	return apply_filters('koksijde_slider_caption', $html, $post);
 }
-
-
-
-
-
-
 
 /**
  * koksijde_slider_thumbnail function.
