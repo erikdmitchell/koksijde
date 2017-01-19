@@ -65,11 +65,6 @@ function koksijde_theme_setup() {
 	add_image_size('koksijde-navbar-logo', 163, 100, true);
 
 	/**
-	 * include admin stuff
-	 */
-	include_once(get_template_directory().'/inc/admin/init.php');
-
-	/**
 	 * include bootstrap nav walker
 	 */
 	include_once(get_template_directory().'/inc/wp_bootstrap_navwalker.php');
@@ -94,11 +89,6 @@ function koksijde_theme_setup() {
 	 * allows users to hook and filter into the default meta tags in the header
 	 */
 	include_once(get_template_directory().'/inc/theme-meta.php');
-
-	/**
-	 * include theme options
-	 */
-	include_once(get_template_directory().'/theme-options.php');
 
 	// register our navigation area
 	register_nav_menus( array(
@@ -601,10 +591,7 @@ function koksijde_array_recursive_diff($aArray1, $aArray2) {
  * @return void
  */
 function koksijde_home_slider_is_active() {
-	global $koksijde_theme_options;
-	
-	// check that we have theme options and slider is active //
-	if (isset($koksijde_theme_options['default']['home_slider']) && $koksijde_theme_options['default']['home_slider']['active'])
+	if (get_theme_mod('home_slider_active', 0))
 		return true;
 		
 	return false;
