@@ -1,7 +1,9 @@
 <?php
 global $slide_counter;
+global $slide_icon_counter;
 
 $slide_counter=0;
+$slide_icon_counter=0;
 
 /**
  * koksijde_add_slider_image_sizes function.
@@ -52,6 +54,33 @@ function koksijde_home_slider_slide_classes() {
 	$slide_counter++;
 	
 	echo implode(' ', $classes);
+}
+
+/**
+ * koksijde_home_slider_slide_icon_classes function.
+ * 
+ * @access public
+ * @return void
+ */
+function koksijde_home_slider_slide_icon_classes() {
+	global $slide_icon_counter;
+	
+	$classes=array();
+	
+	if ($slide_icon_counter==0)
+		$classes[]='active';
+	
+	$classes=apply_filters('', $classes);
+	
+	$slide_icon_counter++;
+	
+	echo implode(' ', $classes);
+}
+
+function koksijde_home_slider_slide_icon_counter() {
+	global $slide_icon_counter;
+	
+	echo $slide_icon_counter;
 }
 
 /**
