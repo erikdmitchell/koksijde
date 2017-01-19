@@ -85,6 +85,11 @@ function koksijde_theme_setup() {
 	include_once(get_template_directory().'/inc/slider.php');
 
 	/**
+	 * include theme customizers
+	 */
+	include_once(get_template_directory().'/inc/customizer.php');
+
+	/**
 	 * include theme meta page
 	 * allows users to hook and filter into the default meta tags in the header
 	 */
