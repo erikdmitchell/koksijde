@@ -365,30 +365,14 @@ function koksijde_display_meta_description() {
 }
 
 /**
- * mdw_theme_navbar_brand function.
- *
- * adds our logo or text based on theme options
- *
+ * koksijde_header_markup function.
+ * 
  * @access public
  * @return void
  */
-function koksijde_theme_navbar_brand() {
-	global $koksijde_theme_options;
-
-	$html=null;
-	$text=get_bloginfo('name');
-
-	//if (isset($koksijde_theme_options['default']['logo']['text']) && $koksijde_theme_options['default']['logo']['text']!='')
-		//$text=$koksijde_theme_options['default']['logo']['text'];
-
-	// display header image or text //
-	if (get_header_image()) :
-		$html= '<img src="'.get_header_image().'" height="'.get_custom_header()->height.'" width="'.get_custom_header()->width.'" alt="" />';
-	else :
-		$html= '<a class="navbar-brand" href="'.home_url().'">'.sanitize_text_field($text).'</a>';
-	endif;
-
-	echo apply_filters('koksijde_navbar_brand', $html, $text);
+function koksijde_header_markup() {
+	if (get_header_image())
+		echo '<img src="'.get_header_image().'" height="'.get_custom_header()->height.'" width="'.get_custom_header()->width.'" alt="" />';
 }
 
 /**
