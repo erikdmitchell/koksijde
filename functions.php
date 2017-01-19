@@ -43,7 +43,9 @@ function koksijde_theme_setup() {
 	 */
 	$custom_header_args=array(
 		'width' => 163,
-		'height' => 76
+		'height' => 76,
+		'flex-width' => true,
+		'flex-height' => true
 	);
 
 	$custom_background_args=array(
