@@ -550,4 +550,47 @@ function koksijde_get_excerpt_by_id($post='', $length=10, $tags='<a><em><strong>
 
 	return apply_filters('the_content', $the_excerpt);
 }
+
+/**
+ * koksijde_theme_get_image_id_from_url function.
+ *
+ * @access public
+ * @param mixed $image_url
+ * @return void
+ */
+function koksijde_theme_get_image_id_from_url($image_url) {
+	global $wpdb;
+
+	$attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url ));
+
+	return $attachment[0];
+}
+
+/**
+ * koksijde_array_recursive_diff function.
+ *
+ * @access public
+ * @param mixed $aArray1
+ * @param mixed $aArray2
+ * @return void
+ */
+function koksijde_array_recursive_diff($aArray1, $aArray2) {
+  $aReturn = array();
+
+  foreach ($aArray1 as $mKey => $mValue) {
+    if (array_key_exists($mKey, $aArray2)) {
+      if (is_array($mValue)) {
+        $aRecursiveDiff = koksijde_array_recursive_diff($mValue, $aArray2[$mKey]);
+        if (count($aRecursiveDiff)) { $aReturn[$mKey] = $aRecursiveDiff; }
+      } else {
+        if ($mValue != $aArray2[$mKey]) {
+          $aReturn[$mKey] = $mValue;
+        }
+      }
+    } else {
+      $aReturn[$mKey] = $mValue;
+    }
+  }
+  return $aReturn;
+}
 ?>
