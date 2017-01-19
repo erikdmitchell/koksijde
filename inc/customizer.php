@@ -135,44 +135,56 @@ function koksijde_customize_register($wp_customize) {
 	        )
 	    )
 	);
-/*
-$wp_customize->add_control(
-    new Koksijde_TrueFalse_Control(
-        $wp_customize,
-        'setting_id',
-        array(
-            'label'    => __('Indicators'),
-            'section'  => 'home_slider'
-        )
-    )
-);
-*/
 
-/*
-	$wp_customize->add_control('setting_id', array(
-		'type' => 'date',
+	$wp_customize->add_setting('home_slider_more_button', array(
+		'type' => 'theme_mod',
+		'default' => 1,
+		'transport' => 'refresh', // or postMessage
+		'sanitize_callback' => '',
+		'sanitize_js_callback' => '', // Basically to_json.
+	));
+
+	$wp_customize->add_control(
+	    new Koksijde_TrueFalse_Control(
+	        $wp_customize,
+	        'home_slider_more_button',
+	        array(
+	            'label'    => __('Show More Button'),
+	            'section'  => 'home_slider'
+	        )
+	    )
+	);	
+	
+	$wp_customize->add_control('home_slider_read_more_text', array(
+		'type' => 'text',
 		'priority' => 10, // Within the section.
 		'section' => 'home_slider', // Required, core or custom.
-		'label' => __('Date'),
-		'description' => __('This is a date control with a red border.'),
-		'input_attrs' => array(
-			'class' => 'my-custom-class-for-js',
-			'style' => 'border: 1px solid #900',
-			'placeholder' => __('mm/dd/yyyy'),
-		),
+		'label' => __('Read More Text'),
+		//'description' => __('Total number of slides displayed.'),
 		'active_callback' => 'is_front_page',
+	));	
+	
+	$wp_customize->add_setting('home_slider_controls', array(
+		'type' => 'theme_mod',
+		'default' => 1,
+		'transport' => 'refresh', // or postMessage
+		'sanitize_callback' => '',
+		'sanitize_js_callback' => '', // Basically to_json.
 	));
-*/
+
+	$wp_customize->add_control(
+	    new Koksijde_TrueFalse_Control(
+	        $wp_customize,
+	        'home_slider_controls',
+	        array(
+	            'label'    => __('Show Controls'),
+	            'section'  => 'home_slider'
+	        )
+	    )
+	);		
 	
 }
 add_action('customize_register', 'koksijde_customize_register');
-
-/*
-Caption Field - excerpt, content, title
-More Button - t/f
-Read More - text
-Controls - t/f
-*/
 
 if (class_exists('WP_Customize_Control')) :
     class Koksijde_PostTypes_Control extends WP_Customize_Control {
