@@ -62,7 +62,7 @@ function koksijde_customize_register($wp_customize) {
 	
 	$wp_customize->add_setting('home_slider_indicators', array(
 		'type' => 'theme_mod',
-		'default' => 0,
+		'default' => 1,
 		'transport' => 'refresh', // or postMessage
 		'sanitize_callback' => '',
 		'sanitize_js_callback' => '', // Basically to_json.
@@ -79,10 +79,9 @@ function koksijde_customize_register($wp_customize) {
 	    )
 	);
 
-/*
 	$wp_customize->add_setting('home_slider_slides', array(
 		'type' => 'theme_mod',
-		'default' => '',
+		'default' => 1,
 		'transport' => 'refresh', // or postMessage
 		'sanitize_callback' => '',
 		'sanitize_js_callback' => '', // Basically to_json.
@@ -91,19 +90,17 @@ function koksijde_customize_register($wp_customize) {
 	$wp_customize->add_control(
 	    new Koksijde_TrueFalse_Control(
 	        $wp_customize,
-	        'home_slider_post_type',
+	        'home_slider_slides',
 	        array(
-	            'label'    => __('Post Type'),
+	            'label'    => __('Show Slides'),
 	            'section'  => 'home_slider'
 	        )
 	    )
 	);
-*/
-	
-/*
+
 	$wp_customize->add_setting('home_slider_captions', array(
 		'type' => 'theme_mod',
-		'default' => '',
+		'default' => 0,
 		'transport' => 'refresh', // or postMessage
 		'sanitize_callback' => '',
 		'sanitize_js_callback' => '', // Basically to_json.
@@ -112,14 +109,32 @@ function koksijde_customize_register($wp_customize) {
 	$wp_customize->add_control(
 	    new Koksijde_TrueFalse_Control(
 	        $wp_customize,
-	        'home_slider_post_type',
+	        'home_slider_captions',
 	        array(
-	            'label'    => __('Post Type'),
+	            'label'    => __('Show Captions'),
 	            'section'  => 'home_slider'
 	        )
 	    )
 	);	
-*/		
+
+	$wp_customize->add_setting('home_slider_caption_field', array(
+		'type' => 'theme_mod',
+		'default' => 'excerpt',
+		'transport' => 'refresh', // or postMessage
+		'sanitize_callback' => '',
+		'sanitize_js_callback' => '', // Basically to_json.
+	));		
+
+	$wp_customize->add_control(
+	    new Koksijde_Caption_Field_Control(
+	        $wp_customize,
+	        'home_slider_caption_field',
+	        array(
+	            'label'    => __('Caption Field'),
+	            'section'  => 'home_slider'
+	        )
+	    )
+	);
 /*
 $wp_customize->add_control(
     new Koksijde_TrueFalse_Control(
@@ -153,9 +168,6 @@ $wp_customize->add_control(
 add_action('customize_register', 'koksijde_customize_register');
 
 /*
-Indicators - t/f
-Slides - t/f
-Captions - t/f
 Caption Field - excerpt, content, title
 More Button - t/f
 Read More - text
@@ -200,6 +212,26 @@ if (class_exists('WP_Customize_Control')) :
             <select <?php $this->link(); ?>>
             	<option value="1" <?php selected($this->value(), 1); ?>>True</option>
             	<option value="0" <?php selected($this->value(), 0); ?>>False</option>           	
+            </select>
+            <?php        
+        }
+    }
+endif;
+
+if (class_exists('WP_Customize_Control')) :
+    class Koksijde_Caption_Field_Control extends WP_Customize_Control {
+        /**
+         * Render the control's content.
+         *
+         * @since 3.4.0
+         */
+        public function render_content() {
+            ?>
+            <span class="customize-control-title"><?php echo esc_html($this->label); ?></span>
+            <select <?php $this->link(); ?>>
+            	<option value="excerpt" <?php selected($this->value(), 'excerpt'); ?>>Excerpt</option>
+            	<option value="content" <?php selected($this->value(), 'content'); ?>>Content</option>
+            	<option value="title" <?php selected($this->value(), 'title'); ?>>Title</option>            	
             </select>
             <?php        
         }
