@@ -378,8 +378,8 @@ function koksijde_theme_navbar_brand() {
 	$html=null;
 	$text=get_bloginfo('name');
 
-	if (isset($koksijde_theme_options['default']['logo']['text']) && $koksijde_theme_options['default']['logo']['text']!='')
-		$text=$koksijde_theme_options['default']['logo']['text'];
+	//if (isset($koksijde_theme_options['default']['logo']['text']) && $koksijde_theme_options['default']['logo']['text']!='')
+		//$text=$koksijde_theme_options['default']['logo']['text'];
 
 	// display header image or text //
 	if (get_header_image()) :

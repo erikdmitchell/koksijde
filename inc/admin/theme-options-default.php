@@ -47,9 +47,6 @@ class koksijdeDefaultThemeOptions {
 	 */
 	public function register_page() {
 		$options=array(
-			'logo' => array(
-				'text' => get_bloginfo('name')
-			),
 			'home_slider' => array(
 				'active' => 0,
 				'post_type' => 'post',
@@ -87,19 +84,6 @@ class koksijdeDefaultThemeOptions {
 
 			$html.='<table class="form-table mdw-theme-options general">';
 				$html.=wp_nonce_field('update_default_options', 'koksijde_theme_options', true, false);
-
-				$html.='<tr>';
-					$html.='<th scope="row">'.__('Logo', 'koksijde').'</th>';
-					$html.='<td>';
-						$html.='<p>';
-							$html.='<label title="logo_text">';
-								$html.='<span>Logo Text</span>';
-								$html.='<input type="text" name="theme_options[logo][text]" id="logo_text" class="regular-text" value="'.$koksijde_theme_options['default']['logo']['text'].'" />';
-							$html.='</label>';
-						$html.='</p>';
-						$html.='<p class="description">'.__('This theme supports the WordPress Custom Header functionality. To make your logo an image goto Appearance > Header..', 'koksijde').'</p>';
-					$html.='</td>';
-				$html.='</tr>';
 
 				$html.='<tr>';
 					$html.='<th scope="row">'.__('Home Slider', 'koksijde').'</th>';
