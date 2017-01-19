@@ -88,106 +88,11 @@ function koksijde_slider_get_caption($post=false) {
 	return apply_filters('koksijde_slider_caption', $html, $post);
 }
 
-/**
- * koksijde_slider_indicators function.
- *
- * @access public
- * @return void
- */
-function koksijde_slider_indicators() {
-	global $koksijde_slider_config;
 
-	if (!count($koksijde_slider_config['posts']) || !$koksijde_slider_config['indicators'])
-		return false;
 
-	$html=null;
-	$counter=0;
 
-	$html.='<ol class="carousel-indicators">';
-		foreach ($koksijde_slider_config['posts'] as $post) :
-			if ($counter==0) :
-				$class='active';
-			else :
-				$class=null;
-			endif;
 
-			$html.='<li data-target="#'.$koksijde_slider_config['slider_id'].'" data-slide-to="'.$counter.'" class="'.$class.'"></li>';
 
-		  $counter++;
-	  endforeach;
-	$html.='</ol>';
-
-	echo apply_filters('koksijde_slider_indicators', $html);
-}
-
-/**
- * koksijde_slider_slides function.
- *
- * @access public
- * @return void
- */
-function koksijde_slider_slides() {
-	global $koksijde_slider_config;
-
-	if (!count($koksijde_slider_config['posts']))
-		return false;
-
-	$html=null;
-	$counter=0;
-	$captions=$koksijde_slider_config['captions'];
-
-	$html.='<div class="carousel-inner">';
-		foreach ($koksijde_slider_config['posts'] as $post) :
-			if ($counter==0) :
-				$class='active';
-			else :
-				$class=null;
-			endif;
-
-			$html.='<div class="item '.$class.'">';
-				$html.=koksijde_slider_thumbnail($post->ID);
-
-				if ($captions) :
-					$html.='<div class="carousel-caption">';
-						$html.='<div class="caption-text">'.apply_filters('the_content', koksijde_slider_get_caption($post)).'</div>';
-
-						if ($koksijde_slider_config['more_button'])
-							$html.='<p><a class="btn btn-primary btn-lg" role="button">'.sanitize_text_field($koksijde_slider_config['more_text']).'</a></p>';
-					$html.='</div>';
-				endif;
-
-			$html.='</div>';
-
-			$counter++;
-		endforeach;
-	$html.='</div>';
-
-	echo apply_filters('koksijde_slider_slides', $html);
-}
-
-/**
- * koksijde_slider_controls function.
- *
- * @access public
- * @return void
- */
-function koksijde_slider_controls() {
-	global $koksijde_slider_config;
-
-	if (!count($koksijde_slider_config['posts']) || !$koksijde_slider_config['controls'])
-		return false;
-
-	$html=null;
-
-	$html.='<a class="left carousel-control" href="#'.$koksijde_slider_config['slider_id'].'" data-slide="prev">';
-		$html.='<span class="glyphicon glyphicon-chevron-left"></span>';
-	$html.='</a>';
-	$html.='<a class="right carousel-control" href="#'.$koksijde_slider_config['slider_id'].'" data-slide="next">';
-		$html.='<span class="glyphicon glyphicon-chevron-right"></span>';
-	$html.='</a>';
-
-	echo apply_filters('koksijde_slider_controls', $html);
-}
 
 /**
  * koksijde_slider_thumbnail function.
@@ -240,11 +145,5 @@ function koksijde_slider_thumbnail($post_id) {
 	$image='<img width="'.$width.'" height="'.$height.'" src="'.$attr['src'][0].'" class="'.$attr['class'].'" alt="'.$attr['alt'].'">';
 
 	return apply_filters('koksijde_slider_thumbnail', $image, $attr, $width, $height);
-}
-
-function koksijde_slider_id() {
-	global $koksijde_slider_config;
-
-	echo $koksijde_slider_config['slider_id'];
 }
 ?>

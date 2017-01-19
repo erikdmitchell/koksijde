@@ -9,10 +9,9 @@
 ?>
 
 <?php if (koksijde_home_slider_is_active()) : ?>
-SLIDER
-	<div id="<?php koksijde_slider_id(); ?>" class="carousel slide koksijde-slider" data-ride="carousel">
-		<?php koksijde_slider_indicators(); ?>
-		<?php koksijde_slider_slides(); ?>
-		<?php koksijde_slider_controls(); ?>
+	<div id="koksijde-home-slider" class="carousel slide koksijde-slider" data-ride="carousel">
+		<?php get_template_part('template-parts/home-slider/slider', 'indicators'); ?>
+		<?php get_template_part('template-parts/home-slider/slider', 'slides'); ?>		
+		<?php get_template_part('template-parts/home-slider/slider', 'controls'); ?>	
 	</div>
 <?php endif; ?>
