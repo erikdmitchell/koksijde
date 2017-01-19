@@ -49,30 +49,7 @@ function koksijde_theme_get_image_id_from_url($image_url) {
 	return $attachment[0];
 }
 
-/**
- * koksijde_theme_get_post_types_list function.
- *
- * @access public
- * @param string $name (default: '')
- * @param bool $selected (default: false)
- * @param string $output (default: 'dropdown')
- * @return void
- */
-function koksijde_theme_get_post_types_list($name='', $selected=false, $output='dropdown') {
-	$html=null;
-	$args=array(
-		'public' => true
-	);
-	$post_types_arr=get_post_types($args);
 
-	$html.='<select name="'.$name.'" class="post-type-list-admin">';
-		foreach ($post_types_arr as $type) :
-			$html.='<option value="'.$type.'" '.selected($selected, $type, false).'>'.$type.'</option>';
-		endforeach;
-	$html.='</select>';
-
-	return $html;
-}
 
 /**
  * koksijde_array_recursive_diff function.
