@@ -1,9 +1,9 @@
-<?php if (koksijde_slider_show_controls()) : ?>
+<?php if (get_theme_mod('home_slider_controls', 0)) : ?>
 
-	<a class="left carousel-control" href="#<?php koksijde_slider_id(); ?>" data-slide="prev">
+	<a class="left carousel-control" href="#'.$koksijde_slider_config['slider_id'].'" data-slide="prev">
 		<span class="glyphicon glyphicon-chevron-left"></span>
 	</a>
-	<a class="right carousel-control" href="#<?php koksijde_slider_id(); ?>" data-slide="next">
+	<a class="right carousel-control" href="#'.$koksijde_slider_config['slider_id'].'" data-slide="next">
 		<span class="glyphicon glyphicon-chevron-right"></span>
 	</a>
 
