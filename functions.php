@@ -583,4 +583,17 @@ function koksijde_array_recursive_diff($aArray1, $aArray2) {
   }
   return $aReturn;
 }
+
+/**
+ * koksijde_home_slider_is_active function.
+ * 
+ * @access public
+ * @return void
+ */
+function koksijde_home_slider_is_active() {
+	if (get_theme_mod('home_slider_active', 0))
+		return true;
+		
+	return false;
+}
 ?>
