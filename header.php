@@ -22,13 +22,13 @@
 			<div class="container">
 				<nav class="navbar navbar-default" role="navigation">
 					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".mdw-wp-theme-mobile-menu">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".koksijde-mobile-menu">
 							<span class="sr-only">Toggle navigation</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<?php koksijde_theme_navbar_brand(); ?>
+						<?php get_template_part('navbar', 'brand'); ?>
 					</div>
 					<?php koksijde_secondary_navigation_setup(); ?>
 					<div class="collapse navbar-collapse primary-menu">

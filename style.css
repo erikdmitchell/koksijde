@@ -4,28 +4,24 @@ Theme URI:
 Description: A robust theme built using the bootstrap framework with a touch of awesomeness.
 Author: Erik Mitchell
 Author URI: http://erikmitchell.net
-Version: 1.0.0
-Tags: white, light, responsive-layout, featured-images, custom-menu, theme-options, translation-ready
+Version: 1.0.2
+Tags: featured-images, custom-menu, theme-options, translation-ready
 Text Domain: koksijde
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License: GNU General Public License v2 or later
+License URI: LICENSE
 */
+
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
-1.0 Bootstrap
-2.0 Navigation
-3.0 WordPress
-4.0 Site
-5.0 Slider
+1.0 Navigation
+2.0 WordPress
+3.0 Site
+4.0 Slider
 --------------------------------------------------------------*/
-/*--------------------------------------------------------------
-1.0 Bootstrap
---------------------------------------------------------------*/
-@import url('inc/css/bootstrap.min.css');
 
 /*--------------------------------------------------------------
-2.0 Navigation
+1.0 Navigation
 --------------------------------------------------------------*/
 /**
  * modify the default "panel" styling for our mobile menu
@@ -114,7 +110,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     display: none !important; } }
 
 /*--------------------------------------------------------------
-3.0 WordPress
+2.0 WordPress
 --------------------------------------------------------------*/
 .alignnone {
     margin: 5px 20px 20px 0;
@@ -232,7 +228,7 @@ img {
 }
 
 /*--------------------------------------------------------------
-4.0 Site
+3.0 Site
 --------------------------------------------------------------*/
 /**
  * navbar
@@ -243,16 +239,23 @@ img {
   background-image: none;
   border: none;
   -webkit-box-shadow: none;
-  box-shadow: none; }
-
-.navbar-brand.logo {
-  text-indent: -9999px;
-  width: 163px;
-  height: 100px;
-  padding: 0; }
-
-.navbar .navbar-nav.logo {
-  margin: 50px 0 0 0; }
+  box-shadow: none; 
+}
+.koksijde-header-image {
+	padding-bottom: 10px;
+}
+.koksijde-header-text .site-title {
+	font-size: 18px;
+	line-height: 20px;	
+	color: #333;
+}
+.koksijde-header-text .site-title:hover {	
+	color: #777;
+	text-decoration: none;
+}
+.koksijde-header-text .site-description {	
+	color: #777;
+}
 
 /**/
 .row.content {
@@ -443,7 +446,9 @@ img {
  * footer
  */
 footer {
-  border-top: none; }
+  border-top: none;
+	background: #e7e7e7;
+}
 
 footer .footer-widgets {
   padding: 10px 0 20px 0; }
@@ -460,7 +465,7 @@ footer .copyright {
 /**
  * back to top button
  */
-.mdw-back-to-top {
+.koksijde-back-to-top {
   display: inline-block;
   height: 40px;
   width: 40px;
@@ -472,40 +477,40 @@ footer .copyright {
   overflow: hidden;
   text-indent: 100%;
   white-space: nowrap;
-  background: #048dfd url(images/cd-top-arrow.svg) no-repeat center 50%;
+  background: #048dfd url(inc/images/cd-top-arrow.svg) no-repeat center 50%;
   visibility: hidden;
   opacity: 0;
   -webkit-transition: opacity 0.3s 0s, visibility 0s 0.3s;
   -moz-transition: opacity 0.3s 0s, visibility 0s 0.3s;
   transition: opacity 0.3s 0s, visibility 0s 0.3s; }
 
-.mdw-back-to-top.btt-is-visible,
-.mdw-back-to-top.btt-fade-out,
-.no-touch .mdw-back-to-top:hover {
+.koksijde-back-to-top.btt-is-visible,
+.koksijde-back-to-top.btt-fade-out,
+.no-touch .koksijde-back-to-top:hover {
   -webkit-transition: opacity 0.3s 0s, visibility 0s 0s;
   -moz-transition: opacity 0.3s 0s, visibility 0s 0s;
   transition: opacity 0.3s 0s, visibility 0s 0s; }
 
-.mdw-back-to-top.btt-is-visible {
+.koksijde-back-to-top.btt-is-visible {
   /* the button becomes visible */
   visibility: visible;
   opacity: 1; }
 
-.mdw-back-to-top.btt-fade-out {
+.koksijde-back-to-top.btt-fade-out {
   /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
   opacity: .5; }
 
-.no-touch .mdw-back-to-top:hover {
+.no-touch .koksijde-back-to-top:hover {
   background-color: #e86256;
   opacity: 1; }
 
 @media only screen and (min-width: 768px) {
-  .mdw-back-to-top {
+  .koksijde-back-to-top {
     right: 20px;
     bottom: 20px; } }
 
 @media only screen and (min-width: 1024px) {
-  .mdw-back-to-top {
+  .koksijde-back-to-top {
     height: 60px;
     width: 60px;
     right: 30px;
@@ -521,7 +526,7 @@ footer .copyright {
     display: block; } }
 
 /*--------------------------------------------------------------
-5.0 Slider
+4.0 Slider
 --------------------------------------------------------------*/
 /**
  * general slider formatting

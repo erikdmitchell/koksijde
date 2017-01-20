@@ -1,3 +1,13 @@
+<?php
+/**
+ * The template for displaying a page
+ *
+ * @package WordPress
+ * @subpackage koksijde
+ * @since koksijde 1.0.0
+ */
+?>
+
 <?php get_header(); ?>
 
 <div class="container">
@@ -16,9 +26,8 @@
 					comments_template();
 				}
 				?>
-				<!-- // Previous/next post navigation. NEEDS TO BE ADDED -->
 			<?php endwhile; else: ?>
-				<p><?php _e('Sorry, this page does not exist.','koksijde'); ?></p>
+				<p><?php _e('Sorry, this page does not exist.', 'koksijde'); ?></p>
 			<?php endif; ?>
 		</div>
 		<div class="col-md-4">
