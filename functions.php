@@ -75,9 +75,9 @@ function koksijde_theme_setup() {
 	include_once(get_template_directory().'/inc/mobile_nav_walker.php');
 
 	/**
-	 * include our shotcodes
+	 * include our customier functions
 	 */
-	include_once(get_template_directory().'/inc/shortcodes/slider.php');
+	include_once(get_template_directory().'/inc/customizer.php');
 
 	/**
 	 * include theme meta page
