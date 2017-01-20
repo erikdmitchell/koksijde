@@ -85,11 +85,6 @@ function koksijde_theme_setup() {
 	 */
 	include_once(get_template_directory().'/inc/theme-meta.php');
 
-	/**
-	 * include customizer functions
-	 */
-	include_once(get_template_directory().'/inc/customizer.php');
-
 	// register our navigation area
 	register_nav_menus( array(
 		'primary' => __('Primary Menu','koksijde'),
