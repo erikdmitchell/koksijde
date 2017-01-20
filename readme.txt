@@ -36,6 +36,9 @@ Coming soon...
 
 = 1.0.2 =
 
+* Added gallery shortcode.
+* Removed theme options and cleaned up code.
+
 = 1.0.1 =
 
 * Fixed mobile nav issue.
