@@ -10,7 +10,7 @@ jQuery(window).load(function() {
 /**
  * when a panel item (mobile nav) with children is clicked, this changes the +/- icon
  */
-jQuery(document).on('click','.mdw-wp-theme-mobile-menu .panel-heading.menu-item-has-children a,.mdw-wp-theme-mobile-menu .panel-collapse .panel-heading a', function(e) {
+jQuery(document).on('click','.koksijde-mobile-menu .panel-heading.menu-item-has-children a, .koksijde-mobile-menu .panel-collapse .panel-heading a', function(e) {
 	var $this=jQuery(this);
 
 	if ($this.hasClass('collapsed')) {
