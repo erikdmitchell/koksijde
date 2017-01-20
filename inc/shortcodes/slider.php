@@ -7,6 +7,8 @@
  * @return void
  */
 function koksijde_slider_shortcode($atts) {
+	global $koksijde_gallery_slide;
+	
 	$atts = shortcode_atts( array(
 		'post_type' => 'post',
 		'limit' => 4,
@@ -30,6 +32,8 @@ function koksijde_slider_shortcode($atts) {
 add_shortcode('koksijde_slider', 'koksijde_slider_shortcode');
 
 /**/
+
+global $koksijde_gallery_slide;
 
 class Koksijde_Gallery {
 
@@ -103,18 +107,18 @@ class Koksijde_Gallery {
 	public function query($query='') {
 		$this->query_vars=$this->set_query_vars($query);
 
-		$this->get_posts();
+		$this->get_slides();
 
 		return $this;
 	}
 
 	/**
-	 * get_posts function.
+	 * get_slides function.
 	 *
 	 * @access public
 	 * @return void
 	 */
-	public function get_posts() {
+	public function get_slides() {
 		$posts=get_posts(array(
 			'posts_per_page' => $this->query_vars['limit'],
 			'post_type' => $this->query_vars['post_type'],			
@@ -127,40 +131,40 @@ class Koksijde_Gallery {
 	}
 
 	/**
-	 * have_posts function.
+	 * have_slides function.
 	 *
 	 * @access public
 	 * @return void
 	 */
-	public function have_posts() {
+	public function have_slides() {
 		if ($this->current_slide + 1 < $this->slide_count) :
 			return true;
 		elseif ( $this->current_slide + 1 == $this->slide_count && $this->slide_count > 0 ) :
-			$this->rewind_posts();
+			$this->rewind_slides();
 		endif;
 
 		return false;
 	}
 
 	/**
-	 * the_post function.
+	 * the_slide function.
 	 *
 	 * @access public
 	 * @return void
 	 */
-	public function the_post() {
-		global $uci_results_post;
+	public function the_slide() {
+		global $koksijde_gallery_slide;
 
-		$uci_results_post = $this->next_post();
+		$koksijde_gallery_slide=$this->next_slide();
 	}
 
   /**
-   * next_post function.
+   * next_slide function.
    *
    * @access public
    * @return void
    */
-  public function next_post() {
+  public function next_slide() {
 		$this->current_slide++;
 
 		$this->slide=$this->slides[$this->current_slide];
@@ -169,12 +173,12 @@ class Koksijde_Gallery {
 	}
 
 	/**
-	 * rewind_posts function.
+	 * rewind_slides function.
 	 *
 	 * @access public
 	 * @return void
 	 */
-	public function rewind_posts() {
+	public function rewind_slides() {
 		$this->current_slide = -1;
 
 		if ( $this->slide_count > 0 )
