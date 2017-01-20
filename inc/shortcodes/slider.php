@@ -1,13 +1,13 @@
 <?php
 
 /**
- * koksijde_gallery_shortcode function.
+ * koksijde_slider_shortcode function.
  * 
  * @access public
  * @param mixed $atts
  * @return void
  */
-function koksijde_gallery_shortcode($atts) {
+function koksijde_slider_shortcode($atts) {
 	$atts = shortcode_atts( array(
 		'foo' => 'no foo',
 		'baz' => 'default baz'
@@ -15,7 +15,7 @@ function koksijde_gallery_shortcode($atts) {
 
 	return "foo = {$atts['foo']}";
 }
-add_shortcode('koksijde_gallery', 'koksijde_gallery_shortcode');
+add_shortcode('koksijde_slider', 'koksijde_slider_shortcode');
 	
 global $slide_counter;
 global $slide_icon_counter;
