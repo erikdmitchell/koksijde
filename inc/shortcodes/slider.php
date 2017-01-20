@@ -10,6 +10,7 @@ function koksijde_slider_shortcode($atts) {
 	global $koksijde_gallery, $koksijde_gallery_slide;
 	
 	$atts = shortcode_atts( array(
+		'id' => 'koksijde-slider',
 		'post_type' => 'post',
 		'limit' => 4,
 		'indicators' => true,
@@ -68,6 +69,7 @@ class Koksijde_Gallery {
 	 */
 	public function default_query_vars() {
 		$array=array(
+			'id' => 'koksijde-slider',
 			'post_type' => 'post',
 			'limit' => 4,
 			'indicators' => true,
@@ -266,6 +268,12 @@ function koksijde_slider_get_caption() {
 	echo apply_filters('koksijde_slider_caption', $html, $koksijde_gallery_slide);
 }
 
+/**
+ * koksijde_slider_show_more function.
+ * 
+ * @access public
+ * @return void
+ */
 function koksijde_slider_show_more() {
 	global $koksijde_gallery;
 
@@ -275,6 +283,12 @@ function koksijde_slider_show_more() {
 	return false;
 }
 
+/**
+ * koksijde_slider_show_more_text function.
+ * 
+ * @access public
+ * @return void
+ */
 function koksijde_slider_show_more_text() {
 	global $koksijde_gallery;
 
@@ -332,5 +346,41 @@ function koksijde_slider_thumbnail($post_id) {
 	$image='<img width="'.$width.'" height="'.$height.'" src="'.$attr['src'][0].'" class="'.$attr['class'].'" alt="'.$attr['alt'].'">';
 
 	echo apply_filters('koksijde_slider_thumbnail', $image, $attr, $width, $height);
+}
+
+/**
+ * koksijde_slider_slide_icon_counter function.
+ * 
+ * @access public
+ * @return void
+ */
+function koksijde_slider_slide_icon_counter() {
+	global $koksijde_gallery_slide;
+
+	echo $koksijde_gallery_slide->number;
+}
+
+/**
+ * koksijde_slider_slide_icon_classes function.
+ * 
+ * @access public
+ * @param string $class (default: '')
+ * @return void
+ */
+function koksijde_slider_slide_icon_classes($class='') {
+	global $koksijde_gallery_slide;
+	
+	$classes=array('');
+	
+	if ($koksijde_gallery_slide->number==0)
+		$classes[]='active';
+		
+	echo apply_filters('koksijde_slider_slide_icon_classes', implode(' ', $classes), $classes);
+}
+
+function koksijde_slider_id() {
+	global $koksijde_gallery;
+
+	echo $koksijde_gallery->query_vars['id'];
 }
 ?>

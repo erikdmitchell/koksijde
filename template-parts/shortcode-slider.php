@@ -8,8 +8,8 @@
  */
 ?>
 
-<div id="" class="carousel slide koksijde-slider" data-ride="carousel">
-	<?php //get_template_part('template-parts/home-slider/slider', 'indicators'); ?>
+<div id="<?php koksijde_slider_id(); ?>" class="carousel slide koksijde-slider" data-ride="carousel">
+	<?php get_template_part('template-parts/home-slider/slider', 'indicators'); ?>
 
 	<div class="carousel-inner">
 		
