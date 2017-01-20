@@ -17,10 +17,10 @@ function koksijde_customize_register($wp_customize) {
 	
 	$wp_customize->add_setting('home_slider_active', array(
 		'type' => 'theme_mod',
-		'default' => '',
-		'transport' => 'refresh', // or postMessage
-		'sanitize_callback' => '',
-		'sanitize_js_callback' => '', // Basically to_json.
+		'default' => 0,
+		//'transport' => 'refresh', // or postMessage
+		'sanitize_callback' => 'esc_attr',
+		//'sanitize_js_callback' => '', // Basically to_json.
 	));
 
 	$wp_customize->add_control('home_slider_active', array(
@@ -34,9 +34,9 @@ function koksijde_customize_register($wp_customize) {
 	$wp_customize->add_setting('home_slider_post_type', array(
 		'type' => 'theme_mod',
 		'default' => 'post',
-		'transport' => 'refresh', // or postMessage
-		'sanitize_callback' => '',
-		'sanitize_js_callback' => '', // Basically to_json.
+		//'transport' => 'refresh', // or postMessage
+		'sanitize_callback' => 'esc_attr',
+		//'sanitize_js_callback' => '', // Basically to_json.
 	));
 
 	$wp_customize->add_control(
@@ -53,9 +53,9 @@ function koksijde_customize_register($wp_customize) {
 	$wp_customize->add_setting('home_slider_limit', array(
 		'type' => 'theme_mod',
 		'default' => '-1',
-		'transport' => 'refresh', // or postMessage
-		'sanitize_callback' => '',
-		'sanitize_js_callback' => '', // Basically to_json.
+		//'transport' => 'refresh', // or postMessage
+		'sanitize_callback' => 'esc_attr',
+		//'sanitize_js_callback' => '', // Basically to_json.
 	));
 
 	$wp_customize->add_control('home_slider_limit', array(
@@ -70,9 +70,9 @@ function koksijde_customize_register($wp_customize) {
 	$wp_customize->add_setting('home_slider_indicators', array(
 		'type' => 'theme_mod',
 		'default' => 1,
-		'transport' => 'refresh', // or postMessage
-		'sanitize_callback' => '',
-		'sanitize_js_callback' => '', // Basically to_json.
+		//'transport' => 'refresh', // or postMessage
+		'sanitize_callback' => 'esc_attr',
+		//'sanitize_js_callback' => '', // Basically to_json.
 	));
 
 	$wp_customize->add_control(
@@ -89,9 +89,9 @@ function koksijde_customize_register($wp_customize) {
 	$wp_customize->add_setting('home_slider_slides', array(
 		'type' => 'theme_mod',
 		'default' => 1,
-		'transport' => 'refresh', // or postMessage
-		'sanitize_callback' => '',
-		'sanitize_js_callback' => '', // Basically to_json.
+		//'transport' => 'refresh', // or postMessage
+		'sanitize_callback' => 'esc_attr',
+		//'sanitize_js_callback' => '', // Basically to_json.
 	));
 
 	$wp_customize->add_control(
@@ -108,9 +108,9 @@ function koksijde_customize_register($wp_customize) {
 	$wp_customize->add_setting('home_slider_captions', array(
 		'type' => 'theme_mod',
 		'default' => 0,
-		'transport' => 'refresh', // or postMessage
-		'sanitize_callback' => '',
-		'sanitize_js_callback' => '', // Basically to_json.
+		//'transport' => 'refresh', // or postMessage
+		'sanitize_callback' => 'esc_attr',
+		//'sanitize_js_callback' => '', // Basically to_json.
 	));
 
 	$wp_customize->add_control(
@@ -127,9 +127,9 @@ function koksijde_customize_register($wp_customize) {
 	$wp_customize->add_setting('home_slider_caption_field', array(
 		'type' => 'theme_mod',
 		'default' => 'excerpt',
-		'transport' => 'refresh', // or postMessage
-		'sanitize_callback' => '',
-		'sanitize_js_callback' => '', // Basically to_json.
+		//'transport' => 'refresh', // or postMessage
+		'sanitize_callback' => 'esc_attr',
+		//'sanitize_js_callback' => '', // Basically to_json.
 	));		
 
 	$wp_customize->add_control(
@@ -146,9 +146,9 @@ function koksijde_customize_register($wp_customize) {
 	$wp_customize->add_setting('home_slider_more_button', array(
 		'type' => 'theme_mod',
 		'default' => 1,
-		'transport' => 'refresh', // or postMessage
-		'sanitize_callback' => '',
-		'sanitize_js_callback' => '', // Basically to_json.
+		//'transport' => 'refresh', // or postMessage
+		'sanitize_callback' => 'esc_attr',
+		//'sanitize_js_callback' => '', // Basically to_json.
 	));
 
 	$wp_customize->add_control(
@@ -173,9 +173,9 @@ function koksijde_customize_register($wp_customize) {
 	$wp_customize->add_setting('home_slider_controls', array(
 		'type' => 'theme_mod',
 		'default' => 1,
-		'transport' => 'refresh', // or postMessage
-		'sanitize_callback' => '',
-		'sanitize_js_callback' => '', // Basically to_json.
+		//'transport' => 'refresh', // or postMessage
+		'sanitize_callback' => 'esc_attr',
+		//'sanitize_js_callback' => '', // Basically to_json.
 	));
 
 	$wp_customize->add_control(
