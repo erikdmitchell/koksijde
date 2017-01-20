@@ -378,9 +378,30 @@ function koksijde_slider_slide_icon_classes($class='') {
 	echo apply_filters('koksijde_slider_slide_icon_classes', implode(' ', $classes), $classes);
 }
 
+/**
+ * koksijde_slider_id function.
+ * 
+ * @access public
+ * @return void
+ */
 function koksijde_slider_id() {
 	global $koksijde_gallery;
 
 	echo $koksijde_gallery->query_vars['id'];
+}
+
+/**
+ * koksijde_slider_show_controls function.
+ * 
+ * @access public
+ * @return void
+ */
+function koksijde_slider_show_controls() {
+	global $koksijde_gallery;
+
+	if ($koksijde_gallery->query_vars['controls'])
+		return true;
+		
+	return false;
 }
 ?>
