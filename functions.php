@@ -77,7 +77,7 @@ function koksijde_theme_setup() {
 	/**
 	 * include our shotcodes
 	 */
-	include_once(get_template_directory().'/inc/shortcodes/gallery.php');
+	include_once(get_template_directory().'/inc/shortcodes/slider.php');
 
 	/**
 	 * include theme meta page
@@ -577,18 +577,5 @@ function koksijde_array_recursive_diff($aArray1, $aArray2) {
     }
   }
   return $aReturn;
-}
-
-/**
- * koksijde_slider_is_active function.
- * 
- * @access public
- * @return void
- */
-function koksijde_home_slider_is_active() {
-	if (get_theme_mod('home_slider_active', 0))
-		return true;
-		
-	return false;
 }
 ?>
