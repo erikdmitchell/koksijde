@@ -7,7 +7,7 @@
  * @return void
  */
 function koksijde_slider_shortcode($atts) {
-	global $koksijde_gallery_slide;
+	global $koksijde_gallery, $koksijde_gallery_slide;
 	
 	$atts = shortcode_atts( array(
 		'post_type' => 'post',
@@ -15,7 +15,7 @@ function koksijde_slider_shortcode($atts) {
 		'indicators' => true,
 		'slides' => true,
 		'captions' => true,
-		'caption_field' => 'excerpt',
+		'caption_field' => 'content',
 		'more' => true,
 		'more_text' => 'More',
 		'controls' => true,
@@ -32,7 +32,7 @@ function koksijde_slider_shortcode($atts) {
 add_shortcode('koksijde_slider', 'koksijde_slider_shortcode');
 
 /**/
-
+global $koksijde_gallery;
 global $koksijde_gallery_slide;
 
 class Koksijde_Gallery {
@@ -73,7 +73,7 @@ class Koksijde_Gallery {
 			'indicators' => true,
 			'slides' => true,
 			'captions' => true,
-			'caption_field' => 'excerpt',
+			'caption_field' => 'content',
 			'more' => true,
 			'more_text' => 'More',
 			'controls' => true,
@@ -188,13 +188,6 @@ class Koksijde_Gallery {
 
 }
 
-
-
-/*-----------------//-----------------//-----------------*/
-
-
-
-
 /**
  * koksijde_add_slider_image_sizes function.
  *
@@ -207,13 +200,13 @@ function koksijde_add_slider_image_sizes() {
 add_action('init', 'koksijde_add_slider_image_sizes');
 
 /**
- * koksijde_gallery_slide_class function.
+ * koksijde_slider_slide_class function.
  * 
  * @access public
  * @param string $class (default: '')
  * @return void
  */
-function koksijde_gallery_slide_class($class='') {
+function koksijde_slider_slide_class($class='') {
 	global $koksijde_gallery_slide;
 	
 	$classes=array('item');
@@ -221,43 +214,71 @@ function koksijde_gallery_slide_class($class='') {
 	if ($koksijde_gallery_slide->number==0)
 		$classes[]='active';
 		
-	echo apply_filters('koksijde_galler_slide_class', implode(' ', $classes), $classes);
+	echo apply_filters('koksijde_slider_slide_class', implode(' ', $classes), $classes);
 }
 
+/**
+ * koksijde_slider_show_captions function.
+ * 
+ * @access public
+ * @return void
+ */
+function koksijde_slider_show_captions() {
+	global $koksijde_gallery;
 
-
+	if ($koksijde_gallery->query_vars['captions'])
+		return true;
+		
+	return false;
+}
 
 /**
  * koksijde_slider_get_caption function.
- *
+ * 
  * @access public
- * @param bool $post (default: false)
  * @return void
  */
-function koksijde_slider_get_caption($post=false) {
-	global $koksijde_slider_config;
+function koksijde_slider_get_caption() {
+	global $koksijde_gallery, $koksijde_gallery_slide;
 
 	$html=null;
 
-	if (!$post)
+	if (!$koksijde_gallery_slide)
 		return false;
 
-	switch ($koksijde_slider_config['caption_field']):
+	switch ($koksijde_gallery->query_vars['caption_field']):
 		case 'excerpt' :
-			$html.=$post->post_excerpt;
+			$html.=$koksijde_gallery_slide->post_excerpt;
 			break;
 		case 'content' :
-			$html.=$post->post_content;
+			$html.=$koksijde_gallery_slide->post_content;
 			break;
 		case 'title' :
-			$html.=$post->post_title;
+			$html.=$koksijde_gallery_slide->post_title;
 			break;
 		default:
-			$html.=$post->post_excerpt;
+			$html.=$koksijde_gallery_slide->post_excerpt;
 			break;
 	endswitch;
+	
+	$html=apply_filters('the_content', $html);
+	
+	echo apply_filters('koksijde_slider_caption', $html, $koksijde_gallery_slide);
+}
 
-	return apply_filters('koksijde_slider_caption', $html, $post);
+function koksijde_slider_show_more() {
+	global $koksijde_gallery;
+
+	if ($koksijde_gallery->query_vars['more'])
+		return true;
+		
+	return false;
+}
+
+function koksijde_slider_show_more_text() {
+	global $koksijde_gallery;
+
+	echo $koksijde_gallery->query_vars['more_text'];
 }
 
 /**
