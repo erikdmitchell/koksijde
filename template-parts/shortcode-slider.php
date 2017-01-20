@@ -8,14 +8,13 @@
  */
 ?>
 
-<?php $koksijde_gallery=new Koksijde_Gallery(); ?>
 
 <pre>
-	<?php print_r($koksijde_gallery); ?>
+	<?php //print_r($koksijde_gallery); ?>
 </pre>
 
 <div id="koksijde-home-slider" class="carousel slide koksijde-slider" data-ride="carousel">
-	<?php get_template_part('template-parts/home-slider/slider', 'indicators'); ?>
+	<?php //get_template_part('template-parts/home-slider/slider', 'indicators'); ?>
 	<?php //get_template_part('template-parts/home-slider/slider', 'slides'); ?>		
 	
 	<div class="carousel-inner">
@@ -34,5 +33,5 @@
 		<?php endforeach; ?>
 	</div>
 	
-	<?php get_template_part('template-parts/home-slider/slider', 'controls'); ?>	
+	<?php //get_template_part('template-parts/home-slider/slider', 'controls'); ?>	
 </div>

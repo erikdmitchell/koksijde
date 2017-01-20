@@ -1,5 +1,4 @@
 <?php
-
 /**
  * koksijde_slider_shortcode function.
  * 
@@ -18,11 +17,13 @@ function koksijde_slider_shortcode($atts) {
 		'more' => true,
 		'more_text' => 'More',
 		'controls' => true,
-	), $atts, 'bartag' );
+	), $atts, 'koksijde_slider');
 	
 	ob_start();
     
-    get_template_part('template-parts/shortcode', 'slider');
+	$koksijde_gallery=new Koksijde_Gallery($atts);
+
+	include(locate_template('template-parts/shortcode-slider.php'));  // Replace your template file name with "your-template-file-name.php"
     
     return ob_get_clean();
 }
@@ -122,7 +123,7 @@ class Koksijde_Gallery {
 		$this->slides=$posts;
 		$this->slide_count=count($posts);
 
-		return $this->posts;
+		return $this->slides;
 	}
 
 	/**
