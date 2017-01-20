@@ -9,8 +9,6 @@
 ?>
 <?php get_header(); ?>
 
-	<?php get_template_part('home', 'slider'); ?>
-
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
