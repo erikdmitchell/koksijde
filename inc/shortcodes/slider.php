@@ -168,6 +168,7 @@ class Koksijde_Gallery {
 		$this->current_slide++;
 
 		$this->slide=$this->slides[$this->current_slide];
+		$this->slide->number=$this->current_slide;
 
 		return $this->slide;
 	}
@@ -204,6 +205,24 @@ function koksijde_add_slider_image_sizes() {
 	add_image_size('koksijde-theme-slider', 1400, 500, true);
 }
 add_action('init', 'koksijde_add_slider_image_sizes');
+
+/**
+ * koksijde_gallery_slide_class function.
+ * 
+ * @access public
+ * @param string $class (default: '')
+ * @return void
+ */
+function koksijde_gallery_slide_class($class='') {
+	global $koksijde_gallery_slide;
+	
+	$classes=array('item');
+	
+	if ($koksijde_gallery_slide->number==0)
+		$classes[]='active';
+		
+	echo apply_filters('koksijde_galler_slide_class', implode(' ', $classes), $classes);
+}
 
 
 
