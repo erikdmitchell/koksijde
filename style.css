@@ -546,6 +546,7 @@ footer .copyright {
 .koksijde-slider {
 	max-height: 500px;
 	overflow: hidden;
+	margin-bottom: 30px;
 }
 
 /* shortcodes */
