@@ -240,59 +240,6 @@ function koksijde_theme_posted_on() {
 }
 
 /**
- * Display navigation to next/previous set of posts when applicable.
- *
- * @since koksijde 1.0
- * @based on twentyfourteen
- *
- * @return void
- */
-function koksijde_theme_paging_nav() {
-	// Don't print empty markup if there's only one page.
-	if ( $GLOBALS['wp_query']->max_num_pages < 2 ) {
-		return;
-	}
-
-	$html=null;
-	$paged        = get_query_var( 'paged' ) ? intval( get_query_var( 'paged' ) ) : 1;
-	$pagenum_link = html_entity_decode( get_pagenum_link() );
-	$query_args   = array();
-	$url_parts    = explode( '?', $pagenum_link );
-
-	if ( isset( $url_parts[1] ) ) {
-		wp_parse_str( $url_parts[1], $query_args );
-	}
-
-	$pagenum_link = remove_query_arg( array_keys( $query_args ), esc_url($pagenum_link) );
-	$pagenum_link = trailingslashit( $pagenum_link ) . '%_%';
-
-	$format  = $GLOBALS['wp_rewrite']->using_index_permalinks() && ! strpos( $pagenum_link, 'index.php' ) ? 'index.php/' : '';
-	$format .= $GLOBALS['wp_rewrite']->using_permalinks() ? user_trailingslashit( 'page/%#%', 'paged' ) : '?paged=%#%';
-
-	// Set up paginated links.
-	$links = paginate_links( array(
-		'base'     => $pagenum_link,
-		'format'   => $format,
-		'total'    => $GLOBALS['wp_query']->max_num_pages,
-		'current'  => $paged,
-		'mid_size' => 1,
-		'add_args' => array_map( 'urlencode', $query_args ),
-		'prev_text' => __( '&laquo; Previous', 'koksijde' ),
-		'next_text' => __( 'Next &raquo;', 'koksijde' ),
-	) );
-
-	if ( $links ) :
-		$html.='<nav class="navigation paging-navigation" role="navigation">';
-			$html.='<div class="pagination loop-pagination">';
-				$html.=$links;
-			$html.='</div><!-- .pagination -->';
-		$html.='</nav><!-- .navigation -->';
-	endif;
-
-	echo apply_filters('koksijde_paging_nav', $html, $links);
-}
-
-/**
  * koksijde_display_meta_description function.
  *
  * a custom function to display a meta description for our site pages

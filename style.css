@@ -429,17 +429,20 @@ img {
 }
 
 /**
- * post navigation
+ * post(s) navigation
  */
+.posts-navigation,
 .post-navigation {
 	overflow: hidden;
 	padding: 15px 0;
 }
-.post-navigation .nav-links div {
+.posts-navigation .nav-links > div, 
+.post-navigation .nav-links > div {
 	float: left;
 	width: 50%;
 }
-.post-navigation .nav-links .next-post {
+.posts-navigation .nav-next,
+.post-navigation .nav-next {
 	text-align: right;
 }
 .post-navigation .nav-links .nav-subtitle {
