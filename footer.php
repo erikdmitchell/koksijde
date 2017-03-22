@@ -15,7 +15,7 @@
 				</div> <!-- /container -->
 			</div><!-- .footer-widgets -->
 			<div class="copyright">
-				<?php echo get_bloginfo('name'); ?> <?php _e('&copy', 'koksijde'); ?> <?php date_i18n(esc_html__('Y', 'koksijde')); ?>
+				<?php echo get_bloginfo('name'); ?> <?php _e('&copy', 'koksijde'); ?> <?php echo date_i18n(esc_html__('Y', 'koksijde')); ?>
 			</div>
 		</footer>
 
