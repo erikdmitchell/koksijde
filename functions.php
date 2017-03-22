@@ -175,7 +175,7 @@ function koksijde_theme_scripts() {
 
 	// enqueue font awesome and our main stylesheet
 	wp_enqueue_style('font-awesome', get_template_directory_uri().'/inc/css/font-awesome.css', array(), '4.6.3');
-	wp_enqueue_style('bootstrap', get_template_directory_uri().'/inc/css/bootstrap.css', array(), '4.6.3');
+	wp_enqueue_style('bootstrap', get_template_directory_uri().'/inc/css/bootstrap.css', array(), '3.3.7');
 	wp_enqueue_style('koksijde-theme-style', get_stylesheet_uri());
 }
 add_action('wp_enqueue_scripts','koksijde_theme_scripts');
