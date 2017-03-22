@@ -66,7 +66,7 @@ function koksijde_theme_setup() {
 	/**
 	 * include bootstrap nav walker
 	 */
-	include_once(get_template_directory().'/inc/wp_bootstrap_navwalker.php');
+	include_once(get_template_directory().'/inc/wp-bootstrap-navwalker.php');
 
 	/**
 	 * include bootstrap mobile nav walker
