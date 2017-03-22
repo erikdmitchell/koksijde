@@ -2,7 +2,6 @@
 /**
  * Template Name: Front Page
  *
- * @package WordPress
  * @subpackage koksijde
  * @since koksijde 1.0.0
  */

@@ -15,12 +15,11 @@ function koksijde_customize_register($wp_customize) {
 	  'capability' => 'edit_theme_options',
 	));
 	
+	// home slider active //
 	$wp_customize->add_setting('home_slider_active', array(
 		'type' => 'theme_mod',
 		'default' => 0,
-		//'transport' => 'refresh', // or postMessage
-		'sanitize_callback' => 'esc_attr',
-		//'sanitize_js_callback' => '', // Basically to_json.
+		'sanitize_callback' => 'koksijde_sanitize_checkbox',
 	));
 
 	$wp_customize->add_control('home_slider_active', array(
@@ -28,15 +27,13 @@ function koksijde_customize_register($wp_customize) {
 		'priority' => 10, // Within the section.
 		'section' => 'home_slider', // Required, core or custom.
 		'label' => __('Activate Home Slider', 'koksijde'),
-		//'active_callback' => 'is_front_page',
 	));
 
+	// home slider post type //
 	$wp_customize->add_setting('home_slider_post_type', array(
 		'type' => 'theme_mod',
 		'default' => 'post',
-		//'transport' => 'refresh', // or postMessage
-		'sanitize_callback' => 'esc_attr',
-		//'sanitize_js_callback' => '', // Basically to_json.
+		'sanitize_callback' => 'koksijde_sanitize_select',
 	));
 
 	$wp_customize->add_control(
@@ -50,12 +47,11 @@ function koksijde_customize_register($wp_customize) {
 	    )
 	);
 
+	// slider limit //
 	$wp_customize->add_setting('home_slider_limit', array(
 		'type' => 'theme_mod',
-		'default' => '-1',
-		//'transport' => 'refresh', // or postMessage
-		'sanitize_callback' => 'esc_attr',
-		//'sanitize_js_callback' => '', // Basically to_json.
+		'default' => -1,
+		'sanitize_callback' => 'koksijde_sanitize_number',
 	));
 
 	$wp_customize->add_control('home_slider_limit', array(
@@ -67,12 +63,11 @@ function koksijde_customize_register($wp_customize) {
 		'active_callback' => 'is_front_page',
 	));	
 	
+	// slider indicators //
 	$wp_customize->add_setting('home_slider_indicators', array(
 		'type' => 'theme_mod',
 		'default' => 1,
-		//'transport' => 'refresh', // or postMessage
-		'sanitize_callback' => 'esc_attr',
-		//'sanitize_js_callback' => '', // Basically to_json.
+		'sanitize_callback' => 'koksijde_sanitize_select',
 	));
 
 	$wp_customize->add_control(
@@ -86,12 +81,11 @@ function koksijde_customize_register($wp_customize) {
 	    )
 	);
 
+	// slides //
 	$wp_customize->add_setting('home_slider_slides', array(
 		'type' => 'theme_mod',
 		'default' => 1,
-		//'transport' => 'refresh', // or postMessage
-		'sanitize_callback' => 'esc_attr',
-		//'sanitize_js_callback' => '', // Basically to_json.
+		'sanitize_callback' => 'koksijde_sanitize_select',
 	));
 
 	$wp_customize->add_control(
@@ -105,12 +99,11 @@ function koksijde_customize_register($wp_customize) {
 	    )
 	);
 
+	// captions //
 	$wp_customize->add_setting('home_slider_captions', array(
 		'type' => 'theme_mod',
 		'default' => 0,
-		//'transport' => 'refresh', // or postMessage
-		'sanitize_callback' => 'esc_attr',
-		//'sanitize_js_callback' => '', // Basically to_json.
+		'sanitize_callback' => 'koksijde_sanitize_select',
 	));
 
 	$wp_customize->add_control(
@@ -124,12 +117,11 @@ function koksijde_customize_register($wp_customize) {
 	    )
 	);	
 
+	// caption field //
 	$wp_customize->add_setting('home_slider_caption_field', array(
 		'type' => 'theme_mod',
 		'default' => 'excerpt',
-		//'transport' => 'refresh', // or postMessage
-		'sanitize_callback' => 'esc_attr',
-		//'sanitize_js_callback' => '', // Basically to_json.
+		'sanitize_callback' => 'koksijde_sanitize_select',
 	));		
 
 	$wp_customize->add_control(
@@ -143,12 +135,11 @@ function koksijde_customize_register($wp_customize) {
 	    )
 	);
 
+	// more button //
 	$wp_customize->add_setting('home_slider_more_button', array(
 		'type' => 'theme_mod',
 		'default' => 1,
-		//'transport' => 'refresh', // or postMessage
-		'sanitize_callback' => 'esc_attr',
-		//'sanitize_js_callback' => '', // Basically to_json.
+		'sanitize_callback' => 'koksijde_sanitize_select',
 	));
 
 	$wp_customize->add_control(
@@ -161,21 +152,26 @@ function koksijde_customize_register($wp_customize) {
 	        )
 	    )
 	);	
+
+	// more text //
+	$wp_customize->add_setting('home_slider_read_more_text', array(
+		'type' => 'theme_mod',
+		'default' => 'Read more...',
+		'sanitize_callback' => 'koksijde_sanitize_html',
+	));
 	
 	$wp_customize->add_control('home_slider_read_more_text', array(
 		'type' => 'text',
 		'priority' => 10, // Within the section.
 		'section' => 'home_slider', // Required, core or custom.
-		'label' => __('Read More Text', 'koksijde'),
-		'active_callback' => 'is_front_page',
+		'label' => __('More Text', 'koksijde'),
 	));	
 	
+	// slider controls //
 	$wp_customize->add_setting('home_slider_controls', array(
 		'type' => 'theme_mod',
 		'default' => 1,
-		//'transport' => 'refresh', // or postMessage
-		'sanitize_callback' => 'esc_attr',
-		//'sanitize_js_callback' => '', // Basically to_json.
+		'sanitize_callback' => 'koksijde_sanitize_select',
 	));
 
 	$wp_customize->add_control(
@@ -255,4 +251,91 @@ if (class_exists('WP_Customize_Control')) :
         }
     }
 endif;
+
+
+/**
+ * CALLBACKS
+ *
+ * credit: https://github.com/WPTRT/code-examples/blob/master/customizer/sanitization-callbacks.php
+ */
+
+/**
+ * Checkbox sanitization callback example.
+ * 
+ * Sanitization callback for 'checkbox' type controls. This callback sanitizes `$checked`
+ * as a boolean value, either TRUE or FALSE.
+ *
+ * @param bool $checked Whether the checkbox is checked.
+ * @return bool Whether the checkbox is checked.
+ */
+function koksijde_sanitize_checkbox( $checked ) {
+	// Boolean check.
+	return ( ( isset( $checked ) && true == $checked ) ? true : false );
+}
+
+/**
+ * Select sanitization callback example.
+ *
+ * - Sanitization: select
+ * - Control: select, radio
+ * 
+ * Sanitization callback for 'select' and 'radio' type controls. This callback sanitizes `$input`
+ * as a slug, and then validates `$input` against the choices defined for the control.
+ * 
+ * @see sanitize_key()               https://developer.wordpress.org/reference/functions/sanitize_key/
+ * @see $wp_customize->get_control() https://developer.wordpress.org/reference/classes/wp_customize_manager/get_control/
+ *
+ * @param string               $input   Slug to sanitize.
+ * @param WP_Customize_Setting $setting Setting instance.
+ * @return string Sanitized slug if it is a valid choice; otherwise, the setting default.
+ */
+function koksijde_sanitize_select( $input, $setting ) {
+	
+	// Ensure input is a slug.
+	$input = sanitize_key( $input );
+	
+	// Get list of choices from the control associated with the setting.
+	$choices = $setting->manager->get_control( $setting->id )->choices;
+	
+	// If the input is a valid key, return it; otherwise, return the default.
+	return ( array_key_exists( $input, $choices ) ? $input : $setting->default );
+}
+
+/**
+ * HTML sanitization callback example.
+ *
+ * - Sanitization: html
+ * - Control: text, textarea
+ * 
+ * Sanitization callback for 'html' type text inputs. This callback sanitizes `$html`
+ * for HTML allowable in posts.
+ * 
+ * NOTE: wp_filter_post_kses() can be passed directly as `$wp_customize->add_setting()`
+ * 'sanitize_callback'. It is wrapped in a callback here merely for example purposes.
+ * 
+ * @see wp_filter_post_kses() https://developer.wordpress.org/reference/functions/wp_filter_post_kses/
+ *
+ * @param string $html HTML to sanitize.
+ * @return string Sanitized HTML.
+ */
+function koksijde_sanitize_html( $html ) {
+	return wp_filter_post_kses( $html );
+}
+
+/**
+ * Number sanitization callback example.
+ *
+ * @param int $number  Number to sanitize.
+ * @param WP_Customize_Setting $setting Setting instance.
+ * @return int Sanitized number; otherwise, the setting default.
+ */
+function koksijde_sanitize_number( $number, $setting ) {
+	if (is_numeric($number)) :
+		$number=$number;
+	else :
+		$number=-1;
+	endif;
+	
+	return $number;
+}
 ?>

@@ -4,7 +4,6 @@
  *
  * The area of the page that contains comments and the comment form.
  *
- * @package WordPress
  * @subpackage koksijde
  * @since koksijde 1.0.0
  */

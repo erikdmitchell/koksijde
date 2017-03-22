@@ -2,7 +2,6 @@
 /**
  * Template Name: Full Width (no sidebars)
  *
- * @package WordPress
  * @subpackage koksijde
  * @since koksijde 1.0.0
  */

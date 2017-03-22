@@ -23,7 +23,7 @@
 				<nav class="navbar navbar-default" role="navigation">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".koksijde-mobile-menu">
-							<span class="sr-only">Toggle navigation</span>
+							<span class="sr-only"><?php _e('Toggle navigation', 'koksijde'); ?></span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
@@ -37,8 +37,8 @@
 							'theme_location' => 'primary',
 							'container' => false,
 							'menu_class' => 'nav navbar-nav pull-right',
-							'fallback_cb' => 'wp_bootstrap_navwalker::fallback',
-							'walker' => new wp_bootstrap_navwalker()
+							'fallback_cb' => 'koksijde_wp_bootstrap_navwalker::fallback',
+							'walker' => new koksijde_wp_bootstrap_navwalker()
 						));
 						?>
 					</div> <!-- .primary-menu -->

@@ -4,7 +4,7 @@
 		<div class="caption-text"><?php apply_filters('the_content', koksijde_slider_get_caption($post)); ?></div>
 
 	<?php if (get_theme_mod('home_slider_more_button', 0)) : ?>
-		<p><a class="btn btn-primary btn-lg" role="button"><?php echo get_theme_mod('home_slider_read_more_text', ''); ?></a></p>
+		<p><a class="btn btn-primary btn-lg" role="button"><?php echo esc_html(get_theme_mod('home_slider_read_more_text', '')); ?></a></p>
 	<?php endif; ?>
 	</div>
 	

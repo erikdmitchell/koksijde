@@ -2,7 +2,6 @@
 /**
  * The template part for displaying results in search pages
  *
- * @package WordPress
  * @subpackage koksijde
  * @since koksijde 1.0.0
  */

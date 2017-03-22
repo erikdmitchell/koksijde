@@ -14,7 +14,7 @@ $slide_icon_counter=0;
 function koksijde_add_slider_image_sizes() {
 	add_image_size('koksijde-theme-slider', 1400, 500, true);
 }
-add_action('init', 'koksijde_add_slider_image_sizes');
+add_action('after_setup_theme', 'koksijde_add_slider_image_sizes');
 
 /**
  * koksijde_get_home_slider_slides function.
@@ -27,6 +27,11 @@ function koksijde_get_home_slider_slides() {
 	$args=array(
 		'posts_per_page' => get_theme_mod('home_slider_limit', -1),
 		'post_type' => get_theme_mod('home_slider_post_type', 'post'),
+		'meta_query' => array( 
+        	array(
+            	'key' => '_thumbnail_id'
+			) 
+		),
 	);
 
 	// get posts (slides) //
@@ -49,7 +54,7 @@ function koksijde_home_slider_slide_classes() {
 	if ($slide_counter==0)
 		$classes[]='active';
 	
-	$classes=apply_filters('', $classes);
+	$classes=apply_filters('koksijde_home_slider_slide_classes', $classes);
 	
 	$slide_counter++;
 	
@@ -70,13 +75,19 @@ function koksijde_home_slider_slide_icon_classes() {
 	if ($slide_icon_counter==0)
 		$classes[]='active';
 	
-	$classes=apply_filters('', $classes);
+	$classes=apply_filters('koksijde_home_slider_slide_icon_classes', $classes);
 	
 	$slide_icon_counter++;
 	
 	echo implode(' ', $classes);
 }
 
+/**
+ * koksijde_home_slider_slide_icon_counter function.
+ * 
+ * @access public
+ * @return void
+ */
 function koksijde_home_slider_slide_icon_counter() {
 	global $slide_icon_counter;
 	
@@ -133,13 +144,14 @@ function koksijde_slider_thumbnail($post_id) {
 	$image=null;
 	$attr=null;
 	$class=array();
-	$image_size=apply_filters('koksijde-slider-image-size', 'koksijde-theme-slider');
+	$image_size=apply_filters('koksijde_slider_image_size', 'koksijde-theme-slider');
 	$post_thumbnail_id=get_post_thumbnail_id($post_id);
 	$post_thumbnail_image_src=wp_get_attachment_image_src($post_thumbnail_id, $image_size, false);
 	$attachment=get_post($post_thumbnail_id);
 
 	// get size class //
 	$size_class=$image_size;
+	
 	if (is_array($size_class)) :
 		$size_class=join('x', $size_class);
 	endif;
@@ -150,7 +162,7 @@ function koksijde_slider_thumbnail($post_id) {
 	// setup out attributes //
 	$default_attr = array(
 		'src'   => $post_thumbnail_image_src,
-		'class' => implode(' ',apply_filters('koksijde-slider-classes', $classes)),
+		'class' => implode(' ',apply_filters('koksijde_slider_classes', $classes)),
 		'alt'   => trim(strip_tags( get_post_meta($post_thumbnail_id, '_wp_attachment_image_alt', true) )), // Use Alt field first
 	);
 
@@ -161,10 +173,14 @@ function koksijde_slider_thumbnail($post_id) {
 		$default_attr['alt'] = trim(strip_tags( $attachment->post_title )); // Finally, use the title
 
 	$attr = wp_parse_args($attr, $default_attr);
-	$width=apply_filters('koksijde-slider-image-width', $attr['src'][1]);
-	$height=apply_filters('koksijde-slider-image-height', $attr['src'][2]);
-
-	$image='<img width="'.$width.'" height="'.$height.'" src="'.$attr['src'][0].'" class="'.$attr['class'].'" alt="'.$attr['alt'].'">';
+	$width=apply_filters('koksijde_slider_image_width', $attr['src'][1]);
+	$height=apply_filters('koksijde_slider_image_height', $attr['src'][2]);
+	
+	if (isset($attr['src'][0]))	:
+		$image='<img width="'.$width.'" height="'.$height.'" src="'.$attr['src'][0].'" class="'.$attr['class'].'" alt="'.$attr['alt'].'">';
+	else :
+		$image='';
+	endif;
 
 	echo apply_filters('koksijde_slider_thumbnail', $image, $attr, $width, $height);
 }

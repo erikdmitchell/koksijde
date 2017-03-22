@@ -4,7 +4,7 @@ Theme URI:
 Description: A robust theme built using the bootstrap framework with a touch of awesomeness.
 Author: Erik Mitchell
 Author URI: http://erikmitchell.net
-Version: 1.0.2
+Version: 1.0.3
 Tags: featured-images, custom-menu, theme-options, translation-ready
 Text Domain: koksijde
 License: GNU General Public License v2 or later
@@ -427,19 +427,32 @@ img {
 .entry-header .entry-meta span.glyphicon {
 	margin-right: 3px;
 }
+
 /**
- * post navigation
+ * post(s) navigation
  */
+.posts-navigation,
 .post-navigation {
 	overflow: hidden;
 	padding: 15px 0;
 }
-.post-navigation .nav-links div {
+.posts-navigation .nav-links > div, 
+.post-navigation .nav-links > div {
 	float: left;
 	width: 50%;
 }
-.post-navigation .nav-links .next-post {
+.posts-navigation .nav-next,
+.post-navigation .nav-next {
 	text-align: right;
+}
+.post-navigation .nav-links .nav-subtitle {
+	color: #000;
+}
+.post-navigation .nav-links a:hover {
+	text-decoration: none;
+}
+.post-navigation .nav-links .nav-title {
+	
 }
 
 /**
@@ -533,7 +546,9 @@ footer .copyright {
  */
 .koksijde-slider .carousel-indicators {
   bottom: 5px; }
-
+.koksijde-slider .carousel-control {
+	background-image: none;
+}
 .koksijde-slider .carousel-inner > .item {
   height: 100%; }
 
@@ -543,14 +558,9 @@ footer .copyright {
 .carousel-inner > .item > a > img,
 .carousel-inner > .item > img {
   margin: 0 auto; }
+  
 .koksijde-slider {
 	max-height: 500px;
 	overflow: hidden;
 	margin-bottom: 30px;
-}
-
-/* shortcodes */
-.koksijde-recent-posts .recent-post img {
-	max-height: 200px;
-	overflow: hidden;
 }

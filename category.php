@@ -5,7 +5,6 @@
  * Used to display archive-type pages if nothing more specific matches a query.
  * For example, puts together date-based pages if no date.php file exists.
  *
- * @package WordPress
  * @subpackage koksijde
  * @since koksijde 1.0.0
  */
@@ -24,7 +23,12 @@
 					<?php get_template_part('content'); ?>
 				<?php endwhile; ?>
 
-				<?php koksijde_theme_paging_nav(); // Previous/next post navigation. ?>
+				<?php
+				the_posts_navigation( array(
+					'prev_text' => __( '&laquo; Older Posts', 'koksijde' ),
+					'next_text' => __( 'Newer Posts &raquo;', 'koksijde' ),
+				) );		
+				?>
 
 			<?php else : ?>
 				<?php get_template_part( 'content', 'none' ); ?>

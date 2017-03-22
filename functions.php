@@ -6,7 +6,6 @@
  * theme as custom template tags. Others are attached to action and filter
  * hooks in WordPress to change core functionality.
  *
- * @package WordPress
  * @subpackage koksijde
  * @since koksijde 1.0.0
  */
@@ -36,7 +35,7 @@ if (!isset($koksijde_theme_options_hooks))
  */
 function koksijde_theme_setup() {
 	// Set the content width based on the theme's design and stylesheet //
-	$GLOBALS['content_width']=apply_filters('koksijde-content-width', 1200);
+	$GLOBALS['content_width']=apply_filters('koksijde_content_width', 1200);
 
 	/**
 	 * add our theme support options
@@ -67,7 +66,7 @@ function koksijde_theme_setup() {
 	/**
 	 * include bootstrap nav walker
 	 */
-	include_once(get_template_directory().'/inc/wp_bootstrap_navwalker.php');
+	include_once(get_template_directory().'/inc/wp-bootstrap-navwalker.php');
 
 	/**
 	 * include bootstrap mobile nav walker
@@ -84,17 +83,11 @@ function koksijde_theme_setup() {
 	 */
 	include_once(get_template_directory().'/inc/slider.php');
 
-	/**
-	 * include theme meta page
-	 * allows users to hook and filter into the default meta tags in the header
-	 */
-	include_once(get_template_directory().'/inc/theme-meta.php');
-
 	// register our navigation area
 	register_nav_menus( array(
-		'primary' => __('Primary Menu','koksijde'),
-		'mobile' => __('Mobile Menu','koksijde'),
-		'secondary' => __('Secondary Menu','koksijde'),
+		'primary' => __('Primary Menu', 'koksijde'),
+		'mobile' => __('Mobile Menu', 'koksijde'),
+		'secondary' => __('Secondary Menu', 'koksijde'),
 	) );
 
 	/**
@@ -161,13 +154,12 @@ function koksijde_theme_scripts() {
 
 	// enqueue our scripts for bootstrap, slider and theme
 	wp_enqueue_script('jquery');
-	wp_enqueue_script('bootstrap-script', get_template_directory_uri().'/inc/js/bootstrap.js', array('jquery'), '3.3.7', true);
-	wp_enqueue_script('jquery-actual-script', get_template_directory_uri().'/inc/js/jquery.actual.js', array('jquery'), '1.0.16', true);
+	wp_enqueue_script('bootstrap', get_template_directory_uri().'/inc/js/bootstrap.js', array('jquery'), '3.3.7', true);
+	wp_enqueue_script('jquery-actual', get_template_directory_uri().'/inc/js/jquery.actual.js', array('jquery'), '1.0.16', true);
 	wp_enqueue_script('koksijde-theme-script', get_template_directory_uri().'/inc/js/koksijde-theme.js', array('jquery'), '1.0.2', true);
 
-	if ( is_singular() ) :
+	if ( is_singular() )
 		wp_enqueue_script( 'comment-reply' );
-	endif;
 
 	/**
 	 * Load our IE specific scripts for a range of older versions:
@@ -175,15 +167,15 @@ function koksijde_theme_scripts() {
 	 * <!--[if lte IE 8]> ... <![endif]-->
 	*/
 	// HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries //
-	wp_register_script('html5shiv-script', get_template_directory_uri().'/inc/js/html5shiv.js', array(), '3.7.3-pre');
-	wp_register_script('respond-script', get_template_directory_uri().'/inc/js/respond.js', array(), '1.4.2');
-
-	$wp_scripts->add_data('html5shiv-script', 'conditional', 'lt IE 9');
-	$wp_scripts->add_data('respond-script', 'conditional', 'lt IE 9');
+	wp_enqueue_script('html5shiv', get_template_directory_uri().'/inc/js/html5shiv.js', array(), '3.7.3-pre');
+	wp_script_add_data('html5shiv', 'conditional', 'lt IE 9');
+	
+	wp_enqueue_script('respond', get_template_directory_uri().'/inc/js/respond.js', array(), '1.4.2');
+	wp_script_add_data('respond', 'conditional', 'lt IE 9');
 
 	// enqueue font awesome and our main stylesheet
-	wp_enqueue_style('font-awesome-style', get_template_directory_uri().'/inc/css/font-awesome.css', array(), '4.6.3');
-	wp_enqueue_style('bootstrap-style', get_template_directory_uri().'/inc/css/bootstrap.css', array(), '4.6.3');
+	wp_enqueue_style('font-awesome', get_template_directory_uri().'/inc/css/font-awesome.css', array(), '4.6.3');
+	wp_enqueue_style('bootstrap', get_template_directory_uri().'/inc/css/bootstrap.css', array(), '3.3.7');
 	wp_enqueue_style('koksijde-theme-style', get_stylesheet_uri());
 }
 add_action('wp_enqueue_scripts','koksijde_theme_scripts');
@@ -212,11 +204,11 @@ function koksijde_theme_post_thumbnail($size='full') {
 
 	if (is_singular()) :
 		$html.='<div class="post-thumbnail">';
-			$html.=get_the_post_thumbnail($post->ID,$size,$attr);
+			$html.=get_the_post_thumbnail($post->ID, $size, $attr);
 		$html.='</div>';
 	else :
-		$html.='<a class="post-thumbnail" href="'.get_permalink($post->ID).'">';
-			$html.=get_the_post_thumbnail($post->ID,$size,$attr);
+		$html.='<a class="post-thumbnail" href="'.esc_url(get_permalink($post->ID)).'">';
+			$html.=get_the_post_thumbnail($post->ID, $size, $attr);
 		$html.='</a>';
 	endif;
 
@@ -239,99 +231,12 @@ function koksijde_theme_posted_on() {
 	if ( is_sticky() && is_home() && ! is_paged() ) :
 		$html='<span class="featured-post"><span class="glyphicon glyphicon-pushpin"></span>' . __( 'Sticky', 'koksijde' ) . '</span>';
 	elseif (!is_sticky()) : 	// Set up and print post meta information. -- hide date if sticky
-		$html='<span class="entry-date"><span class="glyphicon glyphicon-time"></span><a href="'.get_permalink().'" rel="bookmark"><time class="entry-date" datetime="'.get_the_date('c').'">'.get_the_date().'</time></a></span>';
+		$html='<span class="entry-date"><span class="glyphicon glyphicon-time"></span><a href="'.esc_url(get_permalink()).'" rel="bookmark"><time class="entry-date" datetime="'.get_the_date('c').'">'.get_the_date().'</time></a></span>';
 	else :
 		$html='<span class="byline"><span class="glyphicon glyphicon-user"></span><span class="author vcard"><a class="url fn n" href="'.get_author_posts_url( get_the_author_meta( 'ID' ) ).'" rel="author">'.get_the_author().'</a></span></span>';
 	endif;
 
 	echo apply_filters('koksijde_posted_on', $html);
-}
-
-/**
- * Display navigation to next/previous set of posts when applicable.
- *
- * @since koksijde 1.0
- * @based on twentyfourteen
- *
- * @return void
- */
-function koksijde_theme_paging_nav() {
-	// Don't print empty markup if there's only one page.
-	if ( $GLOBALS['wp_query']->max_num_pages < 2 ) {
-		return;
-	}
-
-	$html=null;
-	$paged        = get_query_var( 'paged' ) ? intval( get_query_var( 'paged' ) ) : 1;
-	$pagenum_link = html_entity_decode( get_pagenum_link() );
-	$query_args   = array();
-	$url_parts    = explode( '?', $pagenum_link );
-
-	if ( isset( $url_parts[1] ) ) {
-		wp_parse_str( $url_parts[1], $query_args );
-	}
-
-	$pagenum_link = remove_query_arg( array_keys( $query_args ), esc_url($pagenum_link) );
-	$pagenum_link = trailingslashit( $pagenum_link ) . '%_%';
-
-	$format  = $GLOBALS['wp_rewrite']->using_index_permalinks() && ! strpos( $pagenum_link, 'index.php' ) ? 'index.php/' : '';
-	$format .= $GLOBALS['wp_rewrite']->using_permalinks() ? user_trailingslashit( 'page/%#%', 'paged' ) : '?paged=%#%';
-
-	// Set up paginated links.
-	$links = paginate_links( array(
-		'base'     => $pagenum_link,
-		'format'   => $format,
-		'total'    => $GLOBALS['wp_query']->max_num_pages,
-		'current'  => $paged,
-		'mid_size' => 1,
-		'add_args' => array_map( 'urlencode', $query_args ),
-		'prev_text' => __( '&laquo; Previous', 'koksijde' ),
-		'next_text' => __( 'Next &raquo;', 'koksijde' ),
-	) );
-
-	if ( $links ) :
-		$html.='<nav class="navigation paging-navigation" role="navigation">';
-			$html.='<div class="pagination loop-pagination">';
-				$html.=$links;
-			$html.='</div><!-- .pagination -->';
-		$html.='</nav><!-- .navigation -->';
-	endif;
-
-	echo apply_filters('koksijde_paging_nav', $html, $links);
-}
-
-/**
- * Display navigation to next/previous post when applicable.
- *
- * @since koksijde 1.0.1
- * @based on twentyfourteen
- *
- * @return void
- */
-function koksijde_theme_post_nav() {
-	$html=null;
-
-	// Don't print empty markup if there's nowhere to navigate.
-	$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
-	$next     = get_adjacent_post( false, '', false );
-
-	if ( ! $next && ! $previous )
-		return;
-
-	$html.='<nav class="navigation post-navigation" role="navigation">';
-		$html.='<div class="nav-links">';
-
-			if ( is_attachment() ) :
-				$html.=previous_post_link( __('<div class="published-in"><span class="meta-nav">Published In:</span> %link</div>', 'koksijde'), '%title' );
-			else :
-				$html.=previous_post_link( __('<div class="prev-post"><span class="meta-nav">Previous Post:</span> %link</div>', 'koksijde'), '%title' );
-				$html.=next_post_link( __('<div class="next-post"><span class="meta-nav">Next Post:</span> %link</div>', 'koksijde'), '%title' );
-			endif;
-
-		$html.='</div><!-- .nav-links -->';
-	$html.='</nav><!-- .navigation -->';
-
-	echo apply_filters('koksijde_post_nav', $html, $next, $previous);
 }
 
 /**
@@ -370,7 +275,7 @@ function koksijde_header_markup() {
 	
 	if (get_header_image()) :
 		$html.='<div class="koksijde-header-image">';
-			$html.='<img src="'.get_header_image().'" height="'.get_custom_header()->height.'" width="'.get_custom_header()->width.'" alt="" />';
+			$html.='<img src="'.esc_url(get_header_image()).'" height="'.absint(get_custom_header()->height).'" width="'.absint(get_custom_header()->width).'" alt="" />';
 		$html.='</div>';
 	endif;
 	
