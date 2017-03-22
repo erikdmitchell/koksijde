@@ -2,7 +2,6 @@
 /**
  * The default template
  *
- * @package WordPress
  * @subpackage koksijde
  * @since koksijde 1.0.0
  */

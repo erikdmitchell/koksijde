@@ -6,7 +6,6 @@
  * theme as custom template tags. Others are attached to action and filter
  * hooks in WordPress to change core functionality.
  *
- * @package WordPress
  * @subpackage koksijde
  * @since koksijde 1.0.0
  */

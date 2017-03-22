@@ -2,7 +2,6 @@
 /**
  * The template for displaying attachments
  *
- * @package WordPress
  * @subpackage koksijde
  * @since koksijde 1.0.0
  */

@@ -4,7 +4,6 @@
  *
  * Used to display archive-type pages for posts in a tag.
  *
- * @package WordPress
  * @subpackage koksijde
  * @since koksijde 1.0.0
  */
