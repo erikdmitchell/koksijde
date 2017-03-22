@@ -533,7 +533,9 @@ footer .copyright {
  */
 .koksijde-slider .carousel-indicators {
   bottom: 5px; }
-
+.koksijde-slider .carousel-control {
+	background-image: none;
+}
 .koksijde-slider .carousel-inner > .item {
   height: 100%; }
 
@@ -543,14 +545,9 @@ footer .copyright {
 .carousel-inner > .item > a > img,
 .carousel-inner > .item > img {
   margin: 0 auto; }
+  
 .koksijde-slider {
 	max-height: 500px;
 	overflow: hidden;
 	margin-bottom: 30px;
-}
-
-/* shortcodes */
-.koksijde-recent-posts .recent-post img {
-	max-height: 200px;
-	overflow: hidden;
 }
