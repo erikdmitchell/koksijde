@@ -27,11 +27,16 @@ function koksijde_get_home_slider_slides() {
 	$args=array(
 		'posts_per_page' => get_theme_mod('home_slider_limit', -1),
 		'post_type' => get_theme_mod('home_slider_post_type', 'post'),
+		'meta_query' => array( 
+        	array(
+            	'key' => '_thumbnail_id'
+			) 
+		),
 	);
 
 	// get posts (slides) //
 	$slides=get_posts($args);
-	
+echo count($slides);	
 	return $slides;	
 }
 
@@ -77,6 +82,12 @@ function koksijde_home_slider_slide_icon_classes() {
 	echo implode(' ', $classes);
 }
 
+/**
+ * koksijde_home_slider_slide_icon_counter function.
+ * 
+ * @access public
+ * @return void
+ */
 function koksijde_home_slider_slide_icon_counter() {
 	global $slide_icon_counter;
 	
@@ -140,6 +151,7 @@ function koksijde_slider_thumbnail($post_id) {
 
 	// get size class //
 	$size_class=$image_size;
+	
 	if (is_array($size_class)) :
 		$size_class=join('x', $size_class);
 	endif;
@@ -163,8 +175,12 @@ function koksijde_slider_thumbnail($post_id) {
 	$attr = wp_parse_args($attr, $default_attr);
 	$width=apply_filters('koksijde-slider-image-width', $attr['src'][1]);
 	$height=apply_filters('koksijde-slider-image-height', $attr['src'][2]);
-
-	$image='<img width="'.$width.'" height="'.$height.'" src="'.$attr['src'][0].'" class="'.$attr['class'].'" alt="'.$attr['alt'].'">';
+	
+	if (isset($attr['src'][0]))	:
+		$image='<img width="'.$width.'" height="'.$height.'" src="'.$attr['src'][0].'" class="'.$attr['class'].'" alt="'.$attr['alt'].'">';
+	else :
+		$image='';
+	endif;
 
 	echo apply_filters('koksijde_slider_thumbnail', $image, $attr, $width, $height);
 }
