@@ -427,6 +427,7 @@ img {
 .entry-header .entry-meta span.glyphicon {
 	margin-right: 3px;
 }
+
 /**
  * post navigation
  */
@@ -440,6 +441,15 @@ img {
 }
 .post-navigation .nav-links .next-post {
 	text-align: right;
+}
+.post-navigation .nav-links .nav-subtitle {
+	color: #000;
+}
+.post-navigation .nav-links a:hover {
+	text-decoration: none;
+}
+.post-navigation .nav-links .nav-title {
+	
 }
 
 /**

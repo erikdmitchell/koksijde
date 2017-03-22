@@ -293,40 +293,6 @@ function koksijde_theme_paging_nav() {
 }
 
 /**
- * Display navigation to next/previous post when applicable.
- *
- * @since koksijde 1.0.1
- * @based on twentyfourteen
- *
- * @return void
- */
-function koksijde_theme_post_nav() {
-	$html=null;
-
-	// Don't print empty markup if there's nowhere to navigate.
-	$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
-	$next     = get_adjacent_post( false, '', false );
-
-	if ( ! $next && ! $previous )
-		return;
-
-	$html.='<nav class="navigation post-navigation" role="navigation">';
-		$html.='<div class="nav-links">';
-
-			if ( is_attachment() ) :
-				$html.=previous_post_link( __('<div class="published-in"><span class="meta-nav">Published In:</span> %link</div>', 'koksijde'), '%title' );
-			else :
-				$html.=previous_post_link( __('<div class="prev-post"><span class="meta-nav">Previous Post:</span> %link</div>', 'koksijde'), '%title' );
-				$html.=next_post_link( __('<div class="next-post"><span class="meta-nav">Next Post:</span> %link</div>', 'koksijde'), '%title' );
-			endif;
-
-		$html.='</div><!-- .nav-links -->';
-	$html.='</nav><!-- .navigation -->';
-
-	echo apply_filters('koksijde_post_nav', $html, $next, $previous);
-}
-
-/**
  * koksijde_display_meta_description function.
  *
  * a custom function to display a meta description for our site pages
