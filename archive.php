@@ -16,17 +16,7 @@
 		<div class="col-md-8">
 			<?php if ( have_posts() ) : ?>
 				<header class="archive-header">
-					<h1 class="archive-title"><?php
-						if ( is_day() ) :
-							printf( __( 'Daily Archives: %s', 'koksijde' ), get_the_date() );
-						elseif ( is_month() ) :
-							printf( __( 'Monthly Archives: %s', 'koksijde' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'koksijde' ) ) );
-						elseif ( is_year() ) :
-							printf( __( 'Yearly Archives: %s', 'koksijde' ), get_the_date( _x( 'Y', 'yearly archives date format', 'koksijde' ) ) );
-						else :
-							_e( 'Archives', 'koksijde' );
-						endif;
-					?></h1>
+					<h1 class="archive-title"><?php the_archive_title(); ?></h1>
 				</header><!-- .archive-header -->
 
 				<?php while ( have_posts() ) : the_post(); ?>
