@@ -144,7 +144,7 @@ function koksijde_slider_thumbnail($post_id) {
 	$image=null;
 	$attr=null;
 	$class=array();
-	$image_size=apply_filters('koksijde-slider-image-size', 'koksijde-theme-slider');
+	$image_size=apply_filters('koksijde_slider_image_size', 'koksijde-theme-slider');
 	$post_thumbnail_id=get_post_thumbnail_id($post_id);
 	$post_thumbnail_image_src=wp_get_attachment_image_src($post_thumbnail_id, $image_size, false);
 	$attachment=get_post($post_thumbnail_id);
@@ -162,7 +162,7 @@ function koksijde_slider_thumbnail($post_id) {
 	// setup out attributes //
 	$default_attr = array(
 		'src'   => $post_thumbnail_image_src,
-		'class' => implode(' ',apply_filters('koksijde-slider-classes', $classes)),
+		'class' => implode(' ',apply_filters('koksijde_slider_classes', $classes)),
 		'alt'   => trim(strip_tags( get_post_meta($post_thumbnail_id, '_wp_attachment_image_alt', true) )), // Use Alt field first
 	);
 
@@ -173,8 +173,8 @@ function koksijde_slider_thumbnail($post_id) {
 		$default_attr['alt'] = trim(strip_tags( $attachment->post_title )); // Finally, use the title
 
 	$attr = wp_parse_args($attr, $default_attr);
-	$width=apply_filters('koksijde-slider-image-width', $attr['src'][1]);
-	$height=apply_filters('koksijde-slider-image-height', $attr['src'][2]);
+	$width=apply_filters('koksijde_slider_image_width', $attr['src'][1]);
+	$height=apply_filters('koksijde_slider_image_height', $attr['src'][2]);
 	
 	if (isset($attr['src'][0]))	:
 		$image='<img width="'.$width.'" height="'.$height.'" src="'.$attr['src'][0].'" class="'.$attr['class'].'" alt="'.$attr['alt'].'">';
