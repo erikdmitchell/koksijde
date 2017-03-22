@@ -161,13 +161,19 @@ function koksijde_customize_register($wp_customize) {
 	        )
 	    )
 	);	
+
+	$wp_customize->add_setting('home_slider_read_more_text', array(
+		'type' => 'theme_mod',
+		'default' => 'Read more...',
+		'sanitize_callback' => 'esc_html',
+	));
 	
 	$wp_customize->add_control('home_slider_read_more_text', array(
 		'type' => 'text',
 		'priority' => 10, // Within the section.
 		'section' => 'home_slider', // Required, core or custom.
-		'label' => __('Read More Text', 'koksijde'),
-		'active_callback' => 'is_front_page',
+		'label' => __('More Text', 'koksijde'),
+		//'active_callback' => 'is_front_page',
 	));	
 	
 	$wp_customize->add_setting('home_slider_controls', array(
