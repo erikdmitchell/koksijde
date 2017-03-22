@@ -24,10 +24,6 @@ We recommend you create a child theme of this theme for further customizations a
 
 Koksijde bundles the following third-party resources:
 
-
- 
-
-
 HTML5 Shiv v3.7.3, Copyright 2014 Alexander Farkas
 **Licenses**: MIT/GPL2
 Source: https://github.com/aFarkas/html5shiv
@@ -72,7 +68,3 @@ Source: http://www.burningwell.org/gallery2/v/Landscapes/ocean/michelle_049.jpg.
 = 1.0.0 =
 
  * Initial setup and theme build out.
-
-== Upgrade Notice ==
-
-None yet.
