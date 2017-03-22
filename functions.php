@@ -204,11 +204,11 @@ function koksijde_theme_post_thumbnail($size='full') {
 
 	if (is_singular()) :
 		$html.='<div class="post-thumbnail">';
-			$html.=get_the_post_thumbnail($post->ID,$size,$attr);
+			$html.=get_the_post_thumbnail($post->ID, $size, $attr);
 		$html.='</div>';
 	else :
-		$html.='<a class="post-thumbnail" href="'.get_permalink($post->ID).'">';
-			$html.=get_the_post_thumbnail($post->ID,$size,$attr);
+		$html.='<a class="post-thumbnail" href="'.esc_url(get_permalink($post->ID)).'">';
+			$html.=get_the_post_thumbnail($post->ID, $size, $attr);
 		$html.='</a>';
 	endif;
 
@@ -231,7 +231,7 @@ function koksijde_theme_posted_on() {
 	if ( is_sticky() && is_home() && ! is_paged() ) :
 		$html='<span class="featured-post"><span class="glyphicon glyphicon-pushpin"></span>' . __( 'Sticky', 'koksijde' ) . '</span>';
 	elseif (!is_sticky()) : 	// Set up and print post meta information. -- hide date if sticky
-		$html='<span class="entry-date"><span class="glyphicon glyphicon-time"></span><a href="'.get_permalink().'" rel="bookmark"><time class="entry-date" datetime="'.get_the_date('c').'">'.get_the_date().'</time></a></span>';
+		$html='<span class="entry-date"><span class="glyphicon glyphicon-time"></span><a href="'.esc_url(get_permalink()).'" rel="bookmark"><time class="entry-date" datetime="'.get_the_date('c').'">'.get_the_date().'</time></a></span>';
 	else :
 		$html='<span class="byline"><span class="glyphicon glyphicon-user"></span><span class="author vcard"><a class="url fn n" href="'.get_author_posts_url( get_the_author_meta( 'ID' ) ).'" rel="author">'.get_the_author().'</a></span></span>';
 	endif;
