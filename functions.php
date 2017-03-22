@@ -362,7 +362,7 @@ function koksijde_header_markup() {
 	
 	if (get_header_image()) :
 		$html.='<div class="koksijde-header-image">';
-			$html.='<img src="'.get_header_image().'" height="'.get_custom_header()->height.'" width="'.get_custom_header()->width.'" alt="" />';
+			$html.='<img src="'.esc_url(get_header_image()).'" height="'.absint(get_custom_header()->height).'" width="'.absint(get_custom_header()->width).'" alt="" />';
 		$html.='</div>';
 	endif;
 	
