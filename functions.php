@@ -35,7 +35,7 @@ if (!isset($koksijde_theme_options_hooks))
  */
 function koksijde_theme_setup() {
 	// Set the content width based on the theme's design and stylesheet //
-	$GLOBALS['content_width']=apply_filters('koksijde-content-width', 1200);
+	$GLOBALS['content_width']=apply_filters('koksijde_content_width', 1200);
 
 	/**
 	 * add our theme support options
