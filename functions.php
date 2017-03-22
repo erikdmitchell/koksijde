@@ -83,17 +83,11 @@ function koksijde_theme_setup() {
 	 */
 	include_once(get_template_directory().'/inc/slider.php');
 
-	/**
-	 * include theme meta page
-	 * allows users to hook and filter into the default meta tags in the header
-	 */
-	include_once(get_template_directory().'/inc/theme-meta.php');
-
 	// register our navigation area
 	register_nav_menus( array(
-		'primary' => __('Primary Menu','koksijde'),
-		'mobile' => __('Mobile Menu','koksijde'),
-		'secondary' => __('Secondary Menu','koksijde'),
+		'primary' => __('Primary Menu', 'koksijde'),
+		'mobile' => __('Mobile Menu', 'koksijde'),
+		'secondary' => __('Secondary Menu', 'koksijde'),
 	) );
 
 	/**
