@@ -36,7 +36,7 @@ function koksijde_get_home_slider_slides() {
 
 	// get posts (slides) //
 	$slides=get_posts($args);
-echo count($slides);	
+	
 	return $slides;	
 }
 
