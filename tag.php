@@ -26,7 +26,12 @@
 					<?php get_template_part( 'content', get_post_format() ); ?>
 				<?php endwhile; ?>
 
-				<?php koksijde_theme_paging_nav(); // Previous/next post navigation. ?>
+				<?php
+				the_posts_navigation( array(
+					'prev_text' => __( '&laquo; Older Posts', 'koksijde' ),
+					'next_text' => __( 'Newer Posts &raquo;', 'koksijde' ),
+				) );		
+				?>
 
 			<?php else : ?>
 				<?php get_template_part( 'content', 'none' ); ?>

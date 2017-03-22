@@ -21,7 +21,14 @@
 				}
 				?>
 			<?php endwhile; ?>
-			<?php koksijde_theme_paging_nav(); // Previous/next post navigation. ?>
+			
+			<?php
+				the_posts_navigation( array(
+					'prev_text' => __( '&laquo; Older Posts', 'koksijde' ),
+					'next_text' => __( 'Newer Posts &raquo;', 'koksijde' ),
+				) );		
+			?>
+			
 		</div>
 		<div class="col-md-4">
 			<?php get_sidebar(); ?>
