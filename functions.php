@@ -167,11 +167,11 @@ function koksijde_theme_scripts() {
 	 * <!--[if lte IE 8]> ... <![endif]-->
 	*/
 	// HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries //
-	wp_register_script('html5shiv', get_template_directory_uri().'/inc/js/html5shiv.js', array(), '3.7.3-pre');
-	wp_register_script('respond', get_template_directory_uri().'/inc/js/respond.js', array(), '1.4.2');
-
-	$wp_scripts->add_data('html5shiv', 'conditional', 'lt IE 9');
-	$wp_scripts->add_data('respond', 'conditional', 'lt IE 9');
+	wp_enqueue_script('html5shiv', get_template_directory_uri().'/inc/js/html5shiv.js', array(), '3.7.3-pre');
+	wp_script_add_data('html5shiv', 'conditional', 'lt IE 9');
+	
+	wp_enqueue_script('respond', get_template_directory_uri().'/inc/js/respond.js', array(), '1.4.2');
+	wp_script_add_data('respond', 'conditional', 'lt IE 9');
 
 	// enqueue font awesome and our main stylesheet
 	wp_enqueue_style('font-awesome', get_template_directory_uri().'/inc/css/font-awesome.css', array(), '4.6.3');
