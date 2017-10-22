@@ -54,17 +54,6 @@ Source: http://www.burningwell.org/gallery2/v/Landscapes/ocean/michelle_049.jpg.
 
 == Changelog ==
 
-= 1.0.3 =
-
-= 1.0.2 =
-
-* Added gallery shortcode.
-* Removed theme options and cleaned up code.
-
-= 1.0.1 =
-
-* Fixed mobile nav issue.
-
 = 1.0.0 =
 
  * Initial setup and theme build out.
