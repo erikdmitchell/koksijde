@@ -10,19 +10,28 @@
 
 	<?php get_template_part('template-parts/home', 'slider'); ?>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<?php while (have_posts()) : the_post(); ?>
-					<?php
-					if (has_post_thumbnail()) :
-						the_post_thumbnail('thumbnail');
-					endif;
-					?>
-					<?php the_content(); ?>
-				<?php endwhile; ?>
+	<?php while (have_posts()) : the_post(); ?>
+	
+		<?php if (!koksijde_home_slider_is_active() && has_post_thumbnail()) : ?>
+		
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<?php koksijde_home_image(); ?>
+					</div>
+				</div>
 			</div>
-		</div><!-- .row -->
-	</div><!-- .container -->
+			
+		<?php endif; ?>
 
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<?php the_content(); ?>
+				</div>
+			</div>
+		</div>
+
+	<?php endwhile; ?>
+	
 <?php get_footer(); ?>
