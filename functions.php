@@ -62,7 +62,7 @@ function koksijde_theme_setup() {
 	 * add our image size(s)
 	 */
 	add_image_size('koksijde-navbar-logo', 163, 100, true);
-	add_image_size('koksijde-home-image', 9999, 350, true);
+	add_image_size('koksijde-home-image', 9999, 400, true);
 
 	/**
 	 * include bootstrap nav walker

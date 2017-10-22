@@ -410,6 +410,13 @@ img {
   left: auto; }
 
 /**
+ * front page
+ */
+.home-featured-image {
+	margin-bottom: 30px;
+}
+
+/**
  * wp comment list
  */
 .commentlist .bypostauthor {
