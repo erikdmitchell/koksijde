@@ -3,7 +3,7 @@ Contributors: Erik Mitchell
 Tags: featured-images, custom-menu, theme-options, translation-ready
 Requires at least: 3.5
 Tested up to: 4.7.3
-Stable tag: 1.0.3
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,16 +54,7 @@ Source: http://www.burningwell.org/gallery2/v/Landscapes/ocean/michelle_049.jpg.
 
 == Changelog ==
 
-= 1.0.3 =
-
-= 1.0.2 =
-
-* Added gallery shortcode.
-* Removed theme options and cleaned up code.
-
-= 1.0.1 =
-
-* Fixed mobile nav issue.
+= 1.1.0 =
 
 = 1.0.0 =
 
