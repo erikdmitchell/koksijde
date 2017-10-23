@@ -248,7 +248,7 @@ img {
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box;
   background-color: #fff;
-  border: 1px solid #cccccc;
+  border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
@@ -266,7 +266,7 @@ img {
 
 .dropdown-submenu > li > a {
   clear: both;
-  color: #333333;
+  color: #333;
   display: block;
   font-weight: normal;
   line-height: 1.428571429;
@@ -345,7 +345,7 @@ img {
 
 .right-caret {
   border-bottom: 4px solid transparent;
-  border-left: 4px solid #000000;
+  border-left: 4px solid #000;
   border-top: 4px solid transparent;
   height: 0;
   position: absolute;
@@ -364,7 +364,7 @@ img {
 
 .left-caret {
   border-bottom: 4px solid transparent;
-  border-right: 4px solid #000000;
+  border-right: 4px solid #000;
   border-top: 4px solid transparent;
   height: 0;
   left: 10px;
@@ -378,8 +378,8 @@ img {
 
 .navbar-default .navbar-nav .dropdown > a:hover .left-caret,
 .navbar-default .navbar-nav .dropdown > a:focus .left-caret {
-  border-left-color: #333333;
-  border-right-color: #333333; }
+  border-left-color: #333;
+  border-right-color: #333; }
 
 .dropdown-submenu.flip-left {
   left: auto;
