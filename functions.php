@@ -505,8 +505,8 @@ function koksijde_array_recursive_diff($aArray1, $aArray2) {
 function koksijde_home_image() {
 	global $post;
 	
-	$thumb=get_the_post_thumbnail($post->ID, 'koksijde-home-image');
+	$thumb_url=get_the_post_thumbnail_url($post->ID, 'koksijde-home-image');
 	
-	echo $thumb;
+	echo '<div style="background-image: url('.$thumb_url.')"></div>';
 }
 ?>

@@ -15,11 +15,11 @@
 		<?php if (!koksijde_home_slider_is_active() && has_post_thumbnail()) : ?>
 		
 			<div class="container-full home-featured-image">
-				<div class="row">
-					<div class="col-xs-12">
+<!-- 				<div class="row"> -->
+<!-- 					<div class="col-xs-12"> -->
 						<?php koksijde_home_image(); ?>
-					</div>
-				</div>
+<!-- 					</div> -->
+<!-- 				</div> -->
 			</div>
 			
 		<?php endif; ?>

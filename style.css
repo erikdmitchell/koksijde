@@ -394,6 +394,12 @@ img {
 /* front page */
 .home-featured-image {
   margin-bottom: 30px; }
+  .home-featured-image > div {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
+    width: 100%; }
 
 .home .blog-post {
   margin-bottom: 15px; }
