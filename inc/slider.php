@@ -6,6 +6,19 @@ $slide_counter=0;
 $slide_icon_counter=0;
 
 /**
+ * koksijde_home_slider_is_active function.
+ * 
+ * @access public
+ * @return void
+ */
+function koksijde_home_slider_is_active() {
+	if (get_theme_mod('home_slider_active', 0))
+		return true;
+		
+	return false;
+}
+
+/**
  * koksijde_add_slider_image_sizes function.
  *
  * @access public

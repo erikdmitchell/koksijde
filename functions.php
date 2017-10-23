@@ -85,6 +85,11 @@ function koksijde_theme_setup() {
 	 */
 	include_once(get_template_directory().'/inc/slider.php');
 
+	/**
+	 * include our home blog posts
+	 */
+	include_once(get_template_directory().'/inc/blog-posts.php');
+
 	// register our navigation area
 	register_nav_menus( array(
 		'primary' => __('Primary Menu', 'koksijde'),
@@ -489,19 +494,6 @@ function koksijde_array_recursive_diff($aArray1, $aArray2) {
     }
   }
   return $aReturn;
-}
-
-/**
- * koksijde_home_slider_is_active function.
- * 
- * @access public
- * @return void
- */
-function koksijde_home_slider_is_active() {
-	if (get_theme_mod('home_slider_active', 0))
-		return true;
-		
-	return false;
 }
 
 /**

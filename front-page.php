@@ -32,24 +32,29 @@
 			</div>
 		</div>
 		
-		<!-- USE CUSTOMIZER ??? -->
-		<?php $blog_posts=new WP_Query('posts_per_page=6&ignore_sticky_posts=1'); ?>
+		<?php if (koksijde_home_blog_posts_is_active()) : ?>
+		
+		<?php //$blog_posts=koksijde_home_blog_posts(); ?>
 		
 		<div class="container">
 			<div class="row eq-height">
-				<?php while ($blog_posts->have_posts()) : $blog_posts->the_post(); ?>
+				<?php //while ($blog_posts->have_posts()) : $blog_posts->the_post(); ?>
+				<?php foreach (koksijde_home_blog_posts() as $post) : ?>
 					<div class="col-md-4 blog-post">
 						<?php the_title('<h2>', '</h2>'); ?>
 						<div class="blog-post-thumbnail">
 							<?php the_post_thumbnail('koksijde-home-blog-post-image'); ?>
 						</div>
 						<div class="blog-post-excerpt">
-							<?php echo koksijde_get_excerpt_by_id(get_the_ID(), 10, '', '...'); ?>
+							<?php echo koksijde_get_excerpt_by_id($post->ID, 10, '', '...'); ?>
 						</div>
 					</div>
-				<?php endwhile; ?>
+				<?php endforeach; ?>
+				<?php //endwhile; ?>
 			</div>
 		</div>
+		
+		<?php endif; ?>
 		
 		PERHAPS WE ADD AN OPTION TO NOT DISPLAY CONTENT (customizer)<br>
 
