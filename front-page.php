@@ -41,7 +41,7 @@
 					<div class="col-md-4 blog-post">
 						<?php the_title('<h2>', '</h2>'); ?>
 						<div class="blog-post-thumbnail">
-							<?php the_post_thumbnail(); ?>
+							<?php the_post_thumbnail('koksijde-home-blog-post-image'); ?>
 						</div>
 						<div class="blog-post-excerpt">
 							<?php echo koksijde_get_excerpt_by_id(get_the_ID(), 10, '', '...'); ?>

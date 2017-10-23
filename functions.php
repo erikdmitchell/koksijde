@@ -63,6 +63,7 @@ function koksijde_theme_setup() {
 	 */
 	add_image_size('koksijde-navbar-logo', 163, 100, true);
 	add_image_size('koksijde-home-image', 9999, 400, true);
+	add_image_size('koksijde-home-blog-post-image', 9999, 225, true);
 
 	/**
 	 * include bootstrap nav walker
