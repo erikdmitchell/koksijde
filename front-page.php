@@ -15,22 +15,22 @@
 		<?php if (!koksijde_home_slider_is_active() && has_post_thumbnail()) : ?>
 		
 			<div class="container-full home-featured-image">
-<!-- 				<div class="row"> -->
-<!-- 					<div class="col-xs-12"> -->
-						<?php koksijde_home_image(); ?>
-<!-- 					</div> -->
-<!-- 				</div> -->
+				<?php koksijde_home_image(); ?>
 			</div>
 			
 		<?php endif; ?>
 
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<?php the_content(); ?>
+		<?php if (koksijde_display_home_content()) : ?>
+		
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<?php the_content(); ?>
+					</div>
 				</div>
 			</div>
-		</div>
+		
+		<?php endif; ?>
 		
 		<?php if (koksijde_home_blog_posts_is_active()) : ?>
 		

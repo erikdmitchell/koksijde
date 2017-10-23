@@ -76,19 +76,16 @@ function koksijde_theme_setup() {
 	include_once(get_template_directory().'/inc/mobile_nav_walker.php');
 
 	/**
+	 * include our customizer settings
+	 */
+	include_once(get_template_directory().'/inc/customizer/customizer.php');
+
+	/**
 	 * include our customizer functions
 	 */
-	include_once(get_template_directory().'/inc/customizer.php');
-
-	/**
-	 * include our home slider
-	 */
-	include_once(get_template_directory().'/inc/slider.php');
-
-	/**
-	 * include our home blog posts
-	 */
-	include_once(get_template_directory().'/inc/blog-posts.php');
+	include_once(get_template_directory().'/inc/customizer/slider.php');
+	include_once(get_template_directory().'/inc/customizer/blog-posts.php');
+	include_once(get_template_directory().'/inc/customizer/general.php');
 
 	// register our navigation area
 	register_nav_menus( array(

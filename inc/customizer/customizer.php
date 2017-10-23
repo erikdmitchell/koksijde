@@ -245,7 +245,30 @@ function koksijde_customize_register($wp_customize) {
 		'description' => __('Total number of posts displayed.', 'koksijde'),
 		'active_callback' => 'is_front_page',
 	));			
-	
+
+	// General section
+	$wp_customize->add_section('general', array(
+	    'priority' => 20,
+	    'capability' => 'edit_theme_options',
+	    'theme_supports' => '',
+	    'title' => __('General', 'koksijde'),
+	    'description' =>  __('General configuration', 'koksijde'),
+	    'panel' => 'koksijde_home_page',
+	));
+
+	// home slider content displayed //
+	$wp_customize->add_setting('display_content', array(
+		'type' => 'theme_mod',
+		'default' => 0,
+		'sanitize_callback' => 'koksijde_sanitize_checkbox',
+	));
+
+	$wp_customize->add_control('display_content', array(
+		'type' => 'checkbox',
+		'priority' => 10,
+		'section' => 'general',
+		'label' => __('Display page content', 'koksijde'),
+	));	
 }
 add_action('customize_register', 'koksijde_customize_register');
 
