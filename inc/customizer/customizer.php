@@ -21,7 +21,7 @@ function koksijde_customize_register($wp_customize) {
 	    'priority' => 10,
 	    'capability' => 'edit_theme_options',
 	    'theme_supports' => '',
-	    'title' => __('Slider', 'mytheme'),
+	    'title' => __('Slider', 'koksijde'),
 	    'description' =>  __('Slider configuration', 'koksijde'),
 	    'panel' => 'koksijde_home_page',
 	));
@@ -197,7 +197,7 @@ function koksijde_customize_register($wp_customize) {
 	    'priority' => 15,
 	    'capability' => 'edit_theme_options',
 	    'theme_supports' => '',
-	    'title' => __('Blog Posts', 'mytheme'),
+	    'title' => __('Blog Posts', 'koksijde'),
 	    'description' =>  __('Blog posts configuration', 'koksijde'),
 	    'panel' => 'koksijde_home_page',
 	));

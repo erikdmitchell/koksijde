@@ -134,6 +134,12 @@ a img.aligncenter {
   margin-left: auto;
   margin-right: auto; }
 
+.gallery-caption {
+  display: inherit; }
+
+.sticky {
+  display: inherit; }
+
 .entry-content {
   overflow: hidden; }
 

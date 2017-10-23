@@ -56,6 +56,8 @@ Source: http://www.burningwell.org/gallery2/v/Landscapes/ocean/michelle_049.jpg.
 
 = 1.1.0 =
 
+ * leveraged customizer for the front page
+
 = 1.0.0 =
 
  * Initial setup and theme build out.
