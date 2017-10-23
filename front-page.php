@@ -31,6 +31,27 @@
 				</div>
 			</div>
 		</div>
+		
+		<!-- USE CUSTOMIZER ??? -->
+		<?php $blog_posts=new WP_Query('posts_per_page=6&ignore_sticky_posts=1'); ?>
+		
+		<div class="container">
+			<div class="row eq-height">
+				<?php while ($blog_posts->have_posts()) : $blog_posts->the_post(); ?>
+					<div class="col-md-4 blog-post">
+						<?php the_title('<h2>', '</h2>'); ?>
+						<div class="blog-post-thumbnail">
+							<?php the_post_thumbnail(); ?>
+						</div>
+						<div class="blog-post-excerpt">
+							<?php echo koksijde_get_excerpt_by_id(get_the_ID(), 10, '', '...'); ?>
+						</div>
+					</div>
+				<?php endwhile; ?>
+			</div>
+		</div>
+		
+		PERHAPS WE ADD AN OPTION TO NOT DISPLAY CONTENT (customizer)<br>
 
 	<?php endwhile; ?>
 	

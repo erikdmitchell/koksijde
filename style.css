@@ -257,9 +257,55 @@ img {
 	color: #777;
 }
 
-/**/
+/**
+ * general
+ */
 .row.content {
-  padding: 10px 0; }
+	padding: 10px 0; 
+}
+/*
+.row-eq-height {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+*/
+.row.eq-height {
+    display: flex;
+    flex-wrap: wrap;
+}
+.row.eq-height > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+}
+
+/*
+* And with max cross-browser enabled.
+* Nobody should ever write this by hand. 
+* Use a preprocesser with autoprefixing.
+*/
+.row.eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.row.eq-height > [class*='col-'] {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
 
 /**
  * dropdown menus
@@ -414,6 +460,9 @@ img {
  */
 .home-featured-image {
 	margin-bottom: 30px;
+}
+.home .blog-post {
+	margin-bottom: 15px;
 }
 
 /**

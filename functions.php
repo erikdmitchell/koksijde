@@ -503,6 +503,12 @@ function koksijde_home_slider_is_active() {
 	return false;
 }
 
+/**
+ * koksijde_home_image function.
+ * 
+ * @access public
+ * @return void
+ */
 function koksijde_home_image() {
 	global $post;
 	
