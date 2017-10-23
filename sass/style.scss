@@ -1,0 +1,44 @@
+/*
+Theme Name: koksijde
+Theme URI:
+Description: A robust theme built using the bootstrap framework with a touch of awesomeness.
+Author: Erik Mitchell
+Author URI: http://erikmitchell.net
+Version: 1.1.0
+Tags: featured-images, custom-menu, theme-options, translation-ready
+Text Domain: koksijde
+License: GNU General Public License v2 or later
+License URI: LICENSE
+*/
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+1.0 Navigation
+2.0 WordPress
+3.0 Site
+4.0 Slider
+--------------------------------------------------------------*/
+
+@import "variables/variables";
+//@import "mixins/mixins-master";
+
+/*--------------------------------------------------------------
+1.0 Navigation
+--------------------------------------------------------------*/
+@import "navigation/navigation";
+
+/*--------------------------------------------------------------
+2.0 Slider
+--------------------------------------------------------------*/
+@import "wp/wp";
+
+/*--------------------------------------------------------------
+3.0 Site
+--------------------------------------------------------------*/
+@import "site/site";
+
+/*--------------------------------------------------------------
+4.0 Slider
+--------------------------------------------------------------*/
+@import "slider/slider";

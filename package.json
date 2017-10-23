@@ -1,0 +1,36 @@
+{
+  "name": "koksijde",
+  "version": "1.1.0",
+  "description": "A robust theme built using the bootstrap framework with a touch of awesomeness.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"laaste ronde\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://erikdmitchell@github.com/erikdmitchell/koksijde.git"
+  },
+  "keywords": [
+    "featured-images",
+    "custom-menu",
+    "theme-options",
+    "translation-ready"
+  ],
+  "author": "Erik Mitchell",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/erikdmitchell/koksijde/issues"
+  },
+  "homepage": "https://github.com/erikdmitchell/koksijde#readme",
+  "devDependencies": {
+    "autoprefixer": "^7.1.6",
+    "css-declaration-sorter": "^2.1.0",
+    "gulp": "^3.9.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^7.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-util": "^3.0.8"
+  }
+}

@@ -1,0 +1,85 @@
+.koksijde-theme-mobile-menu 
+
+	ul
+		margin: 0	
+	
+	.panel 
+		border: none
+		box-shadow: none
+		overflow: hidden 
+
+	.panel-default 
+		.panel-heading.menu-item-has-children > :first-child 
+			border-top: none 
+	
+		> .panel-heading 
+			background-image: none
+			color: $dark_gray
+			border-bottom: 1px solid $white 
+		
+		.panel-heading 
+			padding: 0 
+		
+		.panel-heading .panel-title a 
+			display: block
+			padding: 10px 15px 
+		
+		> .panel-heading + .panel-collapse > .panel-body 
+			border-top: none 
+		
+		.panel-heading.menu-item-has-children .panel-title a,
+		.panel-collapse .panel-title a 
+			color: $dark_gray 
+		
+		.panel-heading.menu-item-has-children 
+			overflow: hidden 
+		
+		.panel-heading.menu-item-has-children .panel-title .item-title 
+			float: left
+			width: 85.8% 
+		
+		.panel-collapse .panel-title .item-title 
+			float: left
+			width: 84.8% 
+
+		.panel-heading.menu-item-has-children .panel-title .item-icon,
+		.panel-collapse .panel-title .item-icon 
+			float: right
+			border-left: 1px solid $white 
+		
+		> .panel-heading + .panel-collapse > .panel-body 
+			padding: 15px 
+
+	.panel-group
+		margin-top: 0
+		margin-bottom: 0
+		border: 1px solid $light_gray
+		border-width: 1px 0 
+
+		.panel + .panel 
+			margin-top: 0 
+
+		&.navbar-nav 
+			border-width: 0 
+
+		.panel-body 
+			padding: 0 
+			
+		ul.panel-body 
+			list-style-type: none
+			margin: 0
+			padding: 0 0 0 15px 			
+
+	.panel-title 
+		font-size: 14px 
+
+		a:hover 
+			color: $extra_dark_gray
+			text-decoration: none 
+
+		a:focus 
+			text-decoration: none 
+
+@media screen and (min-width: 768px) 
+	.navbar-collapse.collapse.koksijde-theme-mobile-menu 
+		display: none !important  

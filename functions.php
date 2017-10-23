@@ -62,6 +62,7 @@ function koksijde_theme_setup() {
 	 * add our image size(s)
 	 */
 	add_image_size('koksijde-navbar-logo', 163, 100, true);
+	add_image_size('koksijde-home-image', 9999, 400, true);
 
 	/**
 	 * include bootstrap nav walker
@@ -500,5 +501,19 @@ function koksijde_home_slider_is_active() {
 		return true;
 		
 	return false;
+}
+
+/**
+ * koksijde_home_image function.
+ * 
+ * @access public
+ * @return void
+ */
+function koksijde_home_image() {
+	global $post;
+	
+	$thumb=get_the_post_thumbnail($post->ID, 'koksijde-home-image');
+	
+	echo $thumb;
 }
 ?>

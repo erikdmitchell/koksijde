@@ -3,7 +3,7 @@ Contributors: Erik Mitchell
 Tags: featured-images, custom-menu, theme-options, translation-ready
 Requires at least: 3.5
 Tested up to: 4.7.3
-Stable tag: 1.0.3
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -53,6 +53,8 @@ Bundled screenshot image, Copyright Alvin Engler
 Source: http://www.burningwell.org/gallery2/v/Landscapes/ocean/michelle_049.jpg.html, http://www.burningwell.org/gallery2/v/Objects/Windmill.jpg.html, http://www.burningwell.org/gallery2/main.php?g2_view=dynamicalbum.UpdatesAlbum&amp;g2_itemId=25774, http://www.burningwell.org/gallery2/v/Landscapes/ocean/IMG_0767.JPG.html
 
 == Changelog ==
+
+= 1.1.0 =
 
 = 1.0.0 =
 
