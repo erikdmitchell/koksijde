@@ -34,29 +34,23 @@
 		
 		<?php if (koksijde_home_blog_posts_is_active()) : ?>
 		
-		<?php //$blog_posts=koksijde_home_blog_posts(); ?>
-		
-		<div class="container">
-			<div class="row eq-height">
-				<?php //while ($blog_posts->have_posts()) : $blog_posts->the_post(); ?>
-				<?php foreach (koksijde_home_blog_posts() as $post) : ?>
-					<div class="col-md-4 blog-post">
-						<?php the_title('<h2>', '</h2>'); ?>
-						<div class="blog-post-thumbnail">
-							<?php the_post_thumbnail('koksijde-home-blog-post-image'); ?>
+			<div class="container">
+				<div class="row eq-height">
+					<?php foreach (koksijde_home_blog_posts() as $post) : ?>
+						<div class="col-md-4 blog-post">
+							<h2><?php echo get_the_title($post->ID); ?></h2>
+							<div class="blog-post-thumbnail">
+								<?php the_post_thumbnail('koksijde-home-blog-post-image'); ?>
+							</div>
+							<div class="blog-post-excerpt">
+								<?php echo koksijde_get_excerpt_by_id($post->ID, 10, '', '...'); ?>
+							</div>
 						</div>
-						<div class="blog-post-excerpt">
-							<?php echo koksijde_get_excerpt_by_id($post->ID, 10, '', '...'); ?>
-						</div>
-					</div>
-				<?php endforeach; ?>
-				<?php //endwhile; ?>
+					<?php endforeach; ?>
+				</div>
 			</div>
-		</div>
 		
 		<?php endif; ?>
-		
-		PERHAPS WE ADD AN OPTION TO NOT DISPLAY CONTENT (customizer)<br>
 
 	<?php endwhile; ?>
 	
