@@ -6,6 +6,19 @@ $slide_counter=0;
 $slide_icon_counter=0;
 
 /**
+ * koksijde_home_slider_is_active function.
+ * 
+ * @access public
+ * @return void
+ */
+function koksijde_home_slider_is_active() {
+	if (get_theme_mod('slider_active', 0))
+		return true;
+		
+	return false;
+}
+
+/**
  * koksijde_add_slider_image_sizes function.
  *
  * @access public
@@ -25,7 +38,7 @@ add_action('after_setup_theme', 'koksijde_add_slider_image_sizes');
 function koksijde_get_home_slider_slides() {
 	// post args //
 	$args=array(
-		'posts_per_page' => get_theme_mod('home_slider_limit', -1),
+		'posts_per_page' => get_theme_mod('slider_limit', -1),
 		'post_type' => get_theme_mod('home_slider_post_type', 'post'),
 		'meta_query' => array( 
         	array(

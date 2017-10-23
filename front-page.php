@@ -15,43 +15,48 @@
 		<?php if (!koksijde_home_slider_is_active() && has_post_thumbnail()) : ?>
 		
 			<div class="container-full home-featured-image">
-				<div class="row">
-					<div class="col-xs-12">
-						<?php koksijde_home_image(); ?>
-					</div>
-				</div>
+				<?php koksijde_home_image(); ?>
 			</div>
 			
 		<?php endif; ?>
 
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<?php the_content(); ?>
+		<?php if (koksijde_display_home_content()) : ?>
+		
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<?php the_content(); ?>
+					</div>
 				</div>
 			</div>
-		</div>
 		
-		<!-- USE CUSTOMIZER ??? -->
-		<?php $blog_posts=new WP_Query('posts_per_page=6&ignore_sticky_posts=1'); ?>
+		<?php endif; ?>
 		
-		<div class="container">
-			<div class="row eq-height">
-				<?php while ($blog_posts->have_posts()) : $blog_posts->the_post(); ?>
-					<div class="col-md-4 blog-post">
-						<?php the_title('<h2>', '</h2>'); ?>
-						<div class="blog-post-thumbnail">
-							<?php the_post_thumbnail(); ?>
+		<?php if (koksijde_home_blog_posts_is_active()) : ?>
+		
+			<div class="container">
+				<div class="row eq-height">
+					<?php foreach (koksijde_home_blog_posts() as $post) : ?>
+						<div class="col-xs-12 col-sm-6 blog-post">
+							<h2><?php echo get_the_title($post->ID); ?></h2>
+							<div class="blog-post-thumbnail">
+								<?php echo get_the_post_thumbnail($post->ID, 'koksijde-home-blog-post-image'); ?>
+							</div>
+							<div class="blog-post-excerpt">
+								<?php echo koksijde_get_excerpt_by_id($post->ID, 40, '', '<a href="'.get_permalink($post->ID).'">...more</a>'); ?>
+							</div>
 						</div>
-						<div class="blog-post-excerpt">
-							<?php echo koksijde_get_excerpt_by_id(get_the_ID(), 10, '', '...'); ?>
-						</div>
+					<?php endforeach; ?>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12">
+						<a href="<?php echo get_permalink(get_option('page_for_posts')); ?>">More posts</a>
 					</div>
-				<?php endwhile; ?>
+				</div>
 			</div>
-		</div>
 		
-		PERHAPS WE ADD AN OPTION TO NOT DISPLAY CONTENT (customizer)<br>
+		<?php endif; ?>
 
 	<?php endwhile; ?>
 	

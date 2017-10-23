@@ -394,9 +394,17 @@ img {
 /* front page */
 .home-featured-image {
   margin-bottom: 30px; }
+  .home-featured-image > div {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
+    width: 100%; }
 
 .home .blog-post {
   margin-bottom: 15px; }
+  .home .blog-post .blog-post-thumbnail {
+    margin-bottom: 15px; }
 
 /* comments */
 .commentlist .bypostauthor {
@@ -434,7 +442,8 @@ img {
 /* footer */
 footer {
   background: #e7e7e7;
-  border-top: none; }
+  border-top: none;
+  margin-top: 30px; }
   footer .footer-widgets {
     padding: 10px 0 20px 0; }
   footer .footer-widgets ul {

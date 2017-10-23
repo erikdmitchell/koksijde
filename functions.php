@@ -63,6 +63,7 @@ function koksijde_theme_setup() {
 	 */
 	add_image_size('koksijde-navbar-logo', 163, 100, true);
 	add_image_size('koksijde-home-image', 9999, 400, true);
+	add_image_size('koksijde-home-blog-post-image', 555, 225, true);
 
 	/**
 	 * include bootstrap nav walker
@@ -75,14 +76,16 @@ function koksijde_theme_setup() {
 	include_once(get_template_directory().'/inc/mobile_nav_walker.php');
 
 	/**
-	 * include our customizer functions
+	 * include our customizer settings
 	 */
-	include_once(get_template_directory().'/inc/customizer.php');
+	include_once(get_template_directory().'/inc/customizer/customizer.php');
 
 	/**
-	 * include our home slider
+	 * include our customizer functions
 	 */
-	include_once(get_template_directory().'/inc/slider.php');
+	include_once(get_template_directory().'/inc/customizer/slider.php');
+	include_once(get_template_directory().'/inc/customizer/blog-posts.php');
+	include_once(get_template_directory().'/inc/customizer/general.php');
 
 	// register our navigation area
 	register_nav_menus( array(
@@ -491,19 +494,6 @@ function koksijde_array_recursive_diff($aArray1, $aArray2) {
 }
 
 /**
- * koksijde_home_slider_is_active function.
- * 
- * @access public
- * @return void
- */
-function koksijde_home_slider_is_active() {
-	if (get_theme_mod('home_slider_active', 0))
-		return true;
-		
-	return false;
-}
-
-/**
  * koksijde_home_image function.
  * 
  * @access public
@@ -512,8 +502,8 @@ function koksijde_home_slider_is_active() {
 function koksijde_home_image() {
 	global $post;
 	
-	$thumb=get_the_post_thumbnail($post->ID, 'koksijde-home-image');
+	$thumb_url=get_the_post_thumbnail_url($post->ID, 'koksijde-home-image');
 	
-	echo $thumb;
+	echo '<div style="background-image: url('.$thumb_url.')"></div>';
 }
 ?>
