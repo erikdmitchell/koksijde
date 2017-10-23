@@ -37,16 +37,22 @@
 			<div class="container">
 				<div class="row eq-height">
 					<?php foreach (koksijde_home_blog_posts() as $post) : ?>
-						<div class="col-xs-12 col-sm-6 col-md-4 blog-post">
+						<div class="col-xs-12 col-sm-6 blog-post">
 							<h2><?php echo get_the_title($post->ID); ?></h2>
 							<div class="blog-post-thumbnail">
-								<?php the_post_thumbnail('koksijde-home-blog-post-image'); ?>
+								<?php echo get_the_post_thumbnail($post->ID, 'koksijde-home-blog-post-image'); ?>
 							</div>
 							<div class="blog-post-excerpt">
-								<?php echo koksijde_get_excerpt_by_id($post->ID, 10, '', '...'); ?>
+								<?php echo koksijde_get_excerpt_by_id($post->ID, 40, '', '<a href="'.get_permalink($post->ID).'">...more</a>'); ?>
 							</div>
 						</div>
 					<?php endforeach; ?>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12">
+						<a href="<?php echo get_permalink(get_option('page_for_posts')); ?>">More posts</a>
+					</div>
 				</div>
 			</div>
 		

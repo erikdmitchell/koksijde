@@ -403,6 +403,8 @@ img {
 
 .home .blog-post {
   margin-bottom: 15px; }
+  .home .blog-post .blog-post-thumbnail {
+    margin-bottom: 15px; }
 
 /* comments */
 .commentlist .bypostauthor {
