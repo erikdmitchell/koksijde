@@ -7,60 +7,71 @@
  * @param mixed $wp_customize
  * @return void
  */
-function koksijde_customize_register($wp_customize) {
-	$wp_customize->add_section('home_slider', array(
-	  'title' => __('Home Slider', 'koksijde'),
-	  'description' => __('Setup a slider on the home page.', 'koksijde'),
-	  'priority' => 160,
-	  'capability' => 'edit_theme_options',
+function koksijde_customize_register($wp_customize) {	
+	$wp_customize->add_panel('koksijde_home_page', array(
+		'priority' => 200,
+		'capability' => 'edit_theme_options',
+		'theme_supports' => '',
+		'title' => __('Home Page', 'koksijde'),
+		'description' => __('Settings pertaining to the home page.', 'koksijde'),
+	));
+
+	// Slider section //
+	$wp_customize->add_section('slider', array(
+	    'priority' => 10,
+	    'capability' => 'edit_theme_options',
+	    'theme_supports' => '',
+	    'title' => __('Slider', 'mytheme'),
+	    'description' =>  __('Slider configuration', 'koksijde'),
+	    'panel' => 'koksijde_home_page',
 	));
 	
 	// home slider active //
-	$wp_customize->add_setting('home_slider_active', array(
+	$wp_customize->add_setting('slider_active', array(
 		'type' => 'theme_mod',
 		'default' => 0,
 		'sanitize_callback' => 'koksijde_sanitize_checkbox',
 	));
 
-	$wp_customize->add_control('home_slider_active', array(
+	$wp_customize->add_control('slider_active', array(
 		'type' => 'checkbox',
-		'priority' => 10, // Within the section.
-		'section' => 'home_slider', // Required, core or custom.
+		'priority' => 10,
+		'section' => 'slider',
 		'label' => __('Activate Home Slider', 'koksijde'),
 	));
 
 	// home slider post type //
-	$wp_customize->add_setting('home_slider_post_type');
+	$wp_customize->add_setting('slider_post_type');
 
 	$wp_customize->add_control(
 	    new Koksijde_Post_Types_Control(
 	        $wp_customize,
-	        'home_slider_post_type',
+	        'slider_post_type',
 	        array(
 	            'label'    => __('Post Type', 'koksijde'),
-	            'section'  => 'home_slider'
+	            'section'  => 'slider'
 	        )
 	    )
 	);
 
 	// slider limit //
-	$wp_customize->add_setting('home_slider_limit', array(
+	$wp_customize->add_setting('slider_limit', array(
 		'type' => 'theme_mod',
 		'default' => -1,
 		'sanitize_callback' => 'koksijde_sanitize_number',
 	));
 
-	$wp_customize->add_control('home_slider_limit', array(
+	$wp_customize->add_control('slider_limit', array(
 		'type' => 'number',
 		'priority' => 10, // Within the section.
-		'section' => 'home_slider', // Required, core or custom.
+		'section' => 'slider', // Required, core or custom.
 		'label' => __('Limit', 'koksijde'),
 		'description' => __('Total number of slides displayed.', 'koksijde'),
 		'active_callback' => 'is_front_page',
 	));	
 	
 	// slider indicators //
-	$wp_customize->add_setting('home_slider_indicators', array(
+	$wp_customize->add_setting('slider_indicators', array(
 		'type' => 'theme_mod',
 		'default' => 1,
 		'sanitize_callback' => 'koksijde_sanitize_select',
@@ -69,16 +80,16 @@ function koksijde_customize_register($wp_customize) {
 	$wp_customize->add_control(
 	    new Koksijde_TrueFalse_Control(
 	        $wp_customize,
-	        'home_slider_indicators',
+	        'slider_indicators',
 	        array(
 	            'label'    => __('Show Indicators', 'koksijde'),
-	            'section'  => 'home_slider'
+	            'section'  => 'slider'
 	        )
 	    )
 	);
 
 	// slides //
-	$wp_customize->add_setting('home_slider_slides', array(
+	$wp_customize->add_setting('slider_slides', array(
 		'type' => 'theme_mod',
 		'default' => 1,
 		'sanitize_callback' => 'koksijde_sanitize_select',
@@ -87,16 +98,16 @@ function koksijde_customize_register($wp_customize) {
 	$wp_customize->add_control(
 	    new Koksijde_TrueFalse_Control(
 	        $wp_customize,
-	        'home_slider_slides',
+	        'slider_slides',
 	        array(
 	            'label'    => __('Show Slides', 'koksijde'),
-	            'section'  => 'home_slider'
+	            'section'  => 'slider'
 	        )
 	    )
 	);
 
 	// captions //
-	$wp_customize->add_setting('home_slider_captions', array(
+	$wp_customize->add_setting('slider_captions', array(
 		'type' => 'theme_mod',
 		'default' => 0,
 		'sanitize_callback' => 'koksijde_sanitize_select',
@@ -105,16 +116,16 @@ function koksijde_customize_register($wp_customize) {
 	$wp_customize->add_control(
 	    new Koksijde_TrueFalse_Control(
 	        $wp_customize,
-	        'home_slider_captions',
+	        'slider_captions',
 	        array(
 	            'label'    => __('Show Captions', 'koksijde'),
-	            'section'  => 'home_slider'
+	            'section'  => 'slider'
 	        )
 	    )
 	);	
 
 	// caption field //
-	$wp_customize->add_setting('home_slider_caption_field', array(
+	$wp_customize->add_setting('slider_caption_field', array(
 		'type' => 'theme_mod',
 		'default' => 'excerpt',
 		'sanitize_callback' => 'koksijde_sanitize_select',
@@ -123,16 +134,16 @@ function koksijde_customize_register($wp_customize) {
 	$wp_customize->add_control(
 	    new Koksijde_Caption_Field_Control(
 	        $wp_customize,
-	        'home_slider_caption_field',
+	        'slider_caption_field',
 	        array(
 	            'label'    => __('Caption Field', 'koksijde'),
-	            'section'  => 'home_slider'
+	            'section'  => 'slider'
 	        )
 	    )
 	);
 
 	// more button //
-	$wp_customize->add_setting('home_slider_more_button', array(
+	$wp_customize->add_setting('slider_more_button', array(
 		'type' => 'theme_mod',
 		'default' => 1,
 		'sanitize_callback' => 'koksijde_sanitize_select',
@@ -141,30 +152,30 @@ function koksijde_customize_register($wp_customize) {
 	$wp_customize->add_control(
 	    new Koksijde_TrueFalse_Control(
 	        $wp_customize,
-	        'home_slider_more_button',
+	        'slider_more_button',
 	        array(
 	            'label'    => __('Show More Button', 'koksijde'),
-	            'section'  => 'home_slider'
+	            'section'  => 'slider'
 	        )
 	    )
 	);	
 
 	// more text //
-	$wp_customize->add_setting('home_slider_read_more_text', array(
+	$wp_customize->add_setting('slider_read_more_text', array(
 		'type' => 'theme_mod',
 		'default' => 'Read more...',
 		'sanitize_callback' => 'koksijde_sanitize_html',
 	));
 	
-	$wp_customize->add_control('home_slider_read_more_text', array(
+	$wp_customize->add_control('slider_read_more_text', array(
 		'type' => 'text',
 		'priority' => 10, // Within the section.
-		'section' => 'home_slider', // Required, core or custom.
+		'section' => 'slider', // Required, core or custom.
 		'label' => __('More Text', 'koksijde'),
 	));	
 	
 	// slider controls //
-	$wp_customize->add_setting('home_slider_controls', array(
+	$wp_customize->add_setting('slider_controls', array(
 		'type' => 'theme_mod',
 		'default' => 1,
 		'sanitize_callback' => 'koksijde_sanitize_select',
@@ -173,13 +184,67 @@ function koksijde_customize_register($wp_customize) {
 	$wp_customize->add_control(
 	    new Koksijde_TrueFalse_Control(
 	        $wp_customize,
-	        'home_slider_controls',
+	        'slider_controls',
 	        array(
 	            'label'    => __('Show Controls', 'koksijde'),
-	            'section'  => 'home_slider'
+	            'section'  => 'slider'
 	        )
 	    )
-	);		
+	);
+	
+	// Blog Posts section
+	$wp_customize->add_section('blog_posts', array(
+	    'priority' => 15,
+	    'capability' => 'edit_theme_options',
+	    'theme_supports' => '',
+	    'title' => __('Blog Posts', 'mytheme'),
+	    'description' =>  __('Blog posts configuration', 'koksijde'),
+	    'panel' => 'koksijde_home_page',
+	));
+	
+	// blog posts active //
+	$wp_customize->add_setting('blog_posts_active', array(
+		'type' => 'theme_mod',
+		'default' => 1,
+		'sanitize_callback' => 'koksijde_sanitize_checkbox',
+	));
+
+	$wp_customize->add_control('blog_posts_active', array(
+		'type' => 'checkbox',
+		'priority' => 10,
+		'section' => 'blog_posts',
+		'label' => __('Display Blog Posts', 'koksijde'),
+	));
+
+	// home blog posts post type //
+	$wp_customize->add_setting('blog_posts_post_type');
+
+	$wp_customize->add_control(
+	    new Koksijde_Post_Types_Control(
+	        $wp_customize,
+	        'blog_posts_post_type',
+	        array(
+	            'label'    => __('Post Type', 'koksijde'),
+	            'section'  => 'blog_posts',
+	        )
+	    )
+	);
+
+	// blog posts limit //
+	$wp_customize->add_setting('blog_posts_limit', array(
+		'type' => 'theme_mod',
+		'default' => 6,
+		'sanitize_callback' => 'koksijde_sanitize_number',
+	));
+
+	$wp_customize->add_control('blog_posts_limit', array(
+		'type' => 'number',
+		'priority' => 10,
+		'section' => 'home_blog_posts', 
+		'label' => __('Limit', 'koksijde'),
+		'description' => __('Total number of posts displayed.', 'koksijde'),
+		'active_callback' => 'is_front_page',
+	));			
 	
 }
 add_action('customize_register', 'koksijde_customize_register');
@@ -324,67 +389,4 @@ function koksijde_sanitize_number( $number, $setting ) {
 	
 	return $number;
 }
-
-
-
-
-
-
-//////
-
-function koksijde_customize_register2($wp_customize) {
-	$wp_customize->add_section('home_blog_posts', array(
-	  'title' => __('Home Blog Posts', 'koksijde'),
-	  'description' => __('Display blog posts on the home page.', 'koksijde'),
-	  'priority' => 165,
-	  'capability' => 'edit_theme_options',
-	));
-	
-	// home blog posts active //
-	$wp_customize->add_setting('home_blog_posts_active', array(
-		'type' => 'theme_mod',
-		'default' => 1,
-		'sanitize_callback' => 'koksijde_sanitize_checkbox',
-	));
-
-	$wp_customize->add_control('home_blog_posts_active', array(
-		'type' => 'checkbox',
-		'priority' => 10,
-		'section' => 'home_blog_posts',
-		'label' => __('Display Blog Posts', 'koksijde'),
-	));
-
-	// home blog posts post type //
-	$wp_customize->add_setting('home_blog_posts_post_type');
-
-	$wp_customize->add_control(
-	    new Koksijde_Post_Types_Control(
-	        $wp_customize,
-	        'home_blog_posts_post_type',
-	        array(
-	            'label'    => __('Post Type', 'koksijde'),
-	            //'settings' => 'home_blog_posts',
-	            'section'  => 'home_blog_posts',
-	        )
-	    )
-	);
-
-	// blog posts limit //
-	$wp_customize->add_setting('blog_posts_limit', array(
-		'type' => 'theme_mod',
-		'default' => 6,
-		'sanitize_callback' => 'koksijde_sanitize_number',
-	));
-
-	$wp_customize->add_control('blog_posts_limit', array(
-		'type' => 'number',
-		'priority' => 10,
-		'section' => 'home_blog_posts', 
-		'label' => __('Limit', 'koksijde'),
-		'description' => __('Total number of posts displayed.', 'koksijde'),
-		'active_callback' => 'is_front_page',
-	));	
-	
-}
-add_action('customize_register', 'koksijde_customize_register2');
 ?>
