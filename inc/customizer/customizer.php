@@ -41,7 +41,11 @@ function koksijde_customize_register($wp_customize) {
 	));
 
 	// home slider post type //
-	$wp_customize->add_setting('slider_post_type');
+	$wp_customize->add_setting('slider_post_type', array(
+		'type' => 'theme_mod',
+		'default' => 'post',
+		'sanitize_callback' => 'koksijde_sanitize_select',		
+	));
 
 	$wp_customize->add_control(
 	    new Koksijde_Post_Types_Control(
@@ -78,7 +82,7 @@ function koksijde_customize_register($wp_customize) {
 	));
 
 	$wp_customize->add_control(
-	    new Koksijde_TrueFalse_Control(
+	    new Koksijde_True_False_Control(
 	        $wp_customize,
 	        'slider_indicators',
 	        array(
@@ -96,7 +100,7 @@ function koksijde_customize_register($wp_customize) {
 	));
 
 	$wp_customize->add_control(
-	    new Koksijde_TrueFalse_Control(
+	    new Koksijde_True_False_Control(
 	        $wp_customize,
 	        'slider_slides',
 	        array(
@@ -114,7 +118,7 @@ function koksijde_customize_register($wp_customize) {
 	));
 
 	$wp_customize->add_control(
-	    new Koksijde_TrueFalse_Control(
+	    new Koksijde_True_False_Control(
 	        $wp_customize,
 	        'slider_captions',
 	        array(
@@ -150,7 +154,7 @@ function koksijde_customize_register($wp_customize) {
 	));
 
 	$wp_customize->add_control(
-	    new Koksijde_TrueFalse_Control(
+	    new Koksijde_True_False_Control(
 	        $wp_customize,
 	        'slider_more_button',
 	        array(
@@ -182,7 +186,7 @@ function koksijde_customize_register($wp_customize) {
 	));
 
 	$wp_customize->add_control(
-	    new Koksijde_TrueFalse_Control(
+	    new Koksijde_True_False_Control(
 	        $wp_customize,
 	        'slider_controls',
 	        array(
@@ -217,7 +221,11 @@ function koksijde_customize_register($wp_customize) {
 	));
 
 	// home blog posts post type //
-	$wp_customize->add_setting('blog_posts_post_type');
+	$wp_customize->add_setting('blog_posts_post_type', array(
+		'type' => 'theme_mod',
+		'default' => 'post',
+		'sanitize_callback' => 'koksijde_sanitize_select',
+	));
 
 	$wp_customize->add_control(
 	    new Koksijde_Post_Types_Control(
@@ -276,16 +284,23 @@ add_action('customize_register', 'koksijde_customize_register');
 if (class_exists('WP_Customize_Control')) :
     class Koksijde_Post_Types_Control extends WP_Customize_Control {
 
-        public function render_content() {
-			$args=array(
-				'public' => true
+		// we need to setup our "choices" var by overriding the construct //
+		public function __construct($manager, $id, $args=array()) {
+			parent::__construct($manager, $id, $args);
+			
+			$post_types_args=array(
+				'public' => true,	
 			);
-			$post_types_arr=get_post_types($args);
+			
+			$this->choices=get_post_types($post_types_args);
+		}
+
+        public function render_content() {        
 			?>
             <span class="customize-control-title"><?php echo esc_html($this->label); ?></span>
 
 			<select <?php $this->link(); ?>>
-				<?php foreach ($post_types_arr as $type) : ?>
+				<?php foreach ($this->choices as $type) : ?>
 					<option value="<?php echo $type; ?>" <?php selected($this->value(), $type); ?>><?php echo $type; ?></option>
 				<?php endforeach; ?>
 			</select>
@@ -296,7 +311,17 @@ if (class_exists('WP_Customize_Control')) :
 endif;
 
 if (class_exists('WP_Customize_Control')) :
-    class Koksijde_TrueFalse_Control extends WP_Customize_Control {
+    class Koksijde_True_False_Control extends WP_Customize_Control {
+ 
+ 		// we need to setup our "choices" var by overriding the construct //
+		public function __construct($manager, $id, $args=array()) {
+			parent::__construct($manager, $id, $args);
+
+			$this->choices=array(
+				'1' => 'True',
+				'0' => 'False',	
+			);
+		}
  
         public function render_content() {
             ?>
@@ -363,16 +388,15 @@ function koksijde_sanitize_checkbox( $checked ) {
  * @param WP_Customize_Setting $setting Setting instance.
  * @return string Sanitized slug if it is a valid choice; otherwise, the setting default.
  */
-function koksijde_sanitize_select( $input, $setting ) {
-	
+function koksijde_sanitize_select($input, $setting) {
 	// Ensure input is a slug.
-	$input = sanitize_key( $input );
+	$input=sanitize_key($input);
 	
 	// Get list of choices from the control associated with the setting.
-	$choices = $setting->manager->get_control( $setting->id )->choices;
-	
+	$choices=$setting->manager->get_control($setting->id)->choices;
+//print_r($choices);
 	// If the input is a valid key, return it; otherwise, return the default.
-	return ( array_key_exists( $input, $choices ) ? $input : $setting->default );
+	return (array_key_exists($input, $choices) ? $input : $setting->default);
 }
 
 /**
