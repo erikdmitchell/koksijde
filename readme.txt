@@ -56,7 +56,8 @@ Source: http://www.burningwell.org/gallery2/v/Landscapes/ocean/michelle_049.jpg.
 
 = 1.1.0 =
 
- * leveraged customizer for the front page
+ * Leveraged customizer for the front page
+ * Fixed slider issues and moved it into a "Home" panel in the customizer.
 
 = 1.0.0 =
 
