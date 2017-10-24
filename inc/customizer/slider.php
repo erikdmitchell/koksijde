@@ -115,14 +115,14 @@ function koksijde_home_slider_slide_icon_counter() {
  * @return void
  */
 function koksijde_slider_get_caption($post=false) {
-	global $koksijde_slider_config;
+	//global $koksijde_slider_config;
 
 	$html=null;
 
 	if (!$post)
 		return false;
 
-	switch ($koksijde_slider_config['caption_field']):
+	switch (get_theme_mod('slider_caption_field', 'excerpt')):
 		case 'excerpt' :
 			$html.=$post->post_excerpt;
 			break;

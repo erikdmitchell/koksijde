@@ -135,16 +135,16 @@ function koksijde_customize_register($wp_customize) {
 		'sanitize_callback' => 'koksijde_sanitize_select',
 	));		
 
-	$wp_customize->add_control(
-	    new Koksijde_Caption_Field_Control(
-	        $wp_customize,
-	        'slider_caption_field',
-	        array(
-	            'label'    => __('Caption Field', 'koksijde'),
-	            'section'  => 'slider'
-	        )
-	    )
-	);
+	$wp_customize->add_control('slider_caption_field', array(
+		'label' => __('Caption Field', 'koksijde'),
+        'section'  => 'slider',
+        'type'     => 'select',
+        'choices'  => array(
+            'excerpt' => __('Excerpt', 'koksijde'),
+            'content' => __('Content', 'koksijde'),
+            'title' => __('Title', 'koksijde'),
+        ),
+	));
 
 	// more button //
 	$wp_customize->add_setting('slider_more_button', array(
@@ -334,23 +334,6 @@ if (class_exists('WP_Customize_Control')) :
         }
     }
 endif;
-
-if (class_exists('WP_Customize_Control')) :
-    class Koksijde_Caption_Field_Control extends WP_Customize_Control {
-
-        public function render_content() {
-            ?>
-            <span class="customize-control-title"><?php echo esc_html($this->label); ?></span>
-            <select <?php $this->link(); ?>>
-            	<option value="excerpt" <?php selected($this->value(), 'excerpt'); ?>>Excerpt</option>
-            	<option value="content" <?php selected($this->value(), 'content'); ?>>Content</option>
-            	<option value="title" <?php selected($this->value(), 'title'); ?>>Title</option>            	
-            </select>
-            <?php        
-        }
-    }
-endif;
-
 
 /**
  * CALLBACKS
