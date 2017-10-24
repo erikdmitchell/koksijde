@@ -523,9 +523,15 @@ footer {
   .koksijde-slider .carousel-control {
     background-image: none; }
   .koksijde-slider .carousel-inner > .item {
-    height: 100%; }
+        -ms-flex-align: center;
+    -webkit-box-align: center;
+            align-items: center;
+    max-height: 500px;
+    position: relative;
+    width: 100%; }
   .koksijde-slider .carousel-caption {
     font-size: 18px; }
   .koksijde-slider .carousel-inner > .item > a > img,
   .koksijde-slider .carousel-inner > .item > img {
-    margin: 0 auto; }
+    margin: 0 auto;
+    max-height: 100%; }
