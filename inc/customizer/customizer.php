@@ -92,24 +92,6 @@ function koksijde_customize_register($wp_customize) {
 	    )
 	);
 
-	// slides //
-	$wp_customize->add_setting('slider_slides', array(
-		'type' => 'theme_mod',
-		'default' => 1,
-		'sanitize_callback' => 'koksijde_sanitize_select',
-	));
-
-	$wp_customize->add_control(
-	    new Koksijde_True_False_Control(
-	        $wp_customize,
-	        'slider_slides',
-	        array(
-	            'label'    => __('Show Slides', 'koksijde'),
-	            'section'  => 'slider'
-	        )
-	    )
-	);
-
 	// captions //
 	$wp_customize->add_setting('slider_captions', array(
 		'type' => 'theme_mod',
