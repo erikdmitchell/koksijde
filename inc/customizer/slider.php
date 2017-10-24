@@ -197,4 +197,11 @@ function koksijde_slider_thumbnail($post_id) {
 
 	echo apply_filters('koksijde_slider_thumbnail', $image, $attr, $width, $height);
 }
+
+function koksijde_show_indicators() {
+	if (get_theme_mod('slider_indicators', 1))
+		return true;
+		
+	return false;
+}
 ?>
