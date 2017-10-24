@@ -1,4 +1,4 @@
-<?php if (get_theme_mod('home_slider_controls', 1)) : ?>
+<?php if (get_theme_mod('slider_controls', 1)) : ?>
 
 	<a class="left carousel-control" href="#koksijde-home-slider" data-slide="prev">
 		<span class="glyphicon glyphicon-chevron-left"></span>
